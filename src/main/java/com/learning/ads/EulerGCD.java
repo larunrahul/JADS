@@ -17,7 +17,6 @@ public class EulerGCD {
 
 	public static void main(String[] args) {
 		System.out.println(gcd(1071,462));
-
 	}
 
 }
