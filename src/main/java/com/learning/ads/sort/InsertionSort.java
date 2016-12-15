@@ -1,14 +1,14 @@
 package com.learning.ads.sort;
 
-public class InsertionSortDemo {
+public class InsertionSort {
 	
 	public int[] array;
 	
-	private InsertionSortDemo(int[] array){
+	private InsertionSort(int[] array){
 		this.array = array;
 	}
 	
-	public void insertionSort(){
+	public void sort(){
 		for(int index = 1; index < array.length; index++){
 			int key = array[index];
 			int sortedIndex = index-1; 
@@ -29,9 +29,9 @@ public class InsertionSortDemo {
 
 	public static void main(String[] args) {
 		int[] array = {2,5,2,37,3,1,7,4,9,6,10};
-		InsertionSortDemo insertionSortDemo = new InsertionSortDemo(array);
+		InsertionSort insertionSortDemo = new InsertionSort(array);
 		insertionSortDemo.print();
-		insertionSortDemo.insertionSort();
+		insertionSortDemo.sort();
 		insertionSortDemo.print();
 	}
 
