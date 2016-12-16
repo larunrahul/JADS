@@ -1,4 +1,4 @@
-package com.learning.ads.math.prime;
+package com.learning.ads.math.numbertheory.prime;
 
 import com.learning.ads.element.ListNode;
 
@@ -22,15 +22,12 @@ public class SeiveOfEratosthenesWithLinkedList {
 			ListNode next = temp.next;
 			ListNode prev = temp;
 			while(next != null){
-				boolean hit = false;
 				if(next.value % temp.value == 0){
 					prev.next = next.next;
-					hit = true;
-				}
-				next = next.next;
-				if(!hit){
+				}else{
 					prev = prev.next;
 				}
+				next = next.next;
 			}
 			temp = temp.next;
 		}

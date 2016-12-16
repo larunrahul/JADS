@@ -1,4 +1,4 @@
-package com.learning.ads.math.prime;
+package com.learning.ads.math.numbertheory.prime;
 
 public class SeiveOfEratosthenes {
 	
