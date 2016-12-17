@@ -6,6 +6,9 @@ public class SeiveOfEratosthenes {
 	
 	public SeiveOfEratosthenes(int limit){
 		/*
+		 * Excluding 0 and 1, we populate the array as 2,3,4,.......limit-1,limit.
+		 * Hence we need limit-2(0,1)+1(last element) = limit-1.
+		 * For example if our limit is 100(including), then we need 100-2+1 = 99 elements in array.
 		 * 
 		 */
 		array = new int[limit-1];
@@ -13,7 +16,9 @@ public class SeiveOfEratosthenes {
 			array[index] = value;
 		}
 	}
-	
+	/**
+	 * look at https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
+	 */
 	public void printPrimes(){
 		for(int index = 0;index < array.length; index++){
 			int next = index+1;
@@ -21,6 +26,7 @@ public class SeiveOfEratosthenes {
 				System.out.print(array[index]+"\t");
 				while(next < array.length){
 					if(array[next] != 0 && array[next] % array[index] == 0){
+						//as removing element from array is too costly, we are just marking it zero
 						array[next] = 0;
 					}
 					next += 1;
