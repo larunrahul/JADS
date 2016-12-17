@@ -1,2 +1,2 @@
 # JADS
-> Algorithms and DataStructures in Java
+Algorithms and DataStructures in Java
