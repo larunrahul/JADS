@@ -1,6 +1,6 @@
-package com.learning.ads;
+package com.learning.ads.math.numbertheory.prime;
 
-public class EulerGCD {
+public class EuclidGCD {
 	
 	public static int gcd(int a, int b){
 		if(b == 0){
