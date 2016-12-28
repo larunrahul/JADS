@@ -13,7 +13,6 @@ public class InsertionSort {
 	 * Ascending sort
 	 */
 	public static void sort(int[] array){
-		
 		for(int index = 1; index < array.length; index++){
 			int key = array[index];
 			int sortedIndex = index-1; 
@@ -23,14 +22,12 @@ public class InsertionSort {
 			}
 			array[sortedIndex+1] = key;
 		}
-		
 	}
 	
 	/**
 	 * Descending sort
 	 */
 	public static void reverseSort(int[] array){
-		
 		for(int index = 1; index < array.length; index++){
 			int key = array[index];
 			int sortedIndex = index-1; 
@@ -40,11 +37,9 @@ public class InsertionSort {
 			}
 			array[sortedIndex+1] = key;
 		}
-		
 	}
 	
 	public static void main(String[] args) {
-		
 		int[] array = {2,5,2,37,3,1,7,4,9,6,10};
 		System.out.println("unsorted array \t\t\t: "+Arrays.toString(array));
 		sort(array);
@@ -53,7 +48,6 @@ public class InsertionSort {
 		System.out.println("unsorted array \t\t\t: "+Arrays.toString(array1));
 		reverseSort(array1);
 		System.out.println("descendingly sorted array \t: "+Arrays.toString(array1));
-		
 	}
 
 }

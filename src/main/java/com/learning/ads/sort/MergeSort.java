@@ -14,21 +14,18 @@ public class MergeSort {
 	}
 	
 	private static void mergeSort(int[] array, int start, int end){
-		
 		if(start < end){
 			int mid = (start+end)/2; 
 			mergeSort(array, start, mid);
 			mergeSort(array, mid+1, end);
 			merge(array, start, mid, end);
 		}
-		
 	}
 	
 	/*
 	 * merge operation with Integer.MAX_VALUE as sentinel element
 	 */
 	private static void merge(int[] array, int start, int mid, int end){
-		
 		int left = mid-start+1;
 		int right = end-mid;
 		int[] leftPile = new int[left+1];
@@ -53,16 +50,13 @@ public class MergeSort {
 				j += 1;
 			}
 		}
-		
 	}
 
 	public static void main(String[] args) {
-		
 		int[] array = new int[]{9,8,7,6,5,4,3,2,1};
 		System.out.println("unsorted array \t\t\t: "+Arrays.toString(array));
 		MergeSort.sort(array);
 		System.out.println("sorted array \t\t\t: "+Arrays.toString(array));
-		
 	}
 
 }
