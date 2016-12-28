@@ -1,21 +1,31 @@
 package com.learning.ads.sort;
 
+import java.util.Arrays;
+
+/**
+ * Merge sort implementation with sentinel element while merging
+ * @author rahul
+ *
+ */
 public class MergeSort {
 
-	public void sort(int[] array){
+	public static void sort(int[] array){
 		mergeSort(array,0,array.length-1);
 	}
 	
-	private void mergeSort(int[] array, int start, int end){
+	private static void mergeSort(int[] array, int start, int end){
 		if(start < end){
-			int mid = (int)Math.floor((start+end)/2);
+			int mid = (start+end)/2; 
 			mergeSort(array, start, mid);
 			mergeSort(array, mid+1, end);
 			merge(array, start, mid, end);
 		}
 	}
 	
-	private void merge(int[] array, int start, int mid, int end){
+	/*
+	 * merge operation with Integer.MAX_VALUE as sentinel element
+	 */
+	private static void merge(int[] array, int start, int mid, int end){
 		int left = mid-start+1;
 		int right = end-mid;
 		int[] leftPile = new int[left+1];
@@ -24,11 +34,11 @@ public class MergeSort {
 		for(i = 0; i < left; i++){
 			leftPile[i] = array[start+i];
 		}
-		leftPile[i] = Integer.MAX_VALUE;
+		leftPile[i] = Integer.MAX_VALUE;//sentinel element
 		for(j = 0; j < right; j++){
 			rightPile[j] = array[mid+j+1];
 		}
-		rightPile[j] = Integer.MAX_VALUE;
+		rightPile[j] = Integer.MAX_VALUE;//sentinel element
 		i = 0;
 		j = 0;
 		for(int k = start; k <= end; k++){
@@ -42,19 +52,12 @@ public class MergeSort {
 		}
 	}
 
-	public void print(int[] array){
-		for(int i : array){
-			System.out.print(i+"\t");
-		}
-		System.out.println();
-	}
-	
 	public static void main(String[] args) {
-		MergeSort mergeSort = new MergeSort();
 		int[] array = new int[]{9,8,7,6,5,4,3,2,1};
-		mergeSort.print(array);
-		mergeSort.sort(array);
-		mergeSort.print(array);
+		System.out.println("unsorted array \t\t\t: "+Arrays.toString(array));
+		MergeSort.sort(array);
+		System.out.println("sorted array \t\t\t: "+Arrays.toString(array));
+		
 	}
 
 }

@@ -1,14 +1,18 @@
 package com.learning.ads.sort;
 
+import java.util.Arrays;
+
+/**
+ * Insertion sort implementation
+ * @author rahul
+ *
+ */
 public class InsertionSort {
 	
-	public int[] array;
-	
-	private InsertionSort(int[] array){
-		this.array = array;
-	}
-	
-	public void sort(){
+	/**
+	 * Ascending sort
+	 */
+	public static void sort(int[] array){
 		for(int index = 1; index < array.length; index++){
 			int key = array[index];
 			int sortedIndex = index-1; 
@@ -20,19 +24,30 @@ public class InsertionSort {
 		}
 	}
 	
-	public void print(){
-		for(int i : array){
-			System.out.print(i+"\t");
+	/**
+	 * Descending sort
+	 */
+	public static void reverSort(int[] array){
+		for(int index = 1; index < array.length; index++){
+			int key = array[index];
+			int sortedIndex = index-1; 
+			while(sortedIndex >= 0 && key > array[sortedIndex]){
+				array[sortedIndex+1] = array[sortedIndex];
+				sortedIndex-= 1;
+			}
+			array[sortedIndex+1] = key;
 		}
-		System.out.println();
 	}
-
+	
 	public static void main(String[] args) {
 		int[] array = {2,5,2,37,3,1,7,4,9,6,10};
-		InsertionSort insertionSortDemo = new InsertionSort(array);
-		insertionSortDemo.print();
-		insertionSortDemo.sort();
-		insertionSortDemo.print();
+		System.out.println("unsorted array \t\t\t: "+Arrays.toString(array));
+		InsertionSort.sort(array);
+		System.out.println("ascendingly sorted array \t: "+Arrays.toString(array));
+		int[] array1 = {2,5,2,37,3,1,7,4,9,6,10};
+		System.out.println("unsorted array \t\t\t: "+Arrays.toString(array1));
+		InsertionSort.reverSort(array1);
+		System.out.println("descendingly sorted array \t: "+Arrays.toString(array1));
 	}
 
 }
