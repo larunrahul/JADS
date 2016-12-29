@@ -17,7 +17,7 @@ public class SelectionSort {
 	public static void sort(int[] array){
 		/*
 		 * we don't need to iterate the last element. 
-		 * That must be the shortest of remaining(just kidding, no elements were left) that is longest of all.
+		 * That must be the shortest of remaining(just kidding, no elements were left), that is largest of all.
 		 */
 		for(int i = 0; i < array.length-1; i++){
 			int smallestIndex = i;
