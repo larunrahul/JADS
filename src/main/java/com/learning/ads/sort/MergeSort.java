@@ -55,7 +55,7 @@ public class MergeSort {
 	public static void main(String[] args) {
 		int[] array = new int[]{9,8,7,6,5,4,3,2,1};
 		System.out.println("unsorted array \t\t\t: "+Arrays.toString(array));
-		MergeSort.sort(array);
+		sort(array);
 		System.out.println("sorted array \t\t\t: "+Arrays.toString(array));
 	}
 
