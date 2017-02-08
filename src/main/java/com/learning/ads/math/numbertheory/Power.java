@@ -2,8 +2,8 @@ package com.learning.ads.math.numbertheory;
 
 public class Power {
 	/*
-	 *   T(n) = k            if n is 1
-	 *   T(n) = k * T(n-1)   if n is odd
+	 *   T(n) = k                    if n is 1
+	 *   T(n) = k * T(n-1)           if n is odd
 	 *   T(n) = square(T(n/2))       if n is even 
 	 */
 	public static long power(int variable, int exponent){
