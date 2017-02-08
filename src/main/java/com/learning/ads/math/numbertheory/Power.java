@@ -1,4 +1,4 @@
-package com.learning.ads.math.numbertheory.prime;
+package com.learning.ads.math.numbertheory;
 
 public class Power {
 	/*
