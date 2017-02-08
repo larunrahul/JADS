@@ -10,7 +10,7 @@ public class Power {
 		if(exponent == 1){
 			return variable;
 		}
-		if((exponent & 1) == 1){ //even exponent
+		if((exponent & 1) == 1){ //odd exponent
 			return variable * power(variable, exponent-1);
 		}else{
 			long intProduct = power(variable, exponent/2);
