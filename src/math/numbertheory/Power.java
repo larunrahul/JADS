@@ -1,6 +1,7 @@
-package com.learning.ads.math.numbertheory;
+package math.numbertheory;
 
 public class Power {
+	
 	/*
 	 *   T(n) = k                    if n is 1
 	 *   T(n) = k * T(n-1)           if n is odd
