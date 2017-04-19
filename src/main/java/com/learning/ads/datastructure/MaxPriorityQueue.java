@@ -1,8 +1,8 @@
-package datastructures;
+package com.learning.ads.datastructure;
 
 import java.util.Arrays;
 
-import element.Heap;
+import com.learning.ads.element.Heap;
 
 public class MaxPriorityQueue {
 

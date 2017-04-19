@@ -1,6 +1,6 @@
-package math.numbertheory.prime;
+package com.learning.ads.math.numbertheory.prime;
 
-import element.ListNode;
+import com.learning.ads.element.ListNode;
 
 public class SeiveOfEratosthenesWithLinkedList {
 

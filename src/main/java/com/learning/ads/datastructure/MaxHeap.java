@@ -1,6 +1,6 @@
-package datastructures;
+package com.learning.ads.datastructure;
 
-import element.Heap;
+import com.learning.ads.element.Heap;
 
 public class MaxHeap {
 	

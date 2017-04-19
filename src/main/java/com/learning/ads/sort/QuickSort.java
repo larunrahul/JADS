@@ -1,4 +1,4 @@
-package sort;
+package com.learning.ads.sort;
 
 import java.util.Arrays;
 

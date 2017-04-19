@@ -1,4 +1,4 @@
-package math.numbertheory;
+package com.learning.ads.math.numbertheory;
 
 public class Power {
 	

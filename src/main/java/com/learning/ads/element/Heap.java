@@ -1,4 +1,4 @@
-package element;
+package com.learning.ads.element;
 
 public class Heap {
 	public int[] array;
