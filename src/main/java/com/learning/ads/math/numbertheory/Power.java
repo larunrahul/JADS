@@ -1,22 +1,20 @@
 package com.learning.ads.math.numbertheory;
 
 public class Power {
-	
-	/*
-	 *   T(n) = k                    if n is 1
-	 *   T(n) = k * T(n-1)           if n is odd
-	 *   T(n) = square(T(n/2))       if n is even 
-	 */
-	public long power(int variable, int exponent){
-		if(exponent == 1){
-			return variable;
-		}
-		if((exponent & 1) == 1){ //odd exponent
-			return variable * power(variable, exponent-1);
-		}else{
-			long intProduct = power(variable, exponent/2);
-			return intProduct * intProduct;
-		}
+
+	public long power(int base, int exponent) {
+		if (exponent == 0) {
+            return 1;
+        }
+        if (exponent < 0) {
+            return 1 / power(base, -exponent); // a^-b = 1 / a^b
+        }
+        if ((exponent & 1) == 1) { //if exponent is odd
+            return base * power(base, exponent - 1);
+        } else {
+            long pow = power(base, exponent >> 1); //divide exponent by 2
+            return pow * pow;
+        }
 	}
 
 }
