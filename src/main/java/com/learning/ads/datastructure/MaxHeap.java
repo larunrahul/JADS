@@ -29,7 +29,9 @@ public class MaxHeap {
 	 *  			parent(1) = 1/2 = 0 
 	 *  			parent(2) = 2/2 - 1 = 0 
 	 *  			parent(3) = 3/2 = 1
-	 *  			parent(4) = 4/2 -1 = 1 parent(5) = 5/2 = 2 parent(6) = 6/2 - 1 = 2
+	 *  			parent(4) = 4/2 -1 = 1 
+	 *  			parent(5) = 5/2 = 2 
+	 *  			parent(6) = 6/2 - 1 = 2
 	 */
 	public int parent(int index) {
 		return index == 0 ? index : (index % 2 == 0 ? index / 2 - 1 : index / 2);
