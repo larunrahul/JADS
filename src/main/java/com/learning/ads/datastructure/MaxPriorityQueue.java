@@ -29,19 +29,18 @@ public class MaxPriorityQueue {
 		return max;
 	}
 
-	public void increaseKey(int key) {
+	public void increaseKey(int node, int key) {
 		Heap heap = maxHeap.getHeap();
 		int[] array = heap.array;
-		int i = heap.heapSize;
-		if (key < array[i]) {
+		if (key < array[node]) {
 			throw new RuntimeException("New key is less than existing key");
 		}
-		array[i] = key;
-		while (i > 0 && array[maxHeap.parent(i)] < array[i]) {
-			int temp = array[maxHeap.parent(i)];
-			array[maxHeap.parent(i)] = array[i];
-			array[i] = temp;
-			i = maxHeap.parent(i);
+		array[node] = key;
+		while (node > 0 && array[maxHeap.parent(node)] < array[node]) {
+			int temp = array[maxHeap.parent(node)];
+			array[maxHeap.parent(node)] = array[node];
+			array[node] = temp;
+			node = maxHeap.parent(node);
 		}
 	}
 
@@ -49,7 +48,7 @@ public class MaxPriorityQueue {
 		Heap heap = maxHeap.getHeap();
 		heap.heapSize += 1;
 		heap.array[heap.heapSize] = Integer.MIN_VALUE;
-		increaseKey(key);
+		increaseKey(heap.heapSize, key);
 	}
 
 	public static void main(String[] args) {
