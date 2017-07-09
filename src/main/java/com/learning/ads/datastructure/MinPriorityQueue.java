@@ -50,6 +50,20 @@ public class MinPriorityQueue {
 		heap.array[heap.heapSize] = Integer.MAX_VALUE;
 		decreaseKey(heap.heapSize, key);
 	}
+	
+	public void heapDelete(int position){
+		Heap heap = minHeap.getHeap();
+		int[] array = heap.array;
+		int temp = array[position];
+		array[position] = array[heap.heapSize];
+		array[heap.heapSize] = temp;
+		heap.heapSize -= 1;
+		if(array[position] < array[minHeap.parent(position)]){
+			decreaseKey(position, array[position]);
+		}else {
+			minHeap.heapify(position);
+		}
+	}
 
 	public static void main(String[] args) {
 		int[] array = { 4, 1, 3, 2, 16, 9, 10, 14, 8, 7 };
@@ -60,6 +74,15 @@ public class MinPriorityQueue {
 		System.out.println(Arrays.toString(array));
 		queue.heapInsert(1);
 		System.out.println(Arrays.toString(array));
+		int[] a1 = {25,20,16,10,18,9,13,1,2,17};
+		queue = new MinPriorityQueue(a1);
+		System.out.println(queue.minHeap.getHeap().heapSize);
+		queue.heapDelete(0);
+		System.out.println(Arrays.toString(queue.minHeap.getHeap().array));
+		System.out.println(queue.minHeap.getHeap().heapSize);
+		queue.heapInsert(3);
+		System.out.println(Arrays.toString(queue.minHeap.getHeap().array));
+		System.out.println(queue.minHeap.getHeap().heapSize);
 	}
 
 }
