@@ -1,7 +1,8 @@
-package com.learning.ads.datastructure;
+package com.learning.ads.datastructure.queue;
 
 import java.util.Arrays;
 
+import com.learning.ads.datastructure.heap.MinHeap;
 import com.learning.ads.element.Heap;
 
 public class MinPriorityQueue {

@@ -2,8 +2,8 @@ package com.learning.ads.sort;
 
 import java.util.Arrays;
 
-import com.learning.ads.datastructure.MaxHeap;
-import com.learning.ads.datastructure.MinHeap;
+import com.learning.ads.datastructure.heap.MaxHeap;
+import com.learning.ads.datastructure.heap.MinHeap;
 import com.learning.ads.element.Heap;
 
 public class HeapSort {
