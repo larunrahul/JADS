@@ -1,10 +1,8 @@
 package com.learning.ads.sort;
 
-import java.util.Arrays;
-
 public class SelectionSort {
 
-	public static void sort(int[] array) {
+	public void sort(int[] array) {
 		/*
 		 * we don't need to iterate the last element. That must be the shortest
 		 * of remaining(just kidding, no elements were left), that is largest of
@@ -17,25 +15,9 @@ public class SelectionSort {
 					smallestIndex = j;
 				}
 			}
-			/*
-			 * If we use temp variable to swap the elements, then we don't need
-			 * to check below condition If we chose XOR(as below), if smallest
-			 * element is the current element (which is array[i]), then XOR
-			 * makes it 0. Hence we need to check the below condition.
-			 */
-			if (smallestIndex != i) {
-				array[i] = array[i] ^ array[smallestIndex];
-				array[smallestIndex] = array[i] ^ array[smallestIndex];
-				array[i] = array[i] ^ array[smallestIndex];
-			}
+			int temp = array[i];
+			array[i] = array[smallestIndex];
+			array[smallestIndex] = temp;
 		}
 	}
-
-	public static void main(String[] args) {
-		int[] array = { 2, 5, 2, 37, 3, 1, 7, 4, 9, 6, 10 };
-		System.out.println("unsorted array \t\t\t: " + Arrays.toString(array));
-		sort(array);
-		System.out.println("ascendingly sorted array \t: " + Arrays.toString(array));
-	}
-
 }
