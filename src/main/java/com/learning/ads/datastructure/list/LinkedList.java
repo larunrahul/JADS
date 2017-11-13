@@ -148,7 +148,7 @@ public class LinkedList<T> {
 			current = current.next;
 		}
 		sb.append("]");
-		if (sb.length() == 0) {
+		if (sb.length() == 2) {
 			return sb.toString();
 		}
 		return sb.toString().substring(0, sb.length() - 2) + sb.toString().substring(sb.length() - 1, sb.length());
