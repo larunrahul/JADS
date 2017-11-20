@@ -20,9 +20,4 @@ public class BinarySearch {
 		return position;
 	}
 
-	public static void main(String[] args) {
-		BinarySearch bs = new BinarySearch();
-		System.out.println(bs.search(new Integer[] { 2, 3, 4, 5, 6, 7, 8, 9 }, 6));
-	}
-
 }
