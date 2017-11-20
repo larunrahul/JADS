@@ -12,9 +12,10 @@ public class LinkedList<T> {
 
 	private static class Node<T> {
 		T value;
+
 		Node<T> next;
 
-		Node(T value) {
+		private Node(T value) {
 			this.value = value;
 		}
 	}
@@ -42,7 +43,6 @@ public class LinkedList<T> {
 		Node<T> node = new Node<T>(value);
 		if (head == null) {
 			head = tail = node;
-
 		} else {
 			tail.next = node;
 			tail = tail.next;
@@ -62,48 +62,41 @@ public class LinkedList<T> {
 	}
 
 	public void insert(T value, long position) {
-		Node<T> node = new Node<T>(value);
 		if (position < 0) {
 			position = length + position + 1;
 		}
 		if (position == 0) {
-			prepend(node.value);
+			prepend(value);
 			return;
 		}
 		if (position == length) {
-			append(node.value);
+			append(value);
 			return;
 		}
-		if (position < 0 || position > length) {
-			throw new IndexOutOfBoundsException(
-					"Given position: " + position + " is out of bounds of list length: " + length);
-		}
+		throwIfOutOfbounds(position);
 		Node<T> current = head;
 		long count = 0;
 		while (count < position - 1) {
 			count++;
 			current = current.next;
 		}
+		Node<T> node = new Node<T>(value);
 		node.next = current.next;
 		current.next = node;
 		length++;
 	}
 
-	public T delete(long position) {
+	public void delete(long position) {
 		ensureInitialized();
 		if (position < 0) {
 			position = length + position;
 		}
 		if (position == 0) {
-			T value = head.value;
 			head = head.next;
 			length--;
-			return value;
+			return;
 		}
-		if (position < 0 || position >= length) {
-			throw new IndexOutOfBoundsException(
-					"Given position: " + position + " is out of bounds of list length: " + length);
-		}
+		throwIfOutOfbounds(position);
 		Node<T> current = head;
 		long count = 0;
 		while (count < position - 1) {
@@ -113,7 +106,7 @@ public class LinkedList<T> {
 		Node<T> node = current.next;
 		current.next = node.next;
 		length--;
-		return node.value;
+		return;
 	}
 
 	public T get(long position) {
@@ -121,10 +114,7 @@ public class LinkedList<T> {
 		if (position < 0) {
 			position = length + position;
 		}
-		if (position < 0 || position >= length) {
-			throw new IndexOutOfBoundsException(
-					"Given position: " + position + " is out of bounds of list length: " + length);
-		}
+		throwIfOutOfbounds(position);
 		Node<T> current = head;
 		long count = 0;
 		while (count < position) {
@@ -137,6 +127,13 @@ public class LinkedList<T> {
 	private void ensureInitialized() {
 		if (head == null || tail == null) {
 			throw new UnInitializedException("Datastructure not initialized properly");
+		}
+	}
+
+	private void throwIfOutOfbounds(long position) {
+		if (position < 0 || position >= length) {
+			throw new IndexOutOfBoundsException(
+					"Given position: " + position + " is out of bounds of list length: " + length);
 		}
 	}
 
