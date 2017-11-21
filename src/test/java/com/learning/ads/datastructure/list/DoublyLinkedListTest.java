@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import com.learning.ads.datastructure.exception.UnInitializedException;
 
-public class DoubleLinkedListTest {
+public class DoublyLinkedListTest {
 
 	DoublyLinkedList<Integer> list;
 
