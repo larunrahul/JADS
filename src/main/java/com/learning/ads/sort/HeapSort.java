@@ -1,14 +1,12 @@
 package com.learning.ads.sort;
 
-import java.util.Arrays;
-
 import com.learning.ads.datastructure.heap.MaxHeap;
 import com.learning.ads.datastructure.heap.MinHeap;
 import com.learning.ads.element.Heap;
 
 public class HeapSort {
 
-	public static void heapSort(int[] array) {
+	public void sort(int[] array) {
 		MaxHeap maxHeap = new MaxHeap(array);
 		Heap heap = maxHeap.getHeap();
 		array = heap.array;
@@ -21,7 +19,7 @@ public class HeapSort {
 		}
 	}
 
-	public static void heapSortDescending(int[] array) {
+	public void sortDescending(int[] array) {
 		MinHeap minHeap = new MinHeap(array);
 		Heap heap = minHeap.getHeap();
 		array = heap.array;
@@ -32,15 +30,6 @@ public class HeapSort {
 			heap.heapSize -= 1;
 			minHeap.heapify(0);
 		}
-	}
-
-	public static void main(String[] args) {
-		int[] array = { 4, 1, 3, 2, 16, 9, 10, 14, 8, 7 };
-		System.out.println(Arrays.toString(array));
-		heapSort(array);
-		System.out.println(Arrays.toString(array));
-		heapSortDescending(array);
-		System.out.println(Arrays.toString(array));
 	}
 
 }
