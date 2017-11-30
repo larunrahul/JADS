@@ -10,9 +10,10 @@ import java.util.Arrays;
  */
 public class MergeSortCoarsenedLeaves {
 
-	static int k = 4;
+	static int k = 1;
 
 	public static void sort(int[] array) {
+		k = (int) Math.ceil(Math.log(array.length));
 		mergeSort(array, 0, array.length - 1);
 	}
 
