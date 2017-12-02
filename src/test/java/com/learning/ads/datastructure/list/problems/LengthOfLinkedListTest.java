@@ -11,7 +11,7 @@ public class LengthOfLinkedListTest {
 	
 	{
 		head = new ListNode(1);
-		head.attach(new ListNode(2)).attach(new ListNode(3)).attach(new ListNode(4));
+		head.attach(2).attach(3).attach(4);
 	}
 
 	@Test

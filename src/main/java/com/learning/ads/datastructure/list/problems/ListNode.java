@@ -12,4 +12,8 @@ public class ListNode {
 		this.next = next;
 		return next;
 	}
+	
+	ListNode attach(int value) {
+		return this.attach(new ListNode(value));
+	}
 }

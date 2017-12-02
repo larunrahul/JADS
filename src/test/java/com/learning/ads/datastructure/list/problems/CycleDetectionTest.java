@@ -14,15 +14,13 @@ public class CycleDetectionTest {
 		ListNode loopstart = new ListNode(5);
 		ListNode loopend = new ListNode(10);
 		loopend.next = loopstart;
-		head.attach(new ListNode(2)).attach(new ListNode(3)).attach(new ListNode(4)).attach(loopstart)
-				.attach(new ListNode(6)).attach(new ListNode(7)).attach(new ListNode(8)).attach(new ListNode(9))
-				.attach(loopend);
+		head.attach(2).attach(3).attach(4).attach(loopstart).attach(6).attach(7).attach(8).attach(9).attach(loopend);
 	}
 
 	@Test
 	public void testIfLoopForNonCycleList() {
 		ListNode head = new ListNode(1);
-		head.attach(new ListNode(2)).attach(new ListNode(3)).attach(new ListNode(4));
+		head.attach(2).attach(3).attach(4);
 		assertFalse(rll.hasLoop(head));
 	}
 
@@ -34,7 +32,7 @@ public class CycleDetectionTest {
 	@Test(expected = RuntimeException.class)
 	public void headOfLoopForNonCycle() {
 		ListNode head = new ListNode(1);
-		head.attach(new ListNode(2)).attach(new ListNode(3)).attach(new ListNode(4));
+		head.attach(2).attach(3).attach(4);
 		rll.loopstart(head);
 	}
 

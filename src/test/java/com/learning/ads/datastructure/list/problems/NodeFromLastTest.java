@@ -16,21 +16,21 @@ public class NodeFromLastTest {
 
 	@Test
 	public void getNodeFromLast() {
-		assertEquals(4, rll.getNodeFromLast(0, head));
+		assertEquals(4, rll.getNodeFromLast(1, head));
 	}
 
 	@Test
 	public void getNodeFromLastAtMiddle() {
-		assertEquals(2, rll.getNodeFromLast(2, head));
+		assertEquals(3, rll.getNodeFromLast(2, head));
 	}
 	
 	@Test
 	public void getNodeFromLastAtStart() {
-		assertEquals(1, rll.getNodeFromLast(3, head));
+		assertEquals(1, rll.getNodeFromLast(4, head));
 	}
 	
 	@Test(expected = RuntimeException.class)
 	public void getNodeFromLastOutOfBounds() {
-		rll.getNodeFromLast(4, head);
+		rll.getNodeFromLast(5, head);
 	}
 }

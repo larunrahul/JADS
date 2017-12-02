@@ -21,4 +21,21 @@ public class MergeTwoSortedLinkedList {
 		}
 		return result.next;
 	}
+
+	public ListNode mergeRec(ListNode first, ListNode second) {
+		ListNode result = null;
+		if (first == null) {
+			return second;
+		} else if (second == null) {
+			return first;
+		}
+		if (first.value <= second.value) {
+			result = first;
+			result.next = mergeRec(first.next, second);
+		} else {
+			result = second;
+			result.next = mergeRec(first, second.next);
+		}
+		return result;
+	}
 }

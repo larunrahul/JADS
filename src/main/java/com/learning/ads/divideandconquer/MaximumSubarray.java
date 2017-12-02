@@ -9,15 +9,17 @@ public class MaximumSubarray {
 
 	/**
 	 * This runs in {@code O(nlogn)}.
-	 * @return An array containing indices that form the max sum and max sum itself. 
+	 * 
+	 * @return An array containing indices that form the max sum and max sum itself.
 	 */
 	public int[] findMaximumSubarray() {
 		return findMaximumSubarray(0, array.length - 1);
 	}
-	
+
 	/**
 	 * This runs in {@code O(n}<sup>{@code 2}</sup>{@code )}.
-	 * @return An array containing indices that form the max sum and max sum itself. 
+	 * 
+	 * @return An array containing indices that form the max sum and max sum itself.
 	 */
 	public int[] findMaximumSubarrayInefficient() {
 		int min = 0, max = 0, sum = 0, maxSum = 0;
@@ -25,7 +27,7 @@ public class MaximumSubarray {
 			sum = array[i];
 			for (int j = i + 1; j < array.length; j++) {
 				sum = sum + array[j];
-				if(sum > maxSum){
+				if (sum > maxSum) {
 					min = i;
 					max = j;
 					maxSum = sum;
@@ -50,13 +52,15 @@ public class MaximumSubarray {
 		}
 		return cross;
 	}
-	
+
 	/**
 	 * This runs in {@code O(n)}
+	 * 
 	 * @param low
 	 * @param mid
 	 * @param high
-	 * @return An array containing indices that form the max sum and max sum itself within given range.
+	 * @return An array containing indices that form the max sum and max sum itself
+	 *         within given range.
 	 */
 	private int[] maxCrossingSubArray(int low, int mid, int high) {
 		int leftMaxSum = array[mid], leftMaxElement = mid, sum = leftMaxSum;
