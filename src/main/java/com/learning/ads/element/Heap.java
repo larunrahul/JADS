@@ -1,6 +1,6 @@
 package com.learning.ads.element;
 
-public class Heap {
-	public int[] array;
+public class Heap<T extends Comparable<T>> {
+	public T[] array;
 	public int heapSize;
 }

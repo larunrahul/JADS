@@ -3,8 +3,8 @@ package com.learning.ads.misc;
 import com.learning.ads.sort.HeapSort;
 
 public class SubSetSumWithTwoElements {
-	public boolean isSubsetPresentWithSum(int[] array, int sum) {
-		HeapSort hs = new HeapSort();
+	public boolean isSubsetPresentWithSum(Integer[] array, int sum) {
+		HeapSort<Integer> hs = new HeapSort<>();
 		hs.sort(array);
 		int first = 0;
 		int last = array.length - 1;

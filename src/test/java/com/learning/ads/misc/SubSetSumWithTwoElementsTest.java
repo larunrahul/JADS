@@ -10,11 +10,11 @@ public class SubSetSumWithTwoElementsTest {
 
 	@Test
 	public void isSubsetPresentWithSumWhenTrue() {
-		assertEquals(true, ss.isSubsetPresentWithSum(new int[] { 5, 8, 3, 0, 2, 6 }, 9));
+		assertEquals(true, ss.isSubsetPresentWithSum(new Integer[] { 5, 8, 3, 0, 2, 6 }, 9));
 	}
 	
 	@Test
 	public void isSubsetPresentWithSumWhenFalse() {
-		assertEquals(false, ss.isSubsetPresentWithSum(new int[] { 5, 8, 3, 0, 2, 6 }, 19));
+		assertEquals(false, ss.isSubsetPresentWithSum(new Integer[] { 5, 8, 3, 0, 2, 6 }, 19));
 	}
 }

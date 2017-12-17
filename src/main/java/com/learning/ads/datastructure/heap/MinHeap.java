@@ -2,17 +2,17 @@ package com.learning.ads.datastructure.heap;
 
 import com.learning.ads.element.Heap;
 
-public class MinHeap {
+public class MinHeap<T extends Comparable<T>> {
 	
-	private Heap heap;
+	private Heap<T> heap;
 	
 	/*
 	 * Bottom up construction of heap. Elements from half to end are all leaves
 	 * of heap tree. Hence we need to start from the parent of last leaf(which
 	 * is the element before mid element) and construct in upward fashion
 	 */
-	public MinHeap(int[] array) {
-		Heap heap = new Heap();
+	public MinHeap(T[] array) {
+		Heap<T> heap = new Heap<>();
 		heap.array = array;
 		heap.heapSize = array.length - 1;
 		this.heap = heap;
@@ -55,25 +55,25 @@ public class MinHeap {
 	 */
 	public void heapify(int index) {
 		int heapSize = heap.heapSize;
-		int[] array = heap.array;
+		T[] array = heap.array;
 		int leftChild = leftChild(index);
 		int rightChild = rightChild(index);
 		int smallest = index;
-		if (leftChild <= heapSize && array[leftChild] < array[index]) {
+		if (leftChild <= heapSize && array[leftChild].compareTo(array[index]) < 0) {
 			smallest = leftChild;
 		}
-		if (rightChild <= heapSize && array[rightChild] < array[smallest]) {
+		if (rightChild <= heapSize && array[rightChild].compareTo(array[smallest]) < 0) {
 			smallest = rightChild;
 		}
 		if (smallest != index) {
-			int temp = array[index];
+			T temp = array[index];
 			array[index] = array[smallest];
 			array[smallest] = temp;
 			heapify(smallest);
 		}
 	}
 	
-	public Heap getHeap() {
+	public Heap<T> getHeap() {
 		return heap;
 	}
 	
