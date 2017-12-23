@@ -1,21 +1,21 @@
 package com.learning.ads.datastructure.heap;
 
-import com.learning.ads.element.Heap;
+import com.learning.ads.element.BinaryHeapNode;
 
-public class MaxHeap<T extends Comparable<T>> {
+public class BinaryMaxHeap<T extends Comparable<T>> {
 
-	private Heap<T> heap;
+	private BinaryHeapNode<T> binaryHeapNode;
 
 	/*
-	 * Bottom up construction of heap. Elements from half to end are all leaves of
-	 * heap tree. Hence we need to start from the parent of last leaf(which is the
+	 * Bottom up construction of binaryHeapNode. Elements from half to end are all leaves of
+	 * binaryHeapNode tree. Hence we need to start from the parent of last leaf(which is the
 	 * element before mid element) and construct in upward fashion
 	 */
-	public MaxHeap(T[] array) {
-		Heap<T> heap = new Heap<>();
+	public BinaryMaxHeap(T[] array) {
+		BinaryHeapNode<T> heap = new BinaryHeapNode<>();
 		heap.array = array;
 		heap.heapSize = array.length - 1;
-		this.heap = heap;
+		this.binaryHeapNode = heap;
 		for (int i = array.length / 2 - 1; i >= 0; i--) {
 			this.heapify(i);
 		}
@@ -23,9 +23,15 @@ public class MaxHeap<T extends Comparable<T>> {
 
 	/*
 	 * If it is zeroth node, it is the parent for itself. If it is even node, its
-	 * parent is one before its division by 2, else its division by 2 Example :
-	 * parent(0) = 0 parent(1) = 1/2 = 0 parent(2) = 2/2 - 1 = 0 parent(3) = 3/2 = 1
-	 * parent(4) = 4/2 -1 = 1 parent(5) = 5/2 = 2 parent(6) = 6/2 - 1 = 2
+	 * parent is one before its division by 2, else its division by 2 
+	 * Example :
+	 * 			parent(0) = 0 
+	 * 			parent(1) = 1/2 = 0 
+	 * 			parent(2) = 2/2 - 1 = 0 
+	 * 			parent(3) = 3/2 = 1
+	 * 			parent(4) = 4/2 -1 = 1 
+	 * 			parent(5) = 5/2 = 2 
+	 * 			parent(6) = 6/2 - 1 = 2
 	 */
 	public int parent(int index) {
 		return index == 0 ? index : (index % 2 == 0 ? index / 2 - 1 : index / 2);
@@ -46,13 +52,13 @@ public class MaxHeap<T extends Comparable<T>> {
 	}
 
 	/*
-	 * This runs so long as the height of the heap tree. As height is O(lg n) it is
-	 * O(h) where n is number of elements and h is height of heap tree. This is not
+	 * This runs so long as the height of the binaryHeapNode tree. As height is O(lg n) it is
+	 * O(h) where n is number of elements and h is height of binaryHeapNode tree. This is not
 	 * tight bound. Tight bound is O(n) - For more information, look in CLRS
 	 */
 	public void heapify(int index) {
-		int heapSize = heap.heapSize;
-		T[] array = heap.array;
+		int heapSize = binaryHeapNode.heapSize;
+		T[] array = binaryHeapNode.array;
 		int leftChild = leftChild(index);
 		int rightChild = rightChild(index);
 		int largest = index;
@@ -70,8 +76,8 @@ public class MaxHeap<T extends Comparable<T>> {
 		}
 	}
 
-	public Heap<T> getHeap() {
-		return heap;
+	public BinaryHeapNode<T> getHeap() {
+		return binaryHeapNode;
 	}
 
 }
