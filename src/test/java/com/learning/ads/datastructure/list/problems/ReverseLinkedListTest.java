@@ -1,5 +1,7 @@
 package com.learning.ads.datastructure.list.problems;
 
+import static org.junit.Assert.assertNull;
+
 import org.junit.Test;
 
 public class ReverseLinkedListTest {
@@ -10,6 +12,11 @@ public class ReverseLinkedListTest {
 	{
 		head = new ListNode(1);
 		head.attach(2).attach(3).attach(4);
+	}
+	
+	@Test
+	public void reverseEmptyList() {
+		assertNull(rll.reverse(null));
 	}
 
 	@Test
