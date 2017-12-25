@@ -7,12 +7,11 @@ public class MergeTwoSortedLinkedList {
 			if (first.value <= second.value) {
 				tail.next = first;
 				first = first.next;
-				tail = tail.next;
 			} else {
 				tail.next = second;
 				second = second.next;
-				tail = tail.next;
 			}
+			tail = tail.next;
 		}
 		if (first == null) {
 			tail.next = second;

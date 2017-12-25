@@ -9,6 +9,17 @@ public final class Util {
 		}
 		System.out.println("NULL\n");
 	}
+	
+	public static void toStringBiNode(ListBiNode head) {
+		while(head != null) {
+			System.out.print(head.value + " --> ");
+			if(head.down != null) {
+				toStringBiNode(head.down);
+			}
+			head = head.next;
+		}
+		System.out.println("NULL\n");
+	}
 
 	public static void assertListEqual(ListNode first, ListNode second) {
 		while (first != null && second != null) {
