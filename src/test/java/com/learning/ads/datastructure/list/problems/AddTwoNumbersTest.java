@@ -46,4 +46,60 @@ public class AddTwoNumbersTest {
 		Util.assertListEqual(expected, rll.add(first, second));
 	}
 
+	@Test
+	public void addTwoRec() {
+		ListNode first = new ListNode(2);
+		first.attach(3).attach(4);
+		ListNode second = new ListNode(5);
+		second.attach(7).attach(4);
+		Util.toString(rll.sumRec(first, second));
+	}
+
+	@Test
+	public void addRegWithDifferentLengthCarry() {
+		ListNode second = new ListNode(9);
+		second.attach(9).attach(9).attach(4).attach(6);
+		ListNode first = new ListNode(9);
+		first.attach(9).attach(4);
+		rll.addReg(first, second);
+		ListNode expected = new ListNode(1);
+		expected.attach(0).attach(0).attach(9).attach(4).attach(0);
+		Util.assertListEqual(expected, rll.result);
+	}
+	@Test
+	public void addRegWithDifferentLengthNoCarry() {
+		ListNode second = new ListNode(9);
+		second.attach(2).attach(9).attach(4).attach(6);
+		ListNode first = new ListNode(9);
+		first.attach(9).attach(4);
+		rll.addReg(first, second);
+		ListNode expected = new ListNode(9);
+		expected.attach(3).attach(9).attach(4).attach(0);
+		Util.assertListEqual(expected, rll.result);
+	}
+	
+	@Test
+	public void addRegWithSameLengthNoCarry() {
+		ListNode second = new ListNode(9);
+		second.attach(9).attach(9);
+		ListNode first = new ListNode(2);
+		first.attach(9).attach(4);
+		rll.addReg(first, second);
+		ListNode expected = new ListNode(1);
+		expected.attach(2).attach(9).attach(3);
+		Util.assertListEqual(expected, rll.result);
+	}
+	
+	@Test
+	public void addRegWithSameLengthCarry() {
+		ListNode second = new ListNode(5);
+		second.attach(9).attach(9);
+		ListNode first = new ListNode(2);
+		first.attach(9).attach(4);
+		rll.addReg(first, second);
+		ListNode expected = new ListNode(8);
+		expected.attach(9).attach(3);
+		Util.assertListEqual(expected, rll.result);
+	}
+
 }
