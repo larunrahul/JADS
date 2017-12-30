@@ -14,7 +14,7 @@ public class BinaryMaxHeap<T extends Comparable<T>> {
 	public BinaryMaxHeap(T[] array) {
 		BinaryHeapNode<T> heap = new BinaryHeapNode<>();
 		heap.array = array;
-		heap.heapSize = array.length - 1;
+		heap.heapSize = array.length;
 		this.binaryHeapNode = heap;
 		for (int i = array.length / 2 - 1; i >= 0; i--) {
 			this.heapify(i);
@@ -62,10 +62,10 @@ public class BinaryMaxHeap<T extends Comparable<T>> {
 		int leftChild = leftChild(index);
 		int rightChild = rightChild(index);
 		int largest = index;
-		if (leftChild <= heapSize && array[leftChild].compareTo(array[index]) > 0) {
+		if (leftChild < heapSize && array[leftChild].compareTo(array[index]) > 0) {
 			largest = leftChild;
 		}
-		if (rightChild <= heapSize && array[rightChild].compareTo(array[largest]) > 0) {
+		if (rightChild < heapSize && array[rightChild].compareTo(array[largest]) > 0) {
 			largest = rightChild;
 		}
 		if (largest != index) {

@@ -1,7 +1,5 @@
 package com.learning.ads.datastructure.queue;
 
-import java.util.Arrays;
-
 import com.learning.ads.datastructure.heap.BinaryMaxHeap;
 import com.learning.ads.element.BinaryHeapNode;
 
@@ -22,12 +20,12 @@ public class MaxPriorityQueue<T extends Comparable<T>> {
 
 	public T extratMaximum() {
 		BinaryHeapNode<T> heap = binaryMaxHeap.getHeap();
-		if (heap.heapSize < 0) {
+		if (heap.heapSize <= 0) {
 			throw new RuntimeException("Underflow");
 		}
 		T[] array = heap.array;
 		T max = array[0];
-		array[0] = array[heap.heapSize];
+		array[0] = array[heap.heapSize - 1];
 		heap.heapSize -= 1;
 		binaryMaxHeap.heapify(0);
 		return max;
@@ -51,16 +49,16 @@ public class MaxPriorityQueue<T extends Comparable<T>> {
 	public void heapInsert(T key) {
 		BinaryHeapNode<T> heap = binaryMaxHeap.getHeap();
 		heap.heapSize += 1;
-		heap.array[heap.heapSize] = minValue;
-		increaseKey(heap.heapSize, key);
+		heap.array[heap.heapSize - 1] = minValue;
+		increaseKey(heap.heapSize - 1, key);
 	}
 
 	public void heapDelete(int position) {
 		BinaryHeapNode<T> heap = binaryMaxHeap.getHeap();
 		T[] array = heap.array;
 		T temp = array[position];
-		array[position] = array[heap.heapSize];
-		array[heap.heapSize] = temp;
+		array[position] = array[heap.heapSize - 1];
+		array[heap.heapSize - 1] = temp;
 		heap.heapSize -= 1;
 		if (array[position].compareTo(array[binaryMaxHeap.parent(position)]) > 0) {
 			increaseKey(position, array[position]);
@@ -69,24 +67,8 @@ public class MaxPriorityQueue<T extends Comparable<T>> {
 		}
 	}
 
-	public static void main(String[] args) {
-		Integer[] array = { 4, 1, 3, 2, 16, 9, 10, 14, 8, 7 };
-		System.out.println(Arrays.toString(array));
-		MaxPriorityQueue<Integer> queue = new MaxPriorityQueue<>(array, Integer.MIN_VALUE);
-		System.out.println(Arrays.toString(array));
-		System.out.println(queue.extratMaximum());
-		System.out.println(Arrays.toString(array));
-		queue.heapInsert(15);
-		System.out.println(Arrays.toString(array));
-		Integer[] a1 = { 25, 20, 16, 10, 18, 9, 13, 1, 2, 17 };
-		queue = new MaxPriorityQueue<Integer>(a1, Integer.MIN_VALUE);
-		System.out.println(queue.binaryMaxHeap.getHeap().heapSize);
-		queue.heapDelete(0);
-		System.out.println(Arrays.toString(queue.binaryMaxHeap.getHeap().array));
-		System.out.println(queue.binaryMaxHeap.getHeap().heapSize);
-		queue.heapInsert(35);
-		System.out.println(Arrays.toString(queue.binaryMaxHeap.getHeap().array));
-		System.out.println(queue.binaryMaxHeap.getHeap().heapSize);
+	public int getQueueLength() {
+		return binaryMaxHeap.getHeap().heapSize;
 	}
 
 }

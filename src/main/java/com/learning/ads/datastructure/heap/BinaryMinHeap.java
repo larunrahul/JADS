@@ -14,7 +14,7 @@ public class BinaryMinHeap<T extends Comparable<T>> {
 	public BinaryMinHeap(T[] array) {
 		BinaryHeapNode<T> heap = new BinaryHeapNode<>();
 		heap.array = array;
-		heap.heapSize = array.length - 1;
+		heap.heapSize = array.length;
 		this.binaryHeapNode = heap;
 		for (int i = array.length / 2 - 1; i >= 0; i--) {
 			this.heapify(i);
@@ -62,10 +62,10 @@ public class BinaryMinHeap<T extends Comparable<T>> {
 		int leftChild = leftChild(index);
 		int rightChild = rightChild(index);
 		int smallest = index;
-		if (leftChild <= heapSize && array[leftChild].compareTo(array[index]) < 0) {
+		if (leftChild < heapSize && array[leftChild].compareTo(array[index]) < 0) {
 			smallest = leftChild;
 		}
-		if (rightChild <= heapSize && array[rightChild].compareTo(array[smallest]) < 0) {
+		if (rightChild < heapSize && array[rightChild].compareTo(array[smallest]) < 0) {
 			smallest = rightChild;
 		}
 		if (smallest != index) {
