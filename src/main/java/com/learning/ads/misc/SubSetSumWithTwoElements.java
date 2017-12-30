@@ -1,10 +1,10 @@
 package com.learning.ads.misc;
 
-import com.learning.ads.sort.HeapSort;
+import com.learning.ads.sort.heap.BinaryHeapSort;
 
 public class SubSetSumWithTwoElements {
 	public boolean isSubsetPresentWithSum(Integer[] array, int sum) {
-		HeapSort<Integer> hs = new HeapSort<>();
+		BinaryHeapSort<Integer> hs = new BinaryHeapSort<>();
 		hs.sort(array);
 		int first = 0;
 		int last = array.length - 1;

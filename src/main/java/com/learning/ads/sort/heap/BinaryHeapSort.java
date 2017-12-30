@@ -1,10 +1,10 @@
-package com.learning.ads.sort;
+package com.learning.ads.sort.heap;
 
 import com.learning.ads.datastructure.heap.BinaryMaxHeap;
 import com.learning.ads.datastructure.heap.BinaryMinHeap;
-import com.learning.ads.element.BinaryHeapNode;
+import com.learning.ads.element.heap.BinaryHeapNode;
 
-public class HeapSort<T extends Comparable<T>> {
+public class BinaryHeapSort<T extends Comparable<T>> {
 
 	public void sort(T[] array) {
 		BinaryMaxHeap<T> maxHeap = new BinaryMaxHeap<>(array);

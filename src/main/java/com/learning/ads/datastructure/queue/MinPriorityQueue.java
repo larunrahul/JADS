@@ -1,7 +1,7 @@
 package com.learning.ads.datastructure.queue;
 
 import com.learning.ads.datastructure.heap.BinaryMinHeap;
-import com.learning.ads.element.BinaryHeapNode;
+import com.learning.ads.element.heap.BinaryHeapNode;
 
 public class MinPriorityQueue<T extends Comparable<T>> {
 

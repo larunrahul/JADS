@@ -1,13 +1,15 @@
-package com.learning.ads.sort;
+package com.learning.ads.sort.heap;
 
 import static org.junit.Assert.assertArrayEquals;
 
 import org.junit.Test;
 
-public class HeapSortTest {
-	
-	private HeapSort<Integer> heapSort = new HeapSort<>();
+import com.learning.ads.sort.heap.MultiaryHeapSort;
 
+public class MultiaryHeapSortTest {
+	
+	private MultiaryHeapSort<Integer> heapSort = new MultiaryHeapSort<>(3);
+	
 	@Test
 	public void sortInAscendingOrder() {
 		Integer[] array = { 4, 1, 3, 2, 16, 9, 10, 14, 8, 7 };

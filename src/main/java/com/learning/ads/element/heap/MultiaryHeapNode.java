@@ -1,4 +1,4 @@
-package com.learning.ads.element;
+package com.learning.ads.element.heap;
 
 public class MultiaryHeapNode<T extends Comparable<T>> {
 	public T[] array;
