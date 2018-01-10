@@ -1,6 +1,6 @@
 package com.learning.ads.datastructure.list.problems;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 

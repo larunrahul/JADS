@@ -1,7 +1,13 @@
 package com.learning.ads.datastructure.list.problems;
 
+/**
+ * https://www.geeksforgeeks.org/reverse-a-list-in-groups-of-given-size/
+ * 
+ * @author Arun Rahul
+ *
+ */
 public class ReverseLinkedListInSizes {
-	
+
 	private ListNode[] reverse(ListNode node, int size) {
 		ListNode next = null, current = node, prev = null;
 		while (current != null && size != 0) {

@@ -13,9 +13,7 @@ public class DutchNationalFlagProblem {
 			if (array[low] == 0) {
 				low++;
 			} else {
-				int temp = array[low];
-				array[low] = array[high];
-				array[high] = temp;
+				swap(array, low, high);
 				high--;
 			}
 		}
@@ -24,20 +22,25 @@ public class DutchNationalFlagProblem {
 	public void triColor(int[] array) {
 		int low = 0, mid = 0, high = array.length - 1;
 		while (mid <= high) {
-			if (array[mid] == 1) {
-				mid++;
-			} else if (array[mid] == 0) {
-				int temp = array[mid];
-				array[mid] = array[low];
-				array[low] = temp;
+			if (array[mid] == 0) {
+				swap(array, mid, low);
 				low++;
 				mid++;
+			} else if (array[mid] == 1) {
+				mid++;
 			} else if (array[mid] == 2) {
-				int temp = array[high];
-				array[high] = array[mid];
-				array[mid] = temp;
+				swap(array, mid, high);
 				high--;
 			}
 		}
 	}
+
+	private void swap(int[] array, int first, int second) {
+		if (array[first] != array[second]) {
+			int temp = array[second];
+			array[second] = array[first];
+			array[first] = temp;
+		}
+	}
+
 }
