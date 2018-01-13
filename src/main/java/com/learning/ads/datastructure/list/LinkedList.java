@@ -2,6 +2,15 @@ package com.learning.ads.datastructure.list;
 
 import com.learning.ads.datastructure.exception.UnInitializedException;
 
+/**
+ * A generic Linked List implementation
+ * 
+ * @author Arun Rahul
+ *
+ * @param <T>
+ *            Type of values to be stored in LinkedList
+ */
+
 public class LinkedList<T> {
 
 	private Node<T> head;
@@ -20,18 +29,15 @@ public class LinkedList<T> {
 		}
 	}
 
+	/**
+	 * Creates a LinkedList container and pushes the given values into it.
+	 * 
+	 * @param nodes
+	 */
 	@SafeVarargs
-	public LinkedList(T... nodes) {
-		if (nodes.length > 0) {
-			head = new Node<>(nodes[0]);
-			length++;
-			Node<T> current = head;
-			for (int i = 1; i < nodes.length; i++) {
-				current.next = new Node<>(nodes[i]);
-				length++;
-				current = current.next;
-			}
-			tail = current;
+	public LinkedList(T... values) {
+		for (int index = 0; index < values.length; index++) {
+			append(values[index]);
 		}
 	}
 
@@ -39,6 +45,11 @@ public class LinkedList<T> {
 		return length;
 	}
 
+	/**
+	 * Appends a new node with given value at the end of the existing list
+	 * 
+	 * @param value
+	 */
 	public void append(T value) {
 		Node<T> node = new Node<T>(value);
 		if (head == null) {
@@ -50,6 +61,12 @@ public class LinkedList<T> {
 		length++;
 	}
 
+	/**
+	 * Prepends a new node with given value at start of the list and makes this new
+	 * node as head of list
+	 * 
+	 * @param value
+	 */
 	public void prepend(T value) {
 		Node<T> node = new Node<T>(value);
 		if (head == null) {
@@ -61,6 +78,13 @@ public class LinkedList<T> {
 		length++;
 	}
 
+	/**
+	 * Inserts a new node at given position. Negative position appends node from end
+	 * of list
+	 * 
+	 * @param value
+	 * @param position
+	 */
 	public void insert(T value, long position) {
 		if (position < 0) {
 			position = length + position + 1;
@@ -86,6 +110,12 @@ public class LinkedList<T> {
 		length++;
 	}
 
+	/**
+	 * Deletes a node at given position. Negative position deletes node from end of
+	 * list
+	 * 
+	 * @param position
+	 */
 	public void delete(long position) {
 		ensureInitialized();
 		if (position < 0) {
@@ -109,6 +139,13 @@ public class LinkedList<T> {
 		return;
 	}
 
+	/**
+	 * Fetches the node at given position. Negative position fetches the node from
+	 * end.
+	 * 
+	 * @param position
+	 * @return
+	 */
 	public T get(long position) {
 		ensureInitialized();
 		if (position < 0) {

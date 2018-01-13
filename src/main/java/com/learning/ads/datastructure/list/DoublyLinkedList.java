@@ -2,6 +2,13 @@ package com.learning.ads.datastructure.list;
 
 import com.learning.ads.datastructure.exception.UnInitializedException;
 
+/**
+ * A generic Doubly Linked List implementation
+ * 
+ * @author Arun Rahul
+ *
+ * @param <T>
+ */
 public class DoublyLinkedList<T> {
 
 	private Node<T> head;
@@ -28,21 +35,23 @@ public class DoublyLinkedList<T> {
 		}
 	}
 
+	/**
+	 * Creates a DoublyLinkedList container and pushes the given values into it.
+	 * 
+	 * @param nodes
+	 */
 	@SafeVarargs
-	public DoublyLinkedList(T... nodes) {
-		if (nodes.length > 0) {
-			head = new Node<>(null, nodes[0], null);
-			Node<T> current = head;
-			length++;
-			for (int i = 1; i < nodes.length; i++) {
-				current.next = new Node<>(current, nodes[i], null);
-				length++;
-				current = current.next;
-			}
-			tail = current;
+	public DoublyLinkedList(T... values) {
+		for (int index = 0; index < values.length; index++) {
+			append(values[index]);
 		}
 	}
 
+	/**
+	 * Appends a new node with given value at the end of the existing list
+	 * 
+	 * @param value
+	 */
 	public void append(T value) {
 		Node<T> node = new Node<T>(tail, value, null);
 		if (length == 0) {
@@ -54,6 +63,12 @@ public class DoublyLinkedList<T> {
 		length++;
 	}
 
+	/**
+	 * Prepends a new node with given value at start of the list and makes this new
+	 * node as head of list
+	 * 
+	 * @param value
+	 */
 	public void prepend(T value) {
 		Node<T> node = new Node<T>(null, value, head);
 		if (length == 0) {
@@ -65,6 +80,13 @@ public class DoublyLinkedList<T> {
 		length++;
 	}
 
+	/**
+	 * Fetches the node at given position. Negative position fetches the node from
+	 * end.
+	 * 
+	 * @param position
+	 * @return
+	 */
 	public T get(long position) {
 		ensureInitialized();
 		if (position < 0) {
@@ -74,6 +96,13 @@ public class DoublyLinkedList<T> {
 		return getNode(position).value;
 	}
 
+	/**
+	 * Inserts a new node at given position. Negative position appends node from end
+	 * of list
+	 * 
+	 * @param value
+	 * @param position
+	 */
 	public void insert(T value, long position) {
 		if (position < 0) {
 			position = length + position + 1;
@@ -86,6 +115,12 @@ public class DoublyLinkedList<T> {
 		insertBefore(getNode(position), value);
 	}
 
+	/**
+	 * Deletes a node at given position. Negative position deletes node from end of
+	 * list
+	 * 
+	 * @param position
+	 */
 	public void delete(long position) {
 		ensureInitialized();
 		if (position < 0) {
@@ -175,7 +210,7 @@ public class DoublyLinkedList<T> {
 		return sb.toString().substring(0, sb.length() - 2) + sb.toString().substring(sb.length() - 1, sb.length());
 	}
 
-	public String printBack() {
+	public String prepareBack() {
 		StringBuilder sb = new StringBuilder("[");
 		Node<T> current = tail;
 		while (current != null) {
