@@ -1,4 +1,4 @@
-package com.learning.ads.datastructure.list.problems;
+package com.learning.ads.datastructure.list.problems.linkedlist;
 
 /**
  * https://www.geeksforgeeks.org/pairwise-swap-elements-of-a-given-linked-list-by-changing-links/

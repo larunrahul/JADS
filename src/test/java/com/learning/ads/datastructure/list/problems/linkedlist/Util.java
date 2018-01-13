@@ -1,4 +1,7 @@
-package com.learning.ads.datastructure.list.problems;
+package com.learning.ads.datastructure.list.problems.linkedlist;
+
+import com.learning.ads.datastructure.list.problems.linkedlist.ListBiNode;
+import com.learning.ads.datastructure.list.problems.linkedlist.ListNode;
 
 public final class Util {
 	

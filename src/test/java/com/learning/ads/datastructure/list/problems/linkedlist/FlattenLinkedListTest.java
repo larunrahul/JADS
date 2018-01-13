@@ -1,6 +1,10 @@
-package com.learning.ads.datastructure.list.problems;
+package com.learning.ads.datastructure.list.problems.linkedlist;
 
 import org.junit.Test;
+
+import com.learning.ads.datastructure.list.problems.linkedlist.FlattenLinkedList;
+import com.learning.ads.datastructure.list.problems.linkedlist.ListBiNode;
+import com.learning.ads.datastructure.list.problems.linkedlist.ListNode;
 
 public class FlattenLinkedListTest {
 

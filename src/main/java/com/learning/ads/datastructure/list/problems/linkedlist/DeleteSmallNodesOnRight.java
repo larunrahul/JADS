@@ -1,4 +1,4 @@
-package com.learning.ads.datastructure.list.problems;
+package com.learning.ads.datastructure.list.problems.linkedlist;
 
 /**
  * https://www.geeksforgeeks.org/delete-nodes-which-have-a-greater-value-on-right-side/

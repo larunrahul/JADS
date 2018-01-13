@@ -1,6 +1,10 @@
-package com.learning.ads.datastructure.list.problems;
+package com.learning.ads.datastructure.list.problems.linkedlist;
 
 import org.junit.Test;
+
+import com.learning.ads.datastructure.list.problems.linkedlist.ListNode;
+import com.learning.ads.datastructure.list.problems.linkedlist.MergeTwoSortedLinkedList;
+
 import static org.junit.Assert.assertNull;
 
 public class MergeTwoSortedLinkedListTest {

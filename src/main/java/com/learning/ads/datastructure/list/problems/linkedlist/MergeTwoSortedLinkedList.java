@@ -1,4 +1,4 @@
-package com.learning.ads.datastructure.list.problems;
+package com.learning.ads.datastructure.list.problems.linkedlist;
 
 public class MergeTwoSortedLinkedList {
 	public ListNode merge(ListNode first, ListNode second) {

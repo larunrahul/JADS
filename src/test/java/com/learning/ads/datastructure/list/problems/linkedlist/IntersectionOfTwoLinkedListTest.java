@@ -1,10 +1,11 @@
-package com.learning.ads.datastructure.list.problems;
+package com.learning.ads.datastructure.list.problems.linkedlist;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.learning.ads.datastructure.list.problems.ListNode;
+import com.learning.ads.datastructure.list.problems.linkedlist.IntersectionOfTwoLinkedList;
+import com.learning.ads.datastructure.list.problems.linkedlist.ListNode;
 
 public class IntersectionOfTwoLinkedListTest {
 

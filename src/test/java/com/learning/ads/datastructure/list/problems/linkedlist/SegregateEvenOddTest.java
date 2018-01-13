@@ -1,8 +1,11 @@
-package com.learning.ads.datastructure.list.problems;
+package com.learning.ads.datastructure.list.problems.linkedlist;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import com.learning.ads.datastructure.list.problems.linkedlist.ListNode;
+import com.learning.ads.datastructure.list.problems.linkedlist.SegregateEvenOdd;
 
 public class SegregateEvenOddTest {
 

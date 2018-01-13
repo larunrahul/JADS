@@ -1,6 +1,9 @@
-package com.learning.ads.datastructure.list.problems;
+package com.learning.ads.datastructure.list.problems.linkedlist;
 
 import org.junit.Test;
+
+import com.learning.ads.datastructure.list.problems.linkedlist.DeleteAlternateNodes;
+import com.learning.ads.datastructure.list.problems.linkedlist.ListNode;
 
 public class DeleteAlternateNodesTest {
 

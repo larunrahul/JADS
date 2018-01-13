@@ -1,8 +1,12 @@
-package com.learning.ads.datastructure.list.problems;
+package com.learning.ads.datastructure.list.problems.linkedlist;
 
 import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
+
+import com.learning.ads.datastructure.list.problems.linkedlist.ListNode;
+import com.learning.ads.datastructure.list.problems.linkedlist.ReverseAlternateKNodes;
+import com.learning.ads.datastructure.list.problems.linkedlist.ReverseLinkedList;
 
 public class ReverseAlternateKNodesTest {
 

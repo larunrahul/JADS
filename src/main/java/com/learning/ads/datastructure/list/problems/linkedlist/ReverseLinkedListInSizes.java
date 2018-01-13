@@ -1,4 +1,4 @@
-package com.learning.ads.datastructure.list.problems;
+package com.learning.ads.datastructure.list.problems.linkedlist;
 
 /**
  * https://www.geeksforgeeks.org/reverse-a-list-in-groups-of-given-size/

@@ -1,8 +1,11 @@
-package com.learning.ads.datastructure.list.problems;
+package com.learning.ads.datastructure.list.problems.linkedlist;
 
 import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
+
+import com.learning.ads.datastructure.list.problems.linkedlist.IntersectionOfLikedList;
+import com.learning.ads.datastructure.list.problems.linkedlist.ListNode;
 
 public class IntersectionOfLinkedListTest {
 
