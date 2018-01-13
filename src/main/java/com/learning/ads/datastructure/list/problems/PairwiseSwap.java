@@ -1,5 +1,12 @@
 package com.learning.ads.datastructure.list.problems;
 
+/**
+ * https://www.geeksforgeeks.org/pairwise-swap-elements-of-a-given-linked-list-by-changing-links/
+ * 
+ * @author Arun Rahul
+ *
+ */
+
 public class PairwiseSwap {
 	public ListNode swap(ListNode head) {
 		ListNode cur = head, next, prev = null;

@@ -23,5 +23,12 @@ public class PairwiseSwapTest {
 		expected.attach(1).attach(4).attach(3).attach(6).attach(5);
 		Util.assertListEqual(expected, rll.swap(head));
 	}
+	
+	@Test
+	public void swapWithSingleNode() {
+		ListNode head = new ListNode(1);
+		ListNode expected = new ListNode(1);
+		Util.assertListEqual(expected, rll.swap(head));
+	}
 
 }
