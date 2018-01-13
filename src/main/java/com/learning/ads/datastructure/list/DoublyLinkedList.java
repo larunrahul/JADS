@@ -50,6 +50,8 @@ public class DoublyLinkedList<T> {
 	/**
 	 * Appends a new node with given value at the end of the existing list
 	 * 
+	 * Complexity: O(1)
+	 * 
 	 * @param value
 	 */
 	public void append(T value) {
@@ -66,6 +68,8 @@ public class DoublyLinkedList<T> {
 	/**
 	 * Prepends a new node with given value at start of the list and makes this new
 	 * node as head of list
+	 * 
+	 * Complexity: O(1)
 	 * 
 	 * @param value
 	 */
@@ -84,6 +88,8 @@ public class DoublyLinkedList<T> {
 	 * Fetches the node at given position. Negative position fetches the node from
 	 * end.
 	 * 
+	 * Complexity: O(n)
+	 * 
 	 * @param position
 	 * @return
 	 */
@@ -99,6 +105,8 @@ public class DoublyLinkedList<T> {
 	/**
 	 * Inserts a new node at given position. Negative position appends node from end
 	 * of list
+	 * 
+	 * Complexity: O(n)
 	 * 
 	 * @param value
 	 * @param position
@@ -118,6 +126,8 @@ public class DoublyLinkedList<T> {
 	/**
 	 * Deletes a node at given position. Negative position deletes node from end of
 	 * list
+	 * 
+	 * Complexity: O(n)
 	 * 
 	 * @param position
 	 */
