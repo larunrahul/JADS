@@ -12,11 +12,23 @@ public class QuickSort<T extends Comparable<T>, P extends Partition<T>> {
 		sort(array, 0, array.length - 1);
 	}
 
-	public void sort(T[] array, int start, int end) {
+	public void sortDescending(T[] array) {
+		sortDescending(array, 0, array.length - 1);
+	}
+
+	private void sort(T[] array, int start, int end) {
 		if (start < end) {
 			int mid = partition.part(array, start, end);
 			sort(array, start, mid - 1);
 			sort(array, mid + 1, end);
+		}
+	}
+
+	private void sortDescending(T[] array, int start, int end) {
+		if (start < end) {
+			int mid = partition.partDescending(array, start, end);
+			sortDescending(array, start, mid - 1);
+			sortDescending(array, mid + 1, end);
 		}
 	}
 
