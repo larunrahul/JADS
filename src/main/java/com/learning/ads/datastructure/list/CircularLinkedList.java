@@ -3,15 +3,13 @@ package com.learning.ads.datastructure.list;
 import com.learning.ads.datastructure.exception.UnInitializedException;
 
 /**
- * A generic Linked List implementation
+ * A genetic implementation of Circular Linked List
  * 
  * @author Arun Rahul
  *
  * @param <T>
- *            Type of values to be stored in LinkedList
  */
-
-public class LinkedList<T> {
+public class CircularLinkedList<T> {
 
 	private Node<T> head;
 
@@ -29,13 +27,8 @@ public class LinkedList<T> {
 		}
 	}
 
-	/**
-	 * Creates a LinkedList container and pushes the given values into it.
-	 * 
-	 * @param nodes
-	 */
 	@SafeVarargs
-	public LinkedList(T... values) {
+	public CircularLinkedList(T... values) {
 		for (int index = 0; index < values.length; index++) {
 			append(values[index]);
 		}
@@ -45,32 +38,18 @@ public class LinkedList<T> {
 		return length;
 	}
 
-	/**
-	 * Appends a new node with given value at the end of the existing list
-	 * 
-	 * Complexity: O(1)
-	 * 
-	 * @param value
-	 */
 	public void append(T value) {
-		Node<T> node = new Node<T>(value);
+		Node<T> node = new Node<>(value);
 		if (head == null) {
 			head = tail = node;
 		} else {
 			tail.next = node;
 			tail = tail.next;
 		}
+		tail.next = head;
 		length++;
 	}
 
-	/**
-	 * Prepends a new node with given value at start of the list and makes this new
-	 * node as head of list
-	 * 
-	 * Complexity: O(1)
-	 * 
-	 * @param value
-	 */
 	public void prepend(T value) {
 		Node<T> node = new Node<T>(value);
 		if (head == null) {
@@ -79,6 +58,7 @@ public class LinkedList<T> {
 			node.next = head;
 			head = node;
 		}
+		tail.next = head;
 		length++;
 	}
 
@@ -122,9 +102,11 @@ public class LinkedList<T> {
 			position = length + position;
 		}
 		if (position == 0) {
-			head = head.next;
 			if (length == 1) {
-				tail = head;
+				head = tail = null;
+			} else {
+				head = head.next;
+				tail.next = head;
 			}
 		} else {
 			Node<T> current = getNode(position - 1);
@@ -144,7 +126,6 @@ public class LinkedList<T> {
 	 * Complexity: O(n)
 	 * 
 	 * @param position
-	 * @return
 	 */
 	public T get(long position) {
 		ensureInitialized();
@@ -153,6 +134,7 @@ public class LinkedList<T> {
 		}
 		Node<T> current = getNode(position);
 		return current.value;
+
 	}
 
 	/**
@@ -179,6 +161,18 @@ public class LinkedList<T> {
 		return tail.value;
 	}
 
+	public void assertCorrectness() {
+		if (head == null) {
+			if (tail != null) {
+				throw new RuntimeException("List is not functoning properly");
+			}
+		} else {
+			if (tail.next != head) {
+				throw new RuntimeException("List is not functoning properly");
+			}
+		}
+	}
+
 	private Node<T> getNode(long position) {
 		throwIfOutOfbounds(position);
 		Node<T> current = head;
@@ -188,14 +182,6 @@ public class LinkedList<T> {
 			current = current.next;
 		}
 		return current;
-	}
-
-	public void assertCorrectness() {
-		if (head == null) {
-			if (tail != null) {
-				throw new RuntimeException("List is not functoning properly");
-			}
-		}
 	}
 
 	private void ensureInitialized() {
@@ -214,15 +200,15 @@ public class LinkedList<T> {
 	public String toString() {
 		StringBuilder sb = new StringBuilder("[");
 		Node<T> current = head;
-		while (current != null) {
+		while (current != tail) {
 			sb.append(current.value).append(",");
 			current = current.next;
 		}
-		sb.append("]");
-		if (sb.length() == 2) {
-			return sb.toString();
+		if (tail != null) {
+			sb.append(tail.value);
 		}
-		return sb.toString().substring(0, sb.length() - 2) + sb.toString().substring(sb.length() - 1, sb.length());
+		sb.append("]");
+		return sb.toString();
 	}
 
 }
