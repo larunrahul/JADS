@@ -190,17 +190,9 @@ public class LinkedList<T> {
 		return current;
 	}
 
-	public void assertCorrectness() {
-		if (head == null) {
-			if (tail != null) {
-				throw new RuntimeException("List is not functoning properly");
-			}
-		}
-	}
-
 	private void ensureInitialized() {
 		if (head == null || tail == null || length == 0) {
-			throw new UnInitializedException("Datastructure not initialized properly");
+			throw new UnInitializedException("Datastructure is initialized properly");
 		}
 	}
 
@@ -225,4 +217,12 @@ public class LinkedList<T> {
 		return sb.toString().substring(0, sb.length() - 2) + sb.toString().substring(sb.length() - 1, sb.length());
 	}
 
+	/**
+	 * Just for internal purpose. This should not be here.
+	 */
+	void assertCorrectness() {
+		if ((head == null && tail != null) || (tail == null && head != null)) {
+			throw new RuntimeException("List is not functoning properly");
+		}
+	}
 }

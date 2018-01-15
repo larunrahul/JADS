@@ -5,13 +5,13 @@ import java.util.Stack;
 import com.learning.ads.datastructure.exception.UnInitializedException;
 
 /**
- * A generic Doubly Linked List implementation
+ * A generic Circular Doubly Linked List implementation
  * 
  * @author Arun Rahul
  *
  * @param <T>
  */
-public class DoublyLinkedList<T> {
+public class CircularDoublyLinkedList<T> {
 
 	private Node<T> head;
 
@@ -51,7 +51,7 @@ public class DoublyLinkedList<T> {
 	 * @param nodes
 	 */
 	@SafeVarargs
-	public DoublyLinkedList(T... values) {
+	public CircularDoublyLinkedList(T... values) {
 		for (int index = 0; index < values.length; index++) {
 			append(values[index]);
 		}
@@ -65,9 +65,11 @@ public class DoublyLinkedList<T> {
 	 * @param value
 	 */
 	public void append(T value) {
-		Node<T> node = new Node<T>(tail, value, null);
+		Node<T> node = new Node<T>(tail, value, head);
 		if (length == 0) {
 			head = tail = node;
+			head.next = tail;
+			tail.prev = head;
 		} else {
 			tail = tail.next;
 		}
@@ -83,9 +85,11 @@ public class DoublyLinkedList<T> {
 	 * @param value
 	 */
 	public void prepend(T value) {
-		Node<T> node = new Node<T>(null, value, head);
+		Node<T> node = new Node<T>(tail, value, head);
 		if (length == 0) {
 			head = tail = node;
+			head.next = tail;
+			tail.prev = head;
 		} else {
 			head = node;
 		}
@@ -174,16 +178,19 @@ public class DoublyLinkedList<T> {
 
 	private void deleteThis(Node<T> node) {
 		node.value = null;
-		if (node.prev == null) {
-			head = node.next;
+		if (head == tail) {
+			head = tail = null;
 		} else {
+			if (node.prev == tail) {
+				head = node.next;
+			}
 			node.prev.next = node.next;
-		}
-		if (node.next == null) {
-			tail = node.prev;
-		} else {
+			if (node.next == head) {
+				tail = node.prev;
+			}
 			node.next.prev = node.prev;
 		}
+
 		length--;
 	}
 
@@ -229,7 +236,7 @@ public class DoublyLinkedList<T> {
 
 	private void insertBefore(Node<T> node, T value) {
 		Node<T> newNode = new Node<T>(node.prev, value, node);
-		if (newNode.prev == null) {
+		if (newNode.prev == tail) {
 			head = newNode;
 		}
 		length++;
@@ -238,29 +245,29 @@ public class DoublyLinkedList<T> {
 	public String toString() {
 		StringBuilder sb = new StringBuilder("[");
 		Node<T> current = head;
-		while (current != null) {
+		while (current != tail) {
 			sb.append(current.value).append(",");
 			current = current.next;
 		}
-		sb.append("]");
-		if (sb.length() == 2) {
-			return sb.toString();
+		if (tail != null) {
+			sb.append(tail.value);
 		}
-		return sb.toString().substring(0, sb.length() - 2) + sb.toString().substring(sb.length() - 1, sb.length());
+		sb.append("]");
+		return sb.toString();
 	}
 
 	public String prepareBack() {
 		StringBuilder sb = new StringBuilder("[");
 		Node<T> current = tail;
-		while (current != null) {
+		while (current != head) {
 			sb.append(current.value).append(",");
 			current = current.prev;
 		}
-		sb.append("]");
-		if (sb.length() == 2) {
-			return sb.toString();
+		if (tail != null) {
+			sb.append(head.value);
 		}
-		return sb.toString().substring(0, sb.length() - 2) + sb.toString().substring(sb.length() - 1, sb.length());
+		sb.append("]");
+		return sb.toString();
 	}
 
 	/**
@@ -269,27 +276,34 @@ public class DoublyLinkedList<T> {
 	void assertCorrectness() {
 		if ((head == null && tail != null) || (tail == null && head != null)) {
 			throw new RuntimeException("List is not functoning properly");
+		} else if ((tail != null && tail.next != head) || (head != null && head.prev != tail)) {
+			throw new RuntimeException("List is not circular");
 		}
-		Stack<DoublyLinkedList.Node<T>> front = new Stack<>();
+		Stack<CircularDoublyLinkedList.Node<T>> front = new Stack<>();
 		Node<T> current = head;
 		long fLength = 0;
-		while (current != null) {
+		while (current != tail) {
 			front.push(current);
 			fLength++;
 			current = current.next;
 		}
+		front.push(tail);
+		fLength++;
 		current = tail;
 		long rLength = 0;
-		while (current != null) {
+		while (current != head) {
 			if (current != front.pop()) {
 				throw new RuntimeException("List is not functoning properly");
 			}
 			rLength++;
 			current = current.prev;
 		}
+		if (current != front.pop()) {
+			throw new RuntimeException("List is not functoning properly");
+		}
+		rLength++;
 		if (fLength != rLength) {
 			throw new RuntimeException("List is not functoning properly");
 		}
 	}
-
 }

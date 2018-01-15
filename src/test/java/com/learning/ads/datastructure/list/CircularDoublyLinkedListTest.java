@@ -1,6 +1,6 @@
 package com.learning.ads.datastructure.list;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
@@ -8,13 +8,13 @@ import org.junit.Test;
 
 import com.learning.ads.datastructure.exception.UnInitializedException;
 
-public class LinkedListTest {
+public class CircularDoublyLinkedListTest {
 
-	LinkedList<Integer> list;
+	CircularDoublyLinkedList<Integer> list;
 
 	@Before
 	public void setUp() {
-		list = new LinkedList<>(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+		list = new CircularDoublyLinkedList<>(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
 	}
 
 	@After
@@ -31,13 +31,13 @@ public class LinkedListTest {
 
 	@Test(expected = UnInitializedException.class)
 	public void getPositiveIndexWhenEmpty() {
-		list = new LinkedList<>();
+		list = new CircularDoublyLinkedList<>();
 		list.get(3);
 	}
 
 	@Test(expected = UnInitializedException.class)
 	public void getNegativeIndexWhenEmpty() {
-		list = new LinkedList<>();
+		list = new CircularDoublyLinkedList<>();
 		list.get(-3);
 	}
 
@@ -52,7 +52,12 @@ public class LinkedListTest {
 	}
 
 	@Test
-	public void getPositiveIndex() {
+	public void getPositiveIndexFromStart() {
+		assertEquals(Integer.valueOf(4), list.get(4));
+	}
+
+	@Test
+	public void getPositiveIndexFromEnd() {
 		assertEquals(Integer.valueOf(6), list.get(6));
 	}
 
@@ -93,7 +98,7 @@ public class LinkedListTest {
 
 	@Test
 	public void insertFromStartWhenEmpty() {
-		list = new LinkedList<>();
+		list = new CircularDoublyLinkedList<>();
 		list.insert(0, 0);
 		assertEquals(Integer.valueOf(0), list.get(0));
 		assertEquals(1, list.length());
@@ -103,7 +108,7 @@ public class LinkedListTest {
 
 	@Test(expected = IndexOutOfBoundsException.class)
 	public void insertFromStartWhenEmptyOutOfBounds() {
-		list = new LinkedList<>();
+		list = new CircularDoublyLinkedList<>();
 		list.insert(0, 2);
 	}
 
@@ -155,7 +160,7 @@ public class LinkedListTest {
 
 	@Test
 	public void insertFromEndWhenEmpty() {
-		list = new LinkedList<>();
+		list = new CircularDoublyLinkedList<>();
 		list.insert(0, -1);
 		assertEquals(Integer.valueOf(0), list.get(-1));
 		assertEquals(Integer.valueOf(0), list.get(0));
@@ -166,7 +171,7 @@ public class LinkedListTest {
 
 	@Test(expected = IndexOutOfBoundsException.class)
 	public void insertFromEndWhenEmptyOutOfBounds() {
-		list = new LinkedList<>();
+		list = new CircularDoublyLinkedList<>();
 		list.insert(0, -2);
 	}
 
@@ -207,8 +212,6 @@ public class LinkedListTest {
 		assertEquals(Integer.valueOf(34), list.get(0));
 		assertEquals(Integer.valueOf(0), list.get(1));
 		assertEquals(11, list.length());
-		assertEquals(Integer.valueOf(34), list.getHead());
-		assertEquals(Integer.valueOf(9), list.getTail());
 	}
 
 	@Test(expected = IndexOutOfBoundsException.class)
@@ -218,34 +221,32 @@ public class LinkedListTest {
 
 	@Test(expected = UnInitializedException.class)
 	public void deleteFromStartFirstWhenEmpty() {
-		list = new LinkedList<>();
+		list = new CircularDoublyLinkedList<>();
 		list.delete(0);
 	}
 
 	@Test(expected = UnInitializedException.class)
 	public void deleteFromEndFirstWhenEmpty() {
-		list = new LinkedList<>();
+		list = new CircularDoublyLinkedList<>();
 		list.delete(-1);
 	}
 
 	@Test(expected = UnInitializedException.class)
 	public void deleteFromStartEndWhenEmpty() {
-		list = new LinkedList<>();
+		list = new CircularDoublyLinkedList<>();
 		list.delete(9);
 	}
 
 	@Test(expected = UnInitializedException.class)
 	public void deleteFromEndEndWhenEmpty() {
-		list = new LinkedList<>();
+		list = new CircularDoublyLinkedList<>();
 		list.delete(-10);
 	}
 
 	@Test
 	public void deleteFromStartWhenOneElement() {
-		list = new LinkedList<>();
+		list = new CircularDoublyLinkedList<>();
 		list.append(0);
-		assertEquals(Integer.valueOf(0), list.getHead());
-		assertEquals(Integer.valueOf(0), list.getTail());
 		assertEquals(1, list.length());
 		list.delete(0);
 		assertEquals(0, list.length());
@@ -253,10 +254,8 @@ public class LinkedListTest {
 
 	@Test
 	public void deleteFromEndWhenOneElement() {
-		list = new LinkedList<>();
+		list = new CircularDoublyLinkedList<>();
 		list.append(0);
-		assertEquals(Integer.valueOf(0), list.getHead());
-		assertEquals(Integer.valueOf(0), list.getTail());
 		assertEquals(1, list.length());
 		list.delete(-1);
 		assertEquals(0, list.length());
@@ -270,6 +269,7 @@ public class LinkedListTest {
 		assertEquals(Integer.valueOf(9), list.get(list.length() - 1));
 		assertEquals(Integer.valueOf(1), list.getHead());
 		assertEquals(Integer.valueOf(9), list.getTail());
+
 	}
 
 	@Test
@@ -280,6 +280,7 @@ public class LinkedListTest {
 		assertEquals(Integer.valueOf(8), list.get(list.length() - 1));
 		assertEquals(Integer.valueOf(0), list.getHead());
 		assertEquals(Integer.valueOf(8), list.getTail());
+		
 	}
 
 	@Test
@@ -288,6 +289,9 @@ public class LinkedListTest {
 		assertEquals(9, list.length());
 		assertEquals(Integer.valueOf(2), list.get(1));
 		assertEquals(Integer.valueOf(0), list.get(0));
+		assertEquals(Integer.valueOf(0), list.getHead());
+		assertEquals(Integer.valueOf(9), list.getTail());
+
 	}
 
 	@Test
@@ -298,6 +302,7 @@ public class LinkedListTest {
 		assertEquals(Integer.valueOf(0), list.get(0));
 		assertEquals(Integer.valueOf(0), list.getHead());
 		assertEquals(Integer.valueOf(9), list.getTail());
+
 	}
 
 	@Test
@@ -307,6 +312,7 @@ public class LinkedListTest {
 		assertEquals(Integer.valueOf(8), list.get(8));
 		assertEquals(Integer.valueOf(0), list.getHead());
 		assertEquals(Integer.valueOf(8), list.getTail());
+
 	}
 
 	@Test
@@ -316,6 +322,7 @@ public class LinkedListTest {
 		assertEquals(Integer.valueOf(1), list.get(0));
 		assertEquals(Integer.valueOf(1), list.getHead());
 		assertEquals(Integer.valueOf(9), list.getTail());
+
 	}
 
 	@Test
@@ -326,6 +333,7 @@ public class LinkedListTest {
 		assertEquals(Integer.valueOf(8), list.get(7));
 		assertEquals(Integer.valueOf(0), list.getHead());
 		assertEquals(Integer.valueOf(9), list.getTail());
+
 	}
 
 	@Test
@@ -336,11 +344,12 @@ public class LinkedListTest {
 		assertEquals(Integer.valueOf(4), list.get(3));
 		assertEquals(Integer.valueOf(0), list.getHead());
 		assertEquals(Integer.valueOf(9), list.getTail());
+
 	}
 
 	@Test
 	public void insertDelete() {
-		list = new LinkedList<>();
+		list = new CircularDoublyLinkedList<>();
 		for (int i = 0; i < 10; i++) {
 			list.insert(i, i);
 			assertEquals(Integer.valueOf(0), list.getHead());
@@ -352,40 +361,6 @@ public class LinkedListTest {
 			list.delete(i);
 		}
 		assertEquals(0, list.length());
-	}
-	
-	@Test
-	public void prependToEmptyList() {
-		list = new LinkedList<>();
-		list.prepend(0);
-		assertEquals(1, list.length());
-		assertEquals(Integer.valueOf(0), list.getHead());
-		assertEquals(Integer.valueOf(0), list.getTail());
-	}
-	
-	@Test
-	public void prependToNonEmptyList() {
-		list.prepend(-1);
-		assertEquals(11, list.length());
-		assertEquals(Integer.valueOf(-1), list.getHead());
-		assertEquals(Integer.valueOf(9), list.getTail());
-	}
-	
-	@Test
-	public void appendToEmptyList() {
-		list = new LinkedList<>();
-		list.append(0);
-		assertEquals(1, list.length());
-		assertEquals(Integer.valueOf(0), list.getHead());
-		assertEquals(Integer.valueOf(0), list.getTail());
-	}
-	
-	@Test
-	public void appendToNonEmptyList() {
-		list.append(10);
-		assertEquals(11, list.length());
-		assertEquals(Integer.valueOf(0), list.getHead());
-		assertEquals(Integer.valueOf(10), list.getTail());
 	}
 
 }

@@ -161,18 +161,6 @@ public class CircularLinkedList<T> {
 		return tail.value;
 	}
 
-	public void assertCorrectness() {
-		if (head == null) {
-			if (tail != null) {
-				throw new RuntimeException("List is not functoning properly");
-			}
-		} else {
-			if (tail.next != head) {
-				throw new RuntimeException("List is not functoning properly");
-			}
-		}
-	}
-
 	private Node<T> getNode(long position) {
 		throwIfOutOfbounds(position);
 		Node<T> current = head;
@@ -186,7 +174,7 @@ public class CircularLinkedList<T> {
 
 	private void ensureInitialized() {
 		if (head == null || tail == null || length == 0) {
-			throw new UnInitializedException("Datastructure not initialized properly");
+			throw new UnInitializedException("Datastructure is initialized properly");
 		}
 	}
 
@@ -211,4 +199,14 @@ public class CircularLinkedList<T> {
 		return sb.toString();
 	}
 
+	/**
+	 * Just for internal purpose. This should not be here.
+	 */
+	void assertCorrectness() {
+		if ((head == null && tail != null) || (tail == null && head != null)) {
+			throw new RuntimeException("List is not functoning properly");
+		} else if (tail != null && tail.next != head) {
+			throw new RuntimeException("List is not circular");
+		}
+	}
 }

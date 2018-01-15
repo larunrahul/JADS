@@ -329,7 +329,7 @@ public class CircularLinkedListTest {
 		assertEquals(Integer.valueOf(2), list.get(2));
 		assertEquals(Integer.valueOf(4), list.get(3));
 	}
-
+	
 	@Test
 	public void insertDelete() {
 		list = new CircularLinkedList<>();
@@ -338,13 +338,46 @@ public class CircularLinkedListTest {
 			assertEquals(Integer.valueOf(0), list.getHead());
 			assertEquals(Integer.valueOf(i), list.getTail());
 		}
-		for (int i = 9; i > 0; i--) {
-			list.delete(i);
+		for (int i = 9; i >= 0; i--) {
 			assertEquals(Integer.valueOf(0), list.getHead());
-			assertEquals(list.get(i - 1), list.getTail());
+			assertEquals(list.get(i), list.getTail());
+			list.delete(i);
 		}
+		assertEquals(0, list.length());
+	}
+	
+	@Test
+	public void prependToEmptyList() {
+		list = new CircularLinkedList<>();
+		list.prepend(0);
 		assertEquals(1, list.length());
-		list.delete(0);
+		assertEquals(Integer.valueOf(0), list.getHead());
+		assertEquals(Integer.valueOf(0), list.getTail());
+	}
+	
+	@Test
+	public void prependToNonEmptyList() {
+		list.prepend(-1);
+		assertEquals(11, list.length());
+		assertEquals(Integer.valueOf(-1), list.getHead());
+		assertEquals(Integer.valueOf(9), list.getTail());
+	}
+	
+	@Test
+	public void appendToEmptyList() {
+		list = new CircularLinkedList<>();
+		list.append(0);
+		assertEquals(1, list.length());
+		assertEquals(Integer.valueOf(0), list.getHead());
+		assertEquals(Integer.valueOf(0), list.getTail());
+	}
+	
+	@Test
+	public void appendToNonEmptyList() {
+		list.append(10);
+		assertEquals(11, list.length());
+		assertEquals(Integer.valueOf(0), list.getHead());
+		assertEquals(Integer.valueOf(10), list.getTail());
 	}
 
 }
