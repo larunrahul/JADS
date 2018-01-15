@@ -2,8 +2,6 @@ package com.learning.ads.sort.quick;
 
 import static org.junit.Assert.assertArrayEquals;
 
-import java.util.Arrays;
-
 import org.junit.Test;
 
 public class QuickSortTest {
@@ -23,7 +21,6 @@ public class QuickSortTest {
 		QuickSort<Integer, Partition<Integer>> sort = new QuickSort<>(p);
 		Integer[] array = { 2, 8, 7, 1, 3, 5, 6, 4 };
 		sort.sortDescending(array);
-		System.out.println(Arrays.toString(array));
 		assertArrayEquals(new Integer[] { 8, 7, 6, 5, 4, 3, 2, 1 }, array);
 	}
 
