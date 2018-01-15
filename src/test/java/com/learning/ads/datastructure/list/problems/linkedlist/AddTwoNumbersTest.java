@@ -55,7 +55,9 @@ public class AddTwoNumbersTest {
 		first.attach(3).attach(4);
 		ListNode second = new ListNode(5);
 		second.attach(7).attach(4);
-		Util.toString(rll.sumRec(first, second));
+		ListNode expected = new ListNode(0);
+		expected.attach(8).attach(0).attach(8);
+		Util.assertListEqual(expected, rll.sumRec(first, second));
 	}
 
 	@Test
