@@ -1,4 +1,4 @@
-package com.learning.ads.sort.quick;
+package com.learning.ads.sort.quick.partition;
 
 public class LomutoPartition<T extends Comparable<T>> implements Partition<T> {
 
