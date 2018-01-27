@@ -11,11 +11,11 @@ public class QuickSort<T extends Comparable<T>, P extends Partition<T>> {
 	}
 
 	public void sort(T[] array) {
-		qSort.sort(array, 0, array.length - 1);
+		qSort.sort(array);
 	}
 
 	public void sortDescending(T[] array) {
-		qSort.sortDescending(array, 0, array.length - 1);
+		qSort.sortDescending(array);
 	}
 
 }
