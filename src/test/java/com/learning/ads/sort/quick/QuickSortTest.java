@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import com.learning.ads.sort.quick.partition.HoarePartition;
 import com.learning.ads.sort.quick.partition.LomutoPartition;
+import com.learning.ads.sort.quick.partition.MixHoarePartition;
 import com.learning.ads.sort.quick.partition.Partition;
 import com.learning.ads.sort.quick.partition.RandomLomutoPartition;
 
@@ -14,6 +15,7 @@ public class QuickSortTest {
 	Partition<Integer> lomutoPartition = new LomutoPartition<>();
 	Partition<Integer> randomLomutoPartition = new RandomLomutoPartition<>();
 	Partition<Integer> hoarePartition = new HoarePartition<>();
+	Partition<Integer> mixHoarePartition = new MixHoarePartition<>();
 
 	@Test
 	public void sortAscendingLomutoPartition() {
@@ -65,6 +67,15 @@ public class QuickSortTest {
 		QSort<Integer, Partition<Integer>> qSort = new HoareQSort<>(hoarePartition);
 		QuickSort<Integer, Partition<Integer>> sort = new QuickSort<>(qSort);
 		Integer[] array = { 8, 1, 2, 3, 4, 5, 6, 7 };
+		sort.sort(array);
+		assertArrayEquals(new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8 }, array);
+	}
+	
+	@Test
+	public void sortAscendingMixHoarePartition() {
+		QSort<Integer, Partition<Integer>> qSort = new QSort<>(mixHoarePartition);
+		QuickSort<Integer, Partition<Integer>> sort = new QuickSort<>(qSort);
+		Integer[] array = { 2, 8, 7, 1, 3, 5, 6, 4 };
 		sort.sort(array);
 		assertArrayEquals(new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8 }, array);
 	}
@@ -150,6 +161,15 @@ public class QuickSortTest {
 	@Test
 	public void sortDescendingHoarePartition() {
 		QSort<Integer, Partition<Integer>> qSort = new HoareQSort<>(hoarePartition);
+		QuickSort<Integer, Partition<Integer>> sort = new QuickSort<>(qSort);
+		Integer[] array = { 2, 8, 7, 1, 3, 5, 6, 4 };
+		sort.sortDescending(array);
+		assertArrayEquals(new Integer[] { 8, 7, 6, 5, 4, 3, 2, 1 }, array);
+	}
+	
+	@Test
+	public void sortDescendingMixHoarePartition() {
+		QSort<Integer, Partition<Integer>> qSort = new QSort<>(mixHoarePartition);
 		QuickSort<Integer, Partition<Integer>> sort = new QuickSort<>(qSort);
 		Integer[] array = { 2, 8, 7, 1, 3, 5, 6, 4 };
 		sort.sortDescending(array);
