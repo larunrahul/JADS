@@ -12,7 +12,7 @@ public class BinaryMaxHeap<T extends Comparable<T>> {
 	 * element before mid element) and construct in upward fashion
 	 */
 	public BinaryMaxHeap(T[] array) {
-		BinaryHeapNode<T> heap = new BinaryHeapNode<>();
+		BinaryHeapNode<T> heap = new BinaryHeapNode<>(array);
 		heap.array = array;
 		heap.heapSize = array.length;
 		this.binaryHeapNode = heap;
