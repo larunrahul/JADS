@@ -70,7 +70,7 @@ public class QuickSortTest {
 		sort.sort(array);
 		assertArrayEquals(new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8 }, array);
 	}
-	
+
 	@Test
 	public void sortAscendingMixHoarePartition() {
 		QSort<Integer, Partition<Integer>> qSort = new QSort<>(mixHoarePartition);
@@ -78,6 +78,15 @@ public class QuickSortTest {
 		Integer[] array = { 2, 8, 7, 1, 3, 5, 6, 4 };
 		sort.sort(array);
 		assertArrayEquals(new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8 }, array);
+	}
+
+	@Test
+	public void sortAscendingMixHoarePartitionDuplicatElements() {
+		QSort<Integer, Partition<Integer>> qSort = new QSort<>(mixHoarePartition);
+		QuickSort<Integer, Partition<Integer>> sort = new QuickSort<>(qSort);
+		Integer[] array = { 1, 4, 2, 4, 2, 4, 1, 2, 4, 1, 2, 2, 2, 2, 4, 1, 4, 4, 4, 8 };
+		sort.sort(array);
+		assertArrayEquals(new Integer[] { 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 4, 4, 4, 4, 4, 4, 4, 4, 8 }, array);
 	}
 
 	@Test
@@ -93,9 +102,9 @@ public class QuickSortTest {
 	public void sortAscendingLomutoQuickSortWithEqualElements() {
 		QSort<Integer, Partition<Integer>> qSort = new LomutoQSortWithEqualElements<>(lomutoPartition);
 		QuickSort<Integer, Partition<Integer>> sort = new QuickSort<>(qSort);
-		Integer[] array = { 1, 4, 2, 4, 2, 4, 1, 2, 4, 1, 2, 2, 2, 2, 4, 1, 4, 4, 4 };
+		Integer[] array = { 1, 4, 2, 4, 2, 4, 1, 2, 4, 1, 2, 2, 2, 2, 4, 1, 4, 4, 4, 8 };
 		sort.sort(array);
-		assertArrayEquals(new Integer[] { 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 4, 4, 4, 4, 4, 4, 4, 4 }, array);
+		assertArrayEquals(new Integer[] { 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 4, 4, 4, 4, 4, 4, 4, 4, 8 }, array);
 		array = new Integer[] { 8, 1, 2, 3, 4, 5, 6, 7, 9, 14, 13, 10, 17, 12, 20, 19 };
 		sort.sort(array);
 		assertArrayEquals(new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 17, 19, 20 }, array);
@@ -105,9 +114,9 @@ public class QuickSortTest {
 	public void sortAscendingPartitionWithEqualElementsDNF() {
 		QSort<Integer, Partition<Integer>> qSort = new PartitionWithEqualElementsDNF<>(lomutoPartition);
 		QuickSort<Integer, Partition<Integer>> sort = new QuickSort<>(qSort);
-		Integer[] array = { 1, 4, 2, 4, 2, 4, 1, 2, 4, 1, 2, 2, 2, 2, 4, 1, 4, 4, 4 };
+		Integer[] array = { 1, 4, 2, 4, 2, 4, 1, 2, 4, 1, 2, 2, 2, 2, 4, 1, 4, 4, 4, 8 };
 		sort.sort(array);
-		assertArrayEquals(new Integer[] { 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 4, 4, 4, 4, 4, 4, 4, 4 }, array);
+		assertArrayEquals(new Integer[] { 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 4, 4, 4, 4, 4, 4, 4, 4, 8 }, array);
 		array = new Integer[] { 8, 1, 2, 3, 4, 5, 6, 7, 9, 14, 13, 10, 17, 12, 20, 19 };
 		sort.sort(array);
 		assertArrayEquals(new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 17, 19, 20 }, array);
@@ -166,7 +175,7 @@ public class QuickSortTest {
 		sort.sortDescending(array);
 		assertArrayEquals(new Integer[] { 8, 7, 6, 5, 4, 3, 2, 1 }, array);
 	}
-	
+
 	@Test
 	public void sortDescendingMixHoarePartition() {
 		QSort<Integer, Partition<Integer>> qSort = new QSort<>(mixHoarePartition);
@@ -189,9 +198,9 @@ public class QuickSortTest {
 	public void sortDescendingLomutoQuickSortWithEqualElements() {
 		QSort<Integer, Partition<Integer>> qSort = new LomutoQSortWithEqualElements<>(lomutoPartition);
 		QuickSort<Integer, Partition<Integer>> sort = new QuickSort<>(qSort);
-		Integer[] array = { 1, 4, 2, 4, 2, 4, 1, 2, 4, 1, 2, 2, 2, 2, 4, 1, 4, 4, 4 };
+		Integer[] array = { 1, 4, 2, 4, 2, 4, 1, 2, 4, 1, 2, 2, 2, 2, 4, 1, 4, 4, 4, 8 };
 		sort.sortDescending(array);
-		assertArrayEquals(new Integer[] { 4, 4, 4, 4, 4, 4, 4, 4, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1 }, array);
+		assertArrayEquals(new Integer[] { 8, 4, 4, 4, 4, 4, 4, 4, 4, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1 }, array);
 		array = new Integer[] { 8, 1, 2, 3, 4, 5, 6, 7 };
 		sort.sortDescending(array);
 		assertArrayEquals(new Integer[] { 8, 7, 6, 5, 4, 3, 2, 1 }, array);
@@ -201,11 +210,35 @@ public class QuickSortTest {
 	public void sortDescendingPartitionWithEqualElementsDNF() {
 		QSort<Integer, Partition<Integer>> qSort = new PartitionWithEqualElementsDNF<>(lomutoPartition);
 		QuickSort<Integer, Partition<Integer>> sort = new QuickSort<>(qSort);
-		Integer[] array = { 1, 4, 2, 4, 2, 4, 1, 2, 4, 1, 2, 2, 2, 2, 4, 1, 4, 4, 4 };
+		Integer[] array = { 1, 4, 2, 4, 2, 4, 1, 2, 4, 1, 2, 2, 2, 2, 4, 1, 4, 4, 4, 8 };
 		sort.sortDescending(array);
-		assertArrayEquals(new Integer[] { 4, 4, 4, 4, 4, 4, 4, 4, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1 }, array);
+		assertArrayEquals(new Integer[] { 8, 4, 4, 4, 4, 4, 4, 4, 4, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1 }, array);
 		array = new Integer[] { 8, 1, 2, 3, 4, 5, 6, 7, 9, 14, 13, 10, 17, 12, 20, 19 };
 		sort.sortDescending(array);
 		assertArrayEquals(new Integer[] { 20, 19, 17, 14, 13, 12, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 }, array);
+	}
+
+	@Test
+	public void sortAscendingBentleyMcllory() {
+		QSort<Integer, Partition<Integer>> qSort = new BentleyMcIloryQSort<>(lomutoPartition);
+		QuickSort<Integer, Partition<Integer>> sort = new QuickSort<>(qSort);
+		Integer[] array = { 1, 4, 2, 4, 2, 4, 1, 2, 4, 4, 2, 2, 2, 2, 4, 1, 4, 4, 4, 8 };
+		sort.sort(array);
+		assertArrayEquals(new Integer[] { 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 4, 4, 4, 4, 4, 4, 4, 4, 4, 8 }, array);
+		array = new Integer[] { 2, 8, 7, 1, 3, 5, 6, 4 };
+		sort.sort(array);
+		assertArrayEquals(new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8 }, array);
+	}
+
+	@Test
+	public void sortDescendingBentleyMcllory() {
+		QSort<Integer, Partition<Integer>> qSort = new BentleyMcIloryQSort<>(lomutoPartition);
+		QuickSort<Integer, Partition<Integer>> sort = new QuickSort<>(qSort);
+		Integer[] array = { 1, 4, 2, 4, 2, 4, 1, 2, 4, 4, 2, 2, 2, 2, 4, 1, 4, 4, 4, 8 };
+		sort.sortDescending(array);
+		assertArrayEquals(new Integer[] { 8, 4, 4, 4, 4, 4, 4, 4, 4, 4, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1 }, array);
+		array = new Integer[] { 2, 8, 7, 1, 3, 5, 6, 4 };
+		sort.sortDescending(array);
+		assertArrayEquals(new Integer[] { 8, 7, 6, 5, 4, 3, 2, 1 }, array);
 	}
 }
