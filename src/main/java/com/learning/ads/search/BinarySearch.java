@@ -38,7 +38,7 @@ public class BinarySearch<T extends Comparable<T>> {
 				last = mid;
 			}
 		}
-		if (first >= array.length || array[first].compareTo(element) < 0) {
+		if (array[first].compareTo(element) < 0) {
 			return -1;
 		}
 		return first;
@@ -54,6 +54,7 @@ public class BinarySearch<T extends Comparable<T>> {
 	public int getLastSmall(T[] array, T element) {
 		int first = 0, last = array.length - 1;
 		while (first < last) {
+			// this is a fix needed to avoid unlimited loop for 2 element array
 			int mid = ((first + last) / 2) + 1;
 			int r = array[mid].compareTo(element);
 			if (r >= 0) {
@@ -62,7 +63,7 @@ public class BinarySearch<T extends Comparable<T>> {
 				first = mid;
 			}
 		}
-		if (first >= array.length || array[first].compareTo(element) >= 0) {
+		if (array[first].compareTo(element) >= 0) {
 			return -1;
 		}
 		return first;
