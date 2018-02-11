@@ -1,4 +1,4 @@
-package com.learning.ads.search;
+package com.learning.ads.search.binary;
 
 public class BinarySearch<T extends Comparable<T>> {
 
