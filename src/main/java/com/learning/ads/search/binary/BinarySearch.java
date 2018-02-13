@@ -56,9 +56,9 @@ public class BinarySearch<T extends Comparable<T>> {
 		while (first < last) {
 			// this is a fix needed to avoid unlimited loop for 2 element array
 			int mid = ((first + last) / 2) + 1;
-			int r = array[mid].compareTo(element);
-			if (r >= 0) {
-				last = mid - 1;
+			int r = element.compareTo(array[mid]);
+			if (r <= 0) {
+				last = mid - 1;;
 			} else {
 				first = mid;
 			}
