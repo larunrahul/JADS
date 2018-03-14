@@ -19,7 +19,7 @@ public class Stack<T> {
 			this.array = new Object[1];
 		} else {
 			this.array = array;
-			length = this.array.length;
+			length = array.length;
 		}
 	}
 
@@ -28,7 +28,7 @@ public class Stack<T> {
 	}
 
 	public void push(T element) {
-		if (length == array.length) {
+		if (isFull()) {
 			expand();
 		}
 		array[length++] = element;
@@ -44,6 +44,10 @@ public class Stack<T> {
 	public T peek() {
 		throwIfEmpty();
 		return dataAt(length - 1);
+	}
+	
+	public boolean isFull() {
+		return length == array.length;
 	}
 
 	@SuppressWarnings("unchecked")
