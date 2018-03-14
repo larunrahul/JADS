@@ -33,7 +33,7 @@ public class Stack<T> {
 		}
 		array[length++] = element;
 	}
-
+ 
 	public T pop() {
 		throwIfEmpty();
 		T last = peek();

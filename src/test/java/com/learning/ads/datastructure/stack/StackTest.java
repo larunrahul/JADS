@@ -106,7 +106,7 @@ public class StackTest {
 		assertEquals(5, s.length());
 		assertEquals(Integer.valueOf(14), s.peek());
 	}
-
+ 
 	@Test
 	public void bulkInitAndPop() {
 		s = new Stack<>(10, 11, 12, 13);
