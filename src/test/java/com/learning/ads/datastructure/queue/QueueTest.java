@@ -1,6 +1,7 @@
 package com.learning.ads.datastructure.queue;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 import static org.junit.Assert.assertFalse;
 
 import org.junit.Before;
@@ -18,7 +19,7 @@ public class QueueTest {
 	}
 
 	@Test
-	public void buldFilledQueue() {
+	public void bulkFilledQueue() {
 		queue = new Queue<>(10, 9, 8, 7, 6, 5, 4, 3, 2, 1);
 		assertEquals(10, queue.length());
 		assertEquals(Integer.valueOf(10), queue.tail());
@@ -117,7 +118,36 @@ public class QueueTest {
 		assertEquals(8, queue.length());
 		assertEquals(Integer.valueOf(11), queue.tail());
 		assertEquals(Integer.valueOf(4), queue.head());
-		queue.enQueue(12);
+		queue.deQueue();
+		queue.deQueue();
+		queue.deQueue();
+		queue.deQueue();
+		queue.deQueue();
+		assertEquals(3, queue.length());
+		assertEquals(Integer.valueOf(11), queue.tail());
+		assertEquals(Integer.valueOf(9), queue.head());
+		queue.deQueue();
+		assertEquals(2, queue.length());
+		assertEquals(Integer.valueOf(11), queue.tail());
+		assertEquals(Integer.valueOf(10), queue.head());
+		queue.deQueue();
+		assertEquals(1, queue.length());
+		assertEquals(Integer.valueOf(11), queue.tail());
+		assertEquals(Integer.valueOf(11), queue.head());
+		queue.deQueue();
+		assertEquals(0, queue.length());
+		try {
+			queue.tail();
+			fail("shouldn't be here");
+		} catch (RuntimeException e) {
+
+		}
+		try {
+			queue.head();
+			fail("shouldn't be here");
+		} catch (RuntimeException e) {
+
+		}
 	}
 
 }
