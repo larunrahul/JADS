@@ -90,13 +90,6 @@ public class RabinKarpPattenMatching {
 	/*
 	 * https://stackoverflow.com/questions/20412405/rolling-hash-in-rabin-karp
 	 */
-	/*
-	 * private long successiveHash(String text, int start, int end, long
-	 * previousHash) { long base = 1; for (int i = start; i < end - 1; i++) { base =
-	 * (base * BASE) % MOD; } long newHash = (BASE * (previousHash -
-	 * ((text.charAt(start - 1) * base))) + text.charAt(end - 1)) % MOD; return
-	 * newHash < 0 ? newHash + MOD : newHash; }
-	 */
 	private long successiveHash(String text, int start, int end, long previousHash) {
 		long base = 1;
 		for (int i = start; i < end; i++) {
