@@ -27,8 +27,8 @@ public class KMPPatternMatching {
 		int remainingLength = m;
 		int j = 0;
 		// O(n-m)
-		for (int i = 0; i <= n - m; i++) {
-			while (j < remainingLength && text.charAt(i + j) == pattern.charAt(j)) {
+		for (int i = 0; i < n;) {
+			while (j < remainingLength && i + j < n && text.charAt(i + j) == pattern.charAt(j)) {
 				j++;
 			}
 			if (j == m) {
@@ -37,8 +37,13 @@ public class KMPPatternMatching {
 			if (j == remainingLength) {
 				return i - lps[j - 1];
 			}
-			j = lps[(j - 1) < 0 ? 0 : j - 1];
 			remainingLength = m - j;
+			if (j != 0) {
+				i = i + j + 1;
+				j = lps[j - 1];
+			} else {
+				i++;
+			}
 		}
 		return -1;
 	}

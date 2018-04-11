@@ -7,6 +7,11 @@ import org.junit.Test;
 public class KMPPatternMatchingTest {
 
 	private KMPPatternMatching kmpPatternMatching = new KMPPatternMatching();
+	
+	@Test
+	public void repeatTest() {
+		assertEquals(15, kmpPatternMatching.search("ABCDABCXABXABCDABCDABCY", "ABCDABCY"));
+	}
 
 	@Test
 	public void search() {
