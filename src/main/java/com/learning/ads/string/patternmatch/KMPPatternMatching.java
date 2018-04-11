@@ -38,12 +38,8 @@ public class KMPPatternMatching {
 				return i - lps[j - 1];
 			}
 			remainingLength = m - j;
-			if (j != 0) {
-				i = i + j + 1;
-				j = lps[j - 1];
-			} else {
-				i++;
-			}
+			i = i + j + 1;
+			j = j - 1 < 0 ? 0 : lps[j - 1];
 		}
 		return -1;
 	}
