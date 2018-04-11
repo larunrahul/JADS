@@ -7,11 +7,6 @@ import org.junit.Test;
 public class KMPPatternMatchingTest {
 
 	private KMPPatternMatching kmpPatternMatching = new KMPPatternMatching();
-	
-	@Test
-	public void repeatTest() {
-		assertEquals(15, kmpPatternMatching.search("ABCDABCXABXABCDABCDABCY", "ABCDABCY"));
-	}
 
 	@Test
 	public void search() {
@@ -32,6 +27,12 @@ public class KMPPatternMatchingTest {
 		assertEquals(5, kmpPatternMatching.search("ABABCD", "D"));
 		assertEquals(35, kmpPatternMatching.search(text, "doing well"));
 		assertEquals(-1, kmpPatternMatching.search(text, "doing well yeah"));
+		// repeating sequences
+		assertEquals(15, kmpPatternMatching.search("ABCDABCXABXABCDABCDABCY", "ABCDABCY"));
+		assertEquals(0, kmpPatternMatching.search("ABCDABCXABCDABCYABCDABCZABCDABCKABCDABCL", "ABCDABCX"));
+		assertEquals(8, kmpPatternMatching.search("ABCDABCXABCDABCYABCDABCZABCDABCKABCDABCL", "ABCDABCY"));
+		assertEquals(16, kmpPatternMatching.search("ABCDABCXABCDABCYABCDABCZABCDABCKABCDABCL", "ABCDABCZ"));
+		assertEquals(32, kmpPatternMatching.search("ABCDABCXABCDABCYABCDABCZABCDABCKABCDABCL", "ABCDABCL"));
 
 	}
 

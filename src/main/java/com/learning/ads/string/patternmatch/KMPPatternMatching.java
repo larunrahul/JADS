@@ -24,22 +24,23 @@ public class KMPPatternMatching {
 		int[] lps = computeLPS(pattern);
 		int n = text.length();
 		int m = pattern.length();
-		int remainingLength = m;
-		int j = 0;
-		// O(n-m)
-		for (int i = 0; i < n;) {
-			while (j < remainingLength && i + j < n && text.charAt(i + j) == pattern.charAt(j)) {
+		// O(n)
+		for (int i = 0, j = 0; i < n;) {
+			while (i < n && j < m && text.charAt(i) == pattern.charAt(j)) {
+				i++;
 				j++;
 			}
+			// if all characters in pattern matches
 			if (j == m) {
-				return i;
+				return i - j;
 			}
-			if (j == remainingLength) {
-				return i - lps[j - 1];
+			// if no character in pattern matches
+			if (j - 1 < 0) {
+				j = 0;
+				i++;
+			} else { // if few characters in pattern matches
+				j = lps[j - 1];
 			}
-			remainingLength = m - j;
-			i = i + j + 1;
-			j = j - 1 < 0 ? 0 : lps[j - 1];
 		}
 		return -1;
 	}
