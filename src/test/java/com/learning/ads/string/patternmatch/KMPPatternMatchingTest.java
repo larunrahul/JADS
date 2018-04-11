@@ -15,6 +15,7 @@ public class KMPPatternMatchingTest {
 		// match at start
 		assertEquals(0, kmpPatternMatching.search("ABABDABACDABABCABAB", "ABABDABA"));
 		assertEquals(0, kmpPatternMatching.search(text, "H"));
+		assertEquals(4, kmpPatternMatching.search(text, "o"));
 		assertEquals(35, kmpPatternMatching.search(text, "doing well"));
 		assertEquals(-1, kmpPatternMatching.search(text, "Hi Hello there!"));
 		// match at middle
