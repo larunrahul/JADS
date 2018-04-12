@@ -36,7 +36,6 @@ public class KMPPatternMatching {
 			}
 			// if no character in pattern matches
 			if (j - 1 < 0) {
-				j = 0;
 				i++;
 			} else { // if few characters in pattern matches
 				j = lps[j - 1];
