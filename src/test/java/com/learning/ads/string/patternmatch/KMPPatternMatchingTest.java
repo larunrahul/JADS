@@ -29,6 +29,7 @@ public class KMPPatternMatchingTest {
 		assertEquals(35, kmpPatternMatching.search(text, "doing well"));
 		assertEquals(-1, kmpPatternMatching.search(text, "doing well yeah"));
 		// repeating sequences
+		assertEquals(-1, kmpPatternMatching.search("ABCDABCXABXABCDABCDABCY", "ABCYAD"));
 		assertEquals(15, kmpPatternMatching.search("ABCDABCXABXABCDABCDABCY", "ABCDABCY"));
 		assertEquals(0, kmpPatternMatching.search("ABCDABCXABCDABCYABCDABCZABCDABCKABCDABCL", "ABCDABCX"));
 		assertEquals(8, kmpPatternMatching.search("ABCDABCXABCDABCYABCDABCZABCDABCKABCDABCL", "ABCDABCY"));
