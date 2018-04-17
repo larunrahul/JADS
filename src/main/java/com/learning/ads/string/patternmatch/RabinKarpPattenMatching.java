@@ -8,6 +8,8 @@ public class RabinKarpPattenMatching {
 	/**
 	 * https://en.wikipedia.org/wiki/Rabin%E2%80%93Karp_algorithm
 	 * 
+	 * https://www.topcoder.com/community/data-science/data-science-tutorials/introduction-to-string-searching-algorithms/
+	 * 
 	 * Complexity:
 	 * 
 	 * Worst case - O(n * m) where n is length of text and m is length of pattern
