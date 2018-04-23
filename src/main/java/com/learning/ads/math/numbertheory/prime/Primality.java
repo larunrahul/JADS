@@ -8,6 +8,8 @@ public class Primality {
 	/**
 	 * https://www.topcoder.com/community/data-science/data-science-tutorials/mathematics-for-topcoders/
 	 * 
+	 * https://stackoverflow.com/questions/5811151/why-do-we-check-up-to-the-square-root-of-a-prime-number-to-determine-if-it-is-pr
+	 * 
 	 * @param number
 	 * @return
 	 */
