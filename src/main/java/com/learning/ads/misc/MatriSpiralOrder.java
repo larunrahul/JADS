@@ -23,6 +23,11 @@ public class MatriSpiralOrder<T> {
 		int arrIndex = 0;
 		while (colStart <= colEnd || rowStart <= rowEnd) {
 
+			// if any of rows or columns cross each other
+			if (colStart > colEnd || rowStart > rowEnd) {
+				break;
+			}
+
 			// first row
 			for (int i = colStart; i <= colEnd; i++) {
 				spiral[arrIndex++] = matrix[rowStart][i];

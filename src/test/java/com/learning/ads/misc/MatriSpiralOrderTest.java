@@ -2,6 +2,8 @@ package com.learning.ads.misc;
 
 import static org.junit.Assert.assertArrayEquals;
 
+import java.util.Arrays;
+
 import org.junit.Test;
 
 public class MatriSpiralOrderTest {
@@ -43,6 +45,14 @@ public class MatriSpiralOrderTest {
 
 		assertArrayEquals(new Integer[] { 1, 2, 3, 4, 5, 6, 12, 18, 17, 16, 15, 14, 13, 7, 8, 9, 10, 11 }, mso
 				.spiral(new Integer[][] { { 1, 2, 3, 4, 5, 6 }, { 7, 8, 9, 10, 11, 12 }, { 13, 14, 15, 16, 17, 18 } }));
+	}
+
+	@Test
+	public void rowsOrColumnsCrossEachOther() {
+		assertArrayEquals(new Integer[] { 1, 2, 3, 4, 10, 9, 8, 7 },
+				mso.spiral(new Integer[][] { { 1, 2, 3, 4 }, { 7, 8, 9, 10 } }));
+		assertArrayEquals(new Integer[] { 1, 2, 4, 6, 8, 7, 5, 3 },
+				mso.spiral(new Integer[][] { { 1, 2 }, { 3, 4 }, { 5, 6 }, { 7, 8 } }));
 	}
 
 }
