@@ -2,8 +2,6 @@ package com.learning.ads.misc;
 
 import static org.junit.Assert.assertArrayEquals;
 
-import java.util.Arrays;
-
 import org.junit.Test;
 
 public class MatriSpiralOrderTest {
