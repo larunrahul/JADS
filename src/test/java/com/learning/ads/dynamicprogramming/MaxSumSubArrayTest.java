@@ -15,15 +15,21 @@ public class MaxSumSubArrayTest {
 	}
 
 	@Test
-	public void kadaneAllNegative() {
+	public void kadaneAllNegativeAtStart() {
 		int[] array = new int[] { -1, -9, -2, -8, -3, -7, -4, -6, -5 };
 		assertArrayEquals(new int[] { 0, 0, -1 }, mss.kadane(array));
 	}
 	
 	@Test
-	public void kadaneAllNegativeWithMiddle() {
+	public void kadaneAllNegativeAtMiddle() {
 		int[] array = new int[] { -9, -2, -8, -3, -1, -7, -4, -6, -5 };
 		assertArrayEquals(new int[] { 4, 4, -1 }, mss.kadane(array));
+	}
+	
+	@Test
+	public void kadaneAllNegativeAtLast() {
+		int[] array = new int[] { -9, -2, -8, -3, -5, -7, -4, -6, -1 };
+		assertArrayEquals(new int[] { 8, 8, -1 }, mss.kadane(array));
 	}
 
 	@Test
