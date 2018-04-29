@@ -84,7 +84,7 @@ public class RabinKarpPattenMatching {
 	private long firstHash(String text, int start, int end) {
 		long hash = 0;
 		for (int i = start; i < end; i++) {
-			hash = (hash * BASE + text.charAt(i)) % MOD;
+			hash = ((hash * BASE) % MOD + text.charAt(i)) % MOD;
 		}
 		return hash;
 	}
