@@ -1,6 +1,18 @@
 package com.learning.ads.dynamicprogramming;
 
 public class MaxMulSubArray {
+
+	/**
+	 * Own implementation based on number of negative numbers in the array
+	 * 
+	 * At any time prefer {@link #kadaneMultiply} over this due to complexity in
+	 * implementing the algorithm
+	 * 
+	 * Complexity: O(n)
+	 * 
+	 * @param array
+	 * @return
+	 */
 	public int[] maxMultiply(int[] array) {
 		int max_ending_here = 1, neg_count = 0, first_neg_mul = 1, last_neg_mul = 1;
 		int first_index = -1, last_index = -1;
@@ -34,38 +46,25 @@ public class MaxMulSubArray {
 		}
 	}
 
-	public int[] kadaneMultiply(int[] array) {
-		int max_ending_here = array[0], max_till_now = array[0], mul = array[0],
-				first_neg_mul = array[0] < 0 ? array[0] : 1, first_neg_index = array[0] < 0 ? 0 : -1;
-		int first_index = 0, last_index = 0;
-		boolean first_neg_found = array[0] < 0;
+	/**
+	 * Implemented based on Kadane's max contiguous sum sub array, but for product
+	 * instead of sum.
+	 * 
+	 * For sum related implementation look at {@link MaxSumSubArray#kadane}}
+	 * 
+	 * @param array
+	 * @return
+	 */
+	public int kadaneMultiply(int[] array) {
+		int max_mul = array[0], max_mul_so_far = array[0], min_mul_so_far = array[0];
 		for (int i = 1; i < array.length; i++) {
-			mul = mul * array[i];
-			if (array[i] < 0) {
-				if (!first_neg_found) {
-					first_neg_found = true;
-					first_neg_mul = max_ending_here * array[i];
-					first_neg_index = i;
-				}
-				if (first_index != 0) {
-					max_ending_here = mul * first_neg_mul;
-				} else {
-					max_ending_here = mul / first_neg_mul;
-					first_index = first_neg_index + 1;
-				}
-			} else {
-				int max_here = max_ending_here * array[i];
-				if (array[i] > max_here) {
-					first_index = i;
-					max_ending_here = array[i];
-				} else {
-					max_ending_here = max_here;
-				}
-			}
-			last_index = i;
-			max_till_now = Math.max(max_till_now, max_ending_here);
-			System.out.println(max_ending_here + ":" + max_till_now);
+			int min_prod = min_mul_so_far * array[i];
+			int max_prod = max_mul_so_far * array[i];
+			min_mul_so_far = Math.min(Math.min(min_prod, max_prod), array[i]);
+			max_mul_so_far = Math.max(Math.max(min_prod, max_prod), array[i]);
+			max_mul = Math.max(max_mul_so_far, max_mul);
 		}
-		return new int[] { first_index, last_index, max_till_now };
+		return max_mul;
 	}
+
 }
