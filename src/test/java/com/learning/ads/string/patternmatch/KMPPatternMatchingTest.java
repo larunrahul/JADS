@@ -13,6 +13,7 @@ public class KMPPatternMatchingTest {
 		String text = "Hello there! Hope all are good and doing well";
 		assertEquals(8, kmpPatternMatching.search("ABCDABCXAAAAA", "AAAA"));
 		assertEquals(0, kmpPatternMatching.search("AAAAAAAAAAAAA", "AAAA"));
+		assertEquals(0, kmpPatternMatching.search("A", "A"));
 		// match at start
 		assertEquals(0, kmpPatternMatching.search("ABABDABACDABABCABAB", "ABABDABA"));
 		assertEquals(0, kmpPatternMatching.search(text, "H"));
