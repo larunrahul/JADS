@@ -1,6 +1,7 @@
 package com.learning.ads.datastructure.list;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertArrayEquals;
 
 import org.junit.After;
 import org.junit.Before;
@@ -27,6 +28,7 @@ public class LinkedListTest {
 		assertEquals(10, list.length());
 		assertEquals(Integer.valueOf(0), list.getHead());
 		assertEquals(Integer.valueOf(9), list.getTail());
+		assertArrayEquals(new Integer[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }, list.toArray());
 	}
 
 	@Test(expected = UnInitializedException.class)
@@ -99,6 +101,7 @@ public class LinkedListTest {
 		assertEquals(1, list.length());
 		assertEquals(Integer.valueOf(0), list.getHead());
 		assertEquals(Integer.valueOf(0), list.getTail());
+		assertArrayEquals(new Integer[] { 0 }, list.toArray());
 	}
 
 	@Test(expected = IndexOutOfBoundsException.class)
@@ -114,6 +117,7 @@ public class LinkedListTest {
 		assertEquals(11, list.length());
 		assertEquals(Integer.valueOf(-1), list.getHead());
 		assertEquals(Integer.valueOf(9), list.getTail());
+		assertArrayEquals(new Integer[] { -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }, list.toArray());
 	}
 
 	@Test
@@ -125,6 +129,7 @@ public class LinkedListTest {
 		assertEquals(11, list.length());
 		assertEquals(Integer.valueOf(0), list.getHead());
 		assertEquals(Integer.valueOf(9), list.getTail());
+		assertArrayEquals(new Integer[] { 0, 34, 1, 2, 3, 4, 5, 6, 7, 8, 9 }, list.toArray());
 	}
 
 	@Test
@@ -136,6 +141,7 @@ public class LinkedListTest {
 		assertEquals(11, list.length());
 		assertEquals(Integer.valueOf(0), list.getHead());
 		assertEquals(Integer.valueOf(9), list.getTail());
+		assertArrayEquals(new Integer[] { 0, 1, 2, 3, 4, 34, 5, 6, 7, 8, 9 }, list.toArray());
 	}
 
 	@Test
@@ -146,6 +152,7 @@ public class LinkedListTest {
 		assertEquals(11, list.length());
 		assertEquals(Integer.valueOf(0), list.getHead());
 		assertEquals(Integer.valueOf(34), list.getTail());
+		assertArrayEquals(new Integer[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 34 }, list.toArray());
 	}
 
 	@Test(expected = IndexOutOfBoundsException.class)
@@ -177,6 +184,7 @@ public class LinkedListTest {
 		assertEquals(11, list.length());
 		assertEquals(Integer.valueOf(0), list.getHead());
 		assertEquals(Integer.valueOf(43), list.getTail());
+		assertArrayEquals(new Integer[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 43 }, list.toArray());
 	}
 
 	@Test
@@ -188,6 +196,7 @@ public class LinkedListTest {
 		assertEquals(11, list.length());
 		assertEquals(Integer.valueOf(0), list.getHead());
 		assertEquals(Integer.valueOf(9), list.getTail());
+		assertArrayEquals(new Integer[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 34, 9 }, list.toArray());
 	}
 
 	@Test
@@ -199,6 +208,7 @@ public class LinkedListTest {
 		assertEquals(11, list.length());
 		assertEquals(Integer.valueOf(0), list.getHead());
 		assertEquals(Integer.valueOf(9), list.getTail());
+		assertArrayEquals(new Integer[] { 0, 1, 2, 3, 4, 5, 34, 6, 7, 8, 9 }, list.toArray());
 	}
 
 	@Test
@@ -209,6 +219,7 @@ public class LinkedListTest {
 		assertEquals(11, list.length());
 		assertEquals(Integer.valueOf(34), list.getHead());
 		assertEquals(Integer.valueOf(9), list.getTail());
+		assertArrayEquals(new Integer[] { 34, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }, list.toArray());
 	}
 
 	@Test(expected = IndexOutOfBoundsException.class)
@@ -249,6 +260,7 @@ public class LinkedListTest {
 		assertEquals(1, list.length());
 		list.delete(0);
 		assertEquals(0, list.length());
+		assertArrayEquals(new Integer[] {}, list.toArray());
 	}
 
 	@Test
@@ -260,6 +272,7 @@ public class LinkedListTest {
 		assertEquals(1, list.length());
 		list.delete(-1);
 		assertEquals(0, list.length());
+		assertArrayEquals(new Integer[] {}, list.toArray());
 	}
 
 	@Test
@@ -270,6 +283,7 @@ public class LinkedListTest {
 		assertEquals(Integer.valueOf(9), list.get(list.length() - 1));
 		assertEquals(Integer.valueOf(1), list.getHead());
 		assertEquals(Integer.valueOf(9), list.getTail());
+		assertArrayEquals(new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, list.toArray());
 	}
 
 	@Test
@@ -280,6 +294,7 @@ public class LinkedListTest {
 		assertEquals(Integer.valueOf(8), list.get(list.length() - 1));
 		assertEquals(Integer.valueOf(0), list.getHead());
 		assertEquals(Integer.valueOf(8), list.getTail());
+		assertArrayEquals(new Integer[] { 0, 1, 2, 3, 4, 5, 6, 7, 8 }, list.toArray());
 	}
 
 	@Test
@@ -288,6 +303,7 @@ public class LinkedListTest {
 		assertEquals(9, list.length());
 		assertEquals(Integer.valueOf(2), list.get(1));
 		assertEquals(Integer.valueOf(0), list.get(0));
+		assertArrayEquals(new Integer[] { 0, 2, 3, 4, 5, 6, 7, 8, 9 }, list.toArray());
 	}
 
 	@Test
@@ -298,6 +314,7 @@ public class LinkedListTest {
 		assertEquals(Integer.valueOf(0), list.get(0));
 		assertEquals(Integer.valueOf(0), list.getHead());
 		assertEquals(Integer.valueOf(9), list.getTail());
+		assertArrayEquals(new Integer[] { 0, 2, 3, 4, 5, 6, 7, 8, 9 }, list.toArray());
 	}
 
 	@Test
@@ -307,6 +324,7 @@ public class LinkedListTest {
 		assertEquals(Integer.valueOf(8), list.get(8));
 		assertEquals(Integer.valueOf(0), list.getHead());
 		assertEquals(Integer.valueOf(8), list.getTail());
+		assertArrayEquals(new Integer[] { 0, 1, 2, 3, 4, 5, 6, 7, 8 }, list.toArray());
 	}
 
 	@Test
@@ -316,6 +334,7 @@ public class LinkedListTest {
 		assertEquals(Integer.valueOf(1), list.get(0));
 		assertEquals(Integer.valueOf(1), list.getHead());
 		assertEquals(Integer.valueOf(9), list.getTail());
+		assertArrayEquals(new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, list.toArray());
 	}
 
 	@Test
@@ -326,6 +345,7 @@ public class LinkedListTest {
 		assertEquals(Integer.valueOf(8), list.get(7));
 		assertEquals(Integer.valueOf(0), list.getHead());
 		assertEquals(Integer.valueOf(9), list.getTail());
+		assertArrayEquals(new Integer[] { 0, 1, 2, 3, 4, 5, 6, 8, 9 }, list.toArray());
 	}
 
 	@Test
@@ -336,6 +356,7 @@ public class LinkedListTest {
 		assertEquals(Integer.valueOf(4), list.get(3));
 		assertEquals(Integer.valueOf(0), list.getHead());
 		assertEquals(Integer.valueOf(9), list.getTail());
+		assertArrayEquals(new Integer[] { 0, 1, 2, 4, 5, 6, 7, 8, 9 }, list.toArray());
 	}
 
 	@Test
@@ -346,14 +367,16 @@ public class LinkedListTest {
 			assertEquals(Integer.valueOf(0), list.getHead());
 			assertEquals(Integer.valueOf(i), list.getTail());
 		}
+		assertArrayEquals(new Integer[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }, list.toArray());
 		for (int i = 9; i >= 0; i--) {
 			assertEquals(Integer.valueOf(0), list.getHead());
 			assertEquals(list.get(i), list.getTail());
 			list.delete(i);
 		}
 		assertEquals(0, list.length());
+		assertArrayEquals(new Integer[] {}, list.toArray());
 	}
-	
+
 	@Test
 	public void prependToEmptyList() {
 		list = new LinkedList<>();
@@ -361,16 +384,18 @@ public class LinkedListTest {
 		assertEquals(1, list.length());
 		assertEquals(Integer.valueOf(0), list.getHead());
 		assertEquals(Integer.valueOf(0), list.getTail());
+		assertArrayEquals(new Integer[] { 0 }, list.toArray());
 	}
-	
+
 	@Test
 	public void prependToNonEmptyList() {
 		list.prepend(-1);
 		assertEquals(11, list.length());
 		assertEquals(Integer.valueOf(-1), list.getHead());
 		assertEquals(Integer.valueOf(9), list.getTail());
+		assertArrayEquals(new Integer[] { -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }, list.toArray());
 	}
-	
+
 	@Test
 	public void appendToEmptyList() {
 		list = new LinkedList<>();
@@ -378,14 +403,16 @@ public class LinkedListTest {
 		assertEquals(1, list.length());
 		assertEquals(Integer.valueOf(0), list.getHead());
 		assertEquals(Integer.valueOf(0), list.getTail());
+		assertArrayEquals(new Integer[] { 0 }, list.toArray());
 	}
-	
+
 	@Test
 	public void appendToNonEmptyList() {
 		list.append(10);
 		assertEquals(11, list.length());
 		assertEquals(Integer.valueOf(0), list.getHead());
 		assertEquals(Integer.valueOf(10), list.getTail());
+		assertArrayEquals(new Integer[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, list.toArray());
 	}
 
 }

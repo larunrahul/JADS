@@ -17,7 +17,7 @@ public class LinkedList<T> {
 
 	private Node<T> tail;
 
-	private long length;
+	private int length;
 
 	private static class Node<T> {
 		T value;
@@ -201,6 +201,22 @@ public class LinkedList<T> {
 			throw new IndexOutOfBoundsException(
 					"Given position: " + position + " is out of bounds of list length: " + length);
 		}
+	}
+
+	public T[] toArray() {
+		Object[] array = new Object[length];
+		Node<T> current = head;
+		int i = 0;
+		while (current != null) {
+			array[i++] = current.value;
+			current = current.next;
+		}
+		return cast(array);
+	}
+
+	@SuppressWarnings("unchecked")
+	private T[] cast(Object[] array) {
+		return (T[]) array;
 	}
 
 	public String toString() {
