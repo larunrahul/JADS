@@ -1,5 +1,14 @@
 package com.learning.ads.hash;
 
+/**
+ * A rolling hash algorithm to calculate hash for array of characters in the
+ * most efficient way.
+ * 
+ * https://www.topcoder.com/community/data-science/data-science-tutorials/introduction-to-string-searching-algorithms/
+ * 
+ * @author Arun Rahul
+ *
+ */
 public class RollingHash {
 
 	private int base;
@@ -28,6 +37,8 @@ public class RollingHash {
 	 * https://en.wikipedia.org/wiki/Horner%27s_method
 	 * 
 	 * https://stackoverflow.com/questions/20412405/rolling-hash-in-rabin-karp
+	 * 
+	 * https://www.topcoder.com/community/data-science/data-science-tutorials/introduction-to-string-searching-algorithms/
 	 * 
 	 * @param text
 	 *            text for which we want to calculate the hash
@@ -68,6 +79,8 @@ public class RollingHash {
 	 * 
 	 * https://stackoverflow.com/questions/20412405/rolling-hash-in-rabin-karp
 	 * 
+	 * https://www.topcoder.com/community/data-science/data-science-tutorials/introduction-to-string-searching-algorithms/
+	 * 
 	 * @param text
 	 *            text for which we want to calculate the hash
 	 * @param end
@@ -99,6 +112,8 @@ public class RollingHash {
 	 * https://en.wikipedia.org/wiki/Horner%27s_method
 	 * 
 	 * https://stackoverflow.com/questions/20412405/rolling-hash-in-rabin-karp
+	 * 
+	 * https://www.topcoder.com/community/data-science/data-science-tutorials/introduction-to-string-searching-algorithms/
 	 * 
 	 * In this algorithm, we first multiply the previous hash with base and then
 	 * remove the term with highest degree(which we can obtain by multiplying the

@@ -6,6 +6,8 @@ public class RabinKarpPattenMatching {
 
 	private static final int MOD = 1000000007;
 	private static final int BASE = 31;
+	
+	private RollingHash rollingHash = new RollingHash(BASE, MOD);
 
 	/**
 	 * https://en.wikipedia.org/wiki/Rabin%E2%80%93Karp_algorithm
@@ -28,7 +30,6 @@ public class RabinKarpPattenMatching {
 	public int search(String text, String pattern) {
 		int n = text.length();
 		int m = pattern.length();
-		RollingHash rollingHash = new RollingHash(BASE, MOD);
 		long patternHash = rollingHash.firstHash(pattern, m);
 		long textHash = 0;
 		for (int i = 0; i <= n - m; i++) {
