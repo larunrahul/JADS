@@ -1,8 +1,8 @@
 package com.learning.ads.sort.heap;
 
-import com.learning.ads.datastructure.element.heap.BinaryHeapNode;
 import com.learning.ads.datastructure.heap.BinaryMaxHeap;
 import com.learning.ads.datastructure.heap.BinaryMinHeap;
+import com.learning.ads.datastructure.heap.element.BinaryHeapNode;
 
 public class BinaryHeapSort<T extends Comparable<T>> {
 

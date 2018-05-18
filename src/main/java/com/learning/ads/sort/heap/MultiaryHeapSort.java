@@ -1,8 +1,8 @@
 package com.learning.ads.sort.heap;
 
-import com.learning.ads.datastructure.element.heap.MultiaryHeapNode;
 import com.learning.ads.datastructure.heap.MultiaryMaxHeap;
 import com.learning.ads.datastructure.heap.MultiaryMinHeap;
+import com.learning.ads.datastructure.heap.element.MultiaryHeapNode;
 
 public class MultiaryHeapSort<T extends Comparable<T>> {
 	

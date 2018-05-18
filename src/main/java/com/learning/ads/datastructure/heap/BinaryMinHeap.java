@@ -1,6 +1,6 @@
 package com.learning.ads.datastructure.heap;
 
-import com.learning.ads.datastructure.element.heap.BinaryHeapNode;
+import com.learning.ads.datastructure.heap.element.BinaryHeapNode;
 
 public class BinaryMinHeap<T extends Comparable<T>> {
 	
