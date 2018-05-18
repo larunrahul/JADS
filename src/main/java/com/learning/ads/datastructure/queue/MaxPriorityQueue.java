@@ -1,7 +1,7 @@
 package com.learning.ads.datastructure.queue;
 
+import com.learning.ads.datastructure.element.heap.BinaryHeapNode;
 import com.learning.ads.datastructure.heap.BinaryMaxHeap;
-import com.learning.ads.element.heap.BinaryHeapNode;
 
 public class MaxPriorityQueue<T extends Comparable<T>> {
 

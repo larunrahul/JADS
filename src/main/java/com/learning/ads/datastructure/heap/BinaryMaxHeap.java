@@ -1,6 +1,6 @@
 package com.learning.ads.datastructure.heap;
 
-import com.learning.ads.element.heap.BinaryHeapNode;
+import com.learning.ads.datastructure.element.heap.BinaryHeapNode;
 
 public class BinaryMaxHeap<T extends Comparable<T>> {
 

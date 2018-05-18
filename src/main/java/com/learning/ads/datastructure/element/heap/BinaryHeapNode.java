@@ -1,4 +1,4 @@
-package com.learning.ads.element.heap;
+package com.learning.ads.datastructure.element.heap;
 
 public class BinaryHeapNode<T extends Comparable<T>> {
 	public T[] array;

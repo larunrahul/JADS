@@ -1,6 +1,6 @@
 package com.learning.ads.datastructure.heap;
 
-import com.learning.ads.element.heap.MultiaryHeapNode;
+import com.learning.ads.datastructure.element.heap.MultiaryHeapNode;
 
 public class MultiaryMaxHeap<T extends Comparable<T>> {
 
