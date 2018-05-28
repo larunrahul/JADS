@@ -125,15 +125,10 @@ public class BinaryTree<T> {
 			return;
 		}
 		list.add(node.value);
-		if (node.left != null) {
-			queue.enQueue(node.left);
-		}
-		if (node.right != null) {
-			queue.enQueue(node.right);
-		}
-		while (!queue.isEmpty()) {
-			levelOrderTraversal(queue.deQueue(), list, queue);
-		}
+		queue.enQueue(node.left);
+		queue.enQueue(node.right);
+		levelOrderTraversal(queue.deQueue(), list, queue);
+		levelOrderTraversal(queue.deQueue(), list, queue);
 	}
 
 	@SuppressWarnings("unchecked")
