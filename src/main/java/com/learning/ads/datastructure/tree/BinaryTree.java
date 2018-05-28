@@ -121,9 +121,6 @@ public class BinaryTree<T> {
 	}
 
 	private void levelOrderTraversal(Node<T> node, List<T> list, Queue<Node<T>> queue) {
-		if (node == null) {
-			return;
-		}
 		list.add(node.value);
 		if (node.left != null) {
 			queue.enQueue(node.left);
