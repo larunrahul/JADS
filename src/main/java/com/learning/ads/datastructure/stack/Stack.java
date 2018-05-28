@@ -33,7 +33,7 @@ public class Stack<T> {
 		}
 		array[length++] = element;
 	}
- 
+
 	public T pop() {
 		throwIfEmpty();
 		T last = peek();
@@ -45,9 +45,13 @@ public class Stack<T> {
 		throwIfEmpty();
 		return dataAt(length - 1);
 	}
-	
+
 	public boolean isFull() {
 		return length == array.length;
+	}
+
+	public boolean isEmpty() {
+		return length == 0;
 	}
 
 	@SuppressWarnings("unchecked")
