@@ -1,5 +1,6 @@
 package com.learning.ads.datastructure.tree;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
@@ -12,8 +13,8 @@ public class BinaryTreeTest {
 	@Before
 	public void setUp() {
 		// building right sub-tree
-		BinaryTree.Node<Integer> left = new BinaryTree.Node<>(17);
-		BinaryTree.Node<Integer> right = new BinaryTree.Node<>(18);
+		BinaryTree.Node<Integer> left = new BinaryTree.Node<>(16);
+		BinaryTree.Node<Integer> right = new BinaryTree.Node<>(17);
 		BinaryTree.Node<Integer> node = new BinaryTree.Node<>(left, 13, right);
 		left = node;
 		node = new BinaryTree.Node<>(left, 11, null);
@@ -22,10 +23,10 @@ public class BinaryTreeTest {
 		node = new BinaryTree.Node<>(left, 6, right);
 		right = node;
 		left = new BinaryTree.Node<Integer>(new BinaryTree.Node<>(9), 5, null);
-		BinaryTree.Node<Integer> leftSubTree = new BinaryTree.Node<>(left, 2, right);
+		BinaryTree.Node<Integer> rightSubTree = new BinaryTree.Node<>(left, 2, right);
 
 		// building left sub-tree
-		left = new BinaryTree.Node<>(16);
+		left = new BinaryTree.Node<>(18);
 		node = new BinaryTree.Node<>(left, 15, null);
 		right = node;
 		left = new BinaryTree.Node<>(14);
@@ -36,7 +37,7 @@ public class BinaryTreeTest {
 		node = new BinaryTree.Node<>(null, 4, right);
 		right = node;
 		left = new BinaryTree.Node<>(null, 3, new BinaryTree.Node<>(7));
-		BinaryTree.Node<Integer> rightSubTree = new BinaryTree.Node<>(left, 1, right);
+		BinaryTree.Node<Integer> leftSubTree = new BinaryTree.Node<>(left, 1, right);
 
 		// building root
 		BinaryTree.Node<Integer> root = new BinaryTree.Node<Integer>(leftSubTree, 0, rightSubTree);
@@ -57,6 +58,30 @@ public class BinaryTreeTest {
 		assertEquals(0, new BinaryTree<>(null).levels());
 		assertEquals(1, new BinaryTree<>(new BinaryTree.Node<>(1)).levels());
 		assertEquals(2, new BinaryTree<>(new BinaryTree.Node<>(null, 1, new BinaryTree.Node<>(2))).levels());
+	}
+
+	@Test
+	public void preOrderTraversal() {
+		assertArrayEquals(new Integer[] { 0, 1, 3, 7, 4, 8, 12, 14, 15, 18, 2, 5, 9, 6, 10, 11, 13, 16, 17 },
+				binaryTree.preOrderTraversal());
+	}
+
+	@Test
+	public void postOrderTraversal() {
+		assertArrayEquals(new Integer[] { 7, 3, 14, 18, 15, 12, 8, 4, 1, 9, 5, 10, 16, 17, 13, 11, 6, 2, 0 },
+				binaryTree.postOrderTraversal());
+	}
+
+	@Test
+	public void inOrderTraversal() {
+		assertArrayEquals(new Integer[] { 3, 7, 1, 4, 14, 12, 18, 15, 8, 0, 9, 5, 2, 10, 6, 16, 13, 17, 11 },
+				binaryTree.inOrderTraversal());
+	}
+
+	@Test
+	public void levelOrderTraversal() {
+		assertArrayEquals(new Integer[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 },
+				binaryTree.levelOrderTraversal());
 	}
 
 }
