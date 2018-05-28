@@ -40,7 +40,7 @@ public class BinaryTreeTest {
 		BinaryTree.Node<Integer> leftSubTree = new BinaryTree.Node<>(left, 1, right);
 
 		// building root
-		BinaryTree.Node<Integer> root = new BinaryTree.Node<Integer>(leftSubTree, 0, rightSubTree);
+		BinaryTree.Node<Integer> root = new BinaryTree.Node<>(leftSubTree, 0, rightSubTree);
 		binaryTree = new BinaryTree<>(root);
 	}
 
@@ -82,6 +82,10 @@ public class BinaryTreeTest {
 	public void levelOrderTraversal() {
 		assertArrayEquals(new Integer[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 },
 				binaryTree.levelOrderTraversal());
+		BinaryTree.Node<Integer> leftSubTree = new BinaryTree.Node<>(1);
+		BinaryTree.Node<Integer> rightSubTree = new BinaryTree.Node<>(null, 2, new BinaryTree.Node<>(3));
+		BinaryTree.Node<Integer> root = new BinaryTree.Node<Integer>(leftSubTree, 0, rightSubTree);
+		assertArrayEquals(new Integer[] { 0, 1, 2, 3 }, new BinaryTree<Integer>(root).levelOrderTraversal());
 	}
 
 }
