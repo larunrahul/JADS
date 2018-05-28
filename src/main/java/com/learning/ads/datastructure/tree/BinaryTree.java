@@ -4,9 +4,11 @@ public class BinaryTree<T> {
 
 	private Node<T> root;
 
-	private int length;
+	public BinaryTree(Node<T> root) {
+		this.root = root;
+	}
 
-	static class Node<T> {
+	protected static class Node<T> {
 
 		T value;
 		Node<T> left;
@@ -24,11 +26,35 @@ public class BinaryTree<T> {
 	}
 
 	public int height() {
-		return 0;
+		return height(root);
+	}
+
+	/**
+	 * Complexity: O(n) where n is the number of nodes in binary tree
+	 * 
+	 * @param node
+	 * @return
+	 */
+	public int height(Node<T> node) {
+		if (node == null) {
+			return 0;
+		}
+		return Math.max(height(node.left), height(node.right)) + (node.left != null || node.right != null ? 1 : 0);
 	}
 
 	public int depth() {
 		return height();
+	}
+
+	public boolean contains(Object o) {
+		return false;
+	}
+
+	public int levels() {
+		if (root == null) {
+			return 0;
+		}
+		return height() + 1;
 	}
 
 }
