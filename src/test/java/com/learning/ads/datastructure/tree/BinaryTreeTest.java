@@ -88,4 +88,22 @@ public class BinaryTreeTest {
 		assertArrayEquals(new Integer[] { 0, 1, 2, 3 }, new BinaryTree<Integer>(root).levelOrderTraversal());
 	}
 
+	@Test
+	public void leftView() {
+		assertArrayEquals(new Integer[] { 0, 1, 3, 7, 12, 14, 18 }, binaryTree.leftView());
+		BinaryTree.Node<Integer> leftSubTree = new BinaryTree.Node<>(1);
+		BinaryTree.Node<Integer> rightSubTree = new BinaryTree.Node<>(null, 2, new BinaryTree.Node<>(3));
+		BinaryTree.Node<Integer> root = new BinaryTree.Node<Integer>(leftSubTree, 0, rightSubTree);
+		assertArrayEquals(new Integer[] { 0, 1, 3 }, new BinaryTree<Integer>(root).leftView());
+	}
+
+	@Test
+	public void rightView() {
+		assertArrayEquals(new Integer[] { 0, 2, 6, 11, 13, 17, 18 }, binaryTree.rightView());
+		BinaryTree.Node<Integer> leftSubTree = new BinaryTree.Node<>(null, 1, new BinaryTree.Node<>(3));
+		BinaryTree.Node<Integer> rightSubTree = new BinaryTree.Node<>(2);
+		BinaryTree.Node<Integer> root = new BinaryTree.Node<Integer>(leftSubTree, 0, rightSubTree);
+		assertArrayEquals(new Integer[] { 0, 2, 3 }, new BinaryTree<Integer>(root).rightView());
+	}
+
 }
