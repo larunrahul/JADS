@@ -46,11 +46,18 @@ public class Queue<T> {
 		length++;
 	}
 
-	public void deQueue() {
+	public T deQueue() {
 		throwIfEmpty();
+		T ret = extracted();
 		array[head] = null;
 		head = (head + 1) % array.length;
 		length--;
+		return ret;
+	}
+
+	@SuppressWarnings("unchecked")
+	private T extracted() {
+		return (T) array[head];
 	}
 
 	public T tail() {
@@ -65,6 +72,10 @@ public class Queue<T> {
 
 	public boolean isFull() {
 		return length == array.length;
+	}
+
+	public boolean isEmpty() {
+		return length == 0;
 	}
 
 	@SuppressWarnings("unchecked")
