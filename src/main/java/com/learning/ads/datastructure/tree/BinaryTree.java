@@ -13,11 +13,11 @@ public class BinaryTree<T> {
 		this.root = root;
 	}
 
-	protected static class Node<T> {
+	public static class Node<T> {
 
-		T value;
-		Node<T> left;
-		Node<T> right;
+		public T value;
+		public Node<T> left;
+		public Node<T> right;
 
 		public Node(T value) {
 			this.value = value;
@@ -133,17 +133,19 @@ public class BinaryTree<T> {
 		}
 	}
 
-	public T[] leftView() {
+
+	
+
+	public T[] topView() {
 		List<T> list = new ArrayList<>();
-		leftView(root, list);
+		topView(root, list);
 		return listToArray(list);
 	}
 
-	private void leftView(Node<T> node, List<T> list) {
+	private void topView(Node<T> node, List<T> list) {
 		if (node == null) {
 			return;
 		}
-
 		Queue<Node<T>> queue = new Queue<>();
 		queue.enQueue(node);
 		while (!queue.isEmpty()) {
@@ -156,34 +158,6 @@ public class BinaryTree<T> {
 				}
 				if (element.right != null) {
 					queue.enQueue(element.right);
-				}
-				size--;
-			}
-		}
-	}
-
-	public T[] rightView() {
-		List<T> list = new ArrayList<>();
-		rightView(root, list);
-		return listToArray(list);
-	}
-
-	private void rightView(Node<T> node, List<T> list) {
-		if (node == null) {
-			return;
-		}
-		Queue<Node<T>> queue = new Queue<>();
-		queue.enQueue(node);
-		while (!queue.isEmpty()) {
-			list.add(queue.head().value);
-			int size = queue.length();
-			while (size > 0) {
-				Node<T> element = queue.deQueue();
-				if (element.right != null) {
-					queue.enQueue(element.right);
-				}
-				if (element.left != null) {
-					queue.enQueue(element.left);
 				}
 				size--;
 			}
@@ -191,7 +165,7 @@ public class BinaryTree<T> {
 	}
 
 	@SuppressWarnings("unchecked")
-	private T[] listToArray(List<T> list) {
+	public T[] listToArray(List<T> list) {
 		return (T[]) list.toArray();
 	}
 
