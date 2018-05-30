@@ -54,4 +54,13 @@ public class RightViewTest {
 		assertArrayEquals(new Integer[] { 0, 2, 3 }, new RightView<Integer>(root).iterative());
 	}
 
+	@Test
+	public void recursive() {
+		assertArrayEquals(new Integer[] { 0, 2, 6, 11, 13, 17, 18 }, rightView.recursive());
+		BinaryTree.Node<Integer> leftSubTree = new BinaryTree.Node<>(null, 1, new BinaryTree.Node<>(3));
+		BinaryTree.Node<Integer> rightSubTree = new BinaryTree.Node<>(2);
+		BinaryTree.Node<Integer> root = new BinaryTree.Node<Integer>(leftSubTree, 0, rightSubTree);
+		assertArrayEquals(new Integer[] { 0, 2, 3 }, new RightView<Integer>(root).recursive());
+	}
+
 }

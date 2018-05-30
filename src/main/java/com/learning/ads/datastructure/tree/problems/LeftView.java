@@ -8,11 +8,13 @@ import com.learning.ads.datastructure.tree.BinaryTree;
 
 public class LeftView<T> extends BinaryTree<T> {
 
-	Node<T> root;
+	private Node<T> root;
+	private int currentLevel;
 
 	public LeftView(Node<T> root) {
 		super(root);
 		this.root = root;
+		currentLevel = -1;
 	}
 
 	public T[] iterative() {
@@ -41,6 +43,27 @@ public class LeftView<T> extends BinaryTree<T> {
 				size--;
 			}
 		}
+	}
+
+	/*
+	 * https://www.geeksforgeeks.org/print-left-view-binary-tree/
+	 */
+	public T[] recursive() {
+		List<T> list = new ArrayList<>();
+		recursive(root, list, 0);
+		return listToArray(list);
+	}
+
+	private void recursive(Node<T> node, List<T> list, int level) {
+		if (node == null) {
+			return;
+		}
+		if (level > currentLevel) {
+			list.add(node.value);
+			currentLevel = level;
+		}
+		recursive(node.left, list, level + 1);
+		recursive(node.right, list, level + 1);
 	}
 
 }
