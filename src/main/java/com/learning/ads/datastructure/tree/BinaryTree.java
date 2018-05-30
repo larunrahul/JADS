@@ -133,37 +133,6 @@ public class BinaryTree<T> {
 		}
 	}
 
-
-	
-
-	public T[] topView() {
-		List<T> list = new ArrayList<>();
-		topView(root, list);
-		return listToArray(list);
-	}
-
-	private void topView(Node<T> node, List<T> list) {
-		if (node == null) {
-			return;
-		}
-		Queue<Node<T>> queue = new Queue<>();
-		queue.enQueue(node);
-		while (!queue.isEmpty()) {
-			list.add(queue.head().value);
-			int size = queue.length();
-			while (size > 0) {
-				Node<T> element = queue.deQueue();
-				if (element.left != null) {
-					queue.enQueue(element.left);
-				}
-				if (element.right != null) {
-					queue.enQueue(element.right);
-				}
-				size--;
-			}
-		}
-	}
-
 	@SuppressWarnings("unchecked")
 	public T[] listToArray(List<T> list) {
 		return (T[]) list.toArray();
