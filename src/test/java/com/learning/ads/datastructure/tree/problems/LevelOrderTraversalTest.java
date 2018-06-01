@@ -1,16 +1,19 @@
-package com.learning.ads.datastructure.tree;
+package com.learning.ads.datastructure.tree.problems;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertArrayEquals;
 
 import org.junit.Before;
 import org.junit.Test;
 
-public class BinaryTreeTest {
+import com.learning.ads.datastructure.tree.BinaryTree;
 
-	BinaryTree<Integer> binaryTree;
+public class LevelOrderTraversalTest {
+
+	LevelOrderTraversal<Integer> levelOrder;
 
 	@Before
-	public void setUp() {
+	public void setUp() throws Exception {
+
 		// building right sub-tree
 		BinaryTree.Node<Integer> left = new BinaryTree.Node<>(16);
 		BinaryTree.Node<Integer> right = new BinaryTree.Node<>(17);
@@ -40,23 +43,17 @@ public class BinaryTreeTest {
 
 		// building root
 		BinaryTree.Node<Integer> root = new BinaryTree.Node<>(leftSubTree, 0, rightSubTree);
-		binaryTree = new BinaryTree<>(root);
+		levelOrder = new LevelOrderTraversal<>(root);
 	}
 
 	@Test
-	public void height() {
-		assertEquals(6, binaryTree.height());
-		assertEquals(0, new BinaryTree<>(null).height());
-		assertEquals(0, new BinaryTree<>(new BinaryTree.Node<>(1)).height());
-		assertEquals(1, new BinaryTree<>(new BinaryTree.Node<>(null, 1, new BinaryTree.Node<>(2))).height());
-	}
-
-	@Test
-	public void levels() {
-		assertEquals(7, binaryTree.levels());
-		assertEquals(0, new BinaryTree<>(null).levels());
-		assertEquals(1, new BinaryTree<>(new BinaryTree.Node<>(1)).levels());
-		assertEquals(2, new BinaryTree<>(new BinaryTree.Node<>(null, 1, new BinaryTree.Node<>(2))).levels());
+	public void recursive() {
+		assertArrayEquals(new Integer[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 },
+				levelOrder.traverseRecursive());
+		BinaryTree.Node<Integer> leftSubTree = new BinaryTree.Node<>(1);
+		BinaryTree.Node<Integer> rightSubTree = new BinaryTree.Node<>(null, 2, new BinaryTree.Node<>(3));
+		BinaryTree.Node<Integer> root = new BinaryTree.Node<Integer>(leftSubTree, 0, rightSubTree);
+		assertArrayEquals(new Integer[] { 0, 1, 2, 3 }, new LevelOrderTraversal<Integer>(root).traverseRecursive());
 	}
 
 }

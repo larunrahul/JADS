@@ -1,9 +1,6 @@
 package com.learning.ads.datastructure.tree;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import com.learning.ads.datastructure.queue.Queue;
 
 public class BinaryTree<T> {
 
@@ -64,73 +61,6 @@ public class BinaryTree<T> {
 			return 0;
 		}
 		return height() + 1;
-	}
-
-	public T[] preOrderTraversal() {
-		List<T> list = new ArrayList<>();
-		preOrderTraversal(root, list);
-		return listToArray(list);
-	}
-
-	private void preOrderTraversal(Node<T> node, List<T> list) {
-		if (node == null) {
-			return;
-		}
-		list.add(node.value);
-		preOrderTraversal(node.left, list);
-		preOrderTraversal(node.right, list);
-
-	}
-
-	public T[] postOrderTraversal() {
-		List<T> list = new ArrayList<>();
-		postOrderTraversal(root, list);
-		return listToArray(list);
-	}
-
-	private void postOrderTraversal(Node<T> node, List<T> list) {
-		if (node == null) {
-			return;
-		}
-		postOrderTraversal(node.left, list);
-		postOrderTraversal(node.right, list);
-		list.add(node.value);
-
-	}
-
-	public T[] inOrderTraversal() {
-		List<T> list = new ArrayList<>();
-		inOrderTraversal(root, list);
-		return listToArray(list);
-	}
-
-	private void inOrderTraversal(Node<T> node, List<T> list) {
-		if (node == null) {
-			return;
-		}
-		inOrderTraversal(node.left, list);
-		list.add(node.value);
-		inOrderTraversal(node.right, list);
-	}
-
-	public T[] levelOrderTraversal() {
-		List<T> list = new ArrayList<>();
-		Queue<Node<T>> queue = new Queue<>();
-		levelOrderTraversal(root, list, queue);
-		return listToArray(list);
-	}
-
-	private void levelOrderTraversal(Node<T> node, List<T> list, Queue<Node<T>> queue) {
-		list.add(node.value);
-		if (node.left != null) {
-			queue.enQueue(node.left);
-		}
-		if (node.right != null) {
-			queue.enQueue(node.right);
-		}
-		while (!queue.isEmpty()) {
-			levelOrderTraversal(queue.deQueue(), list, queue);
-		}
 	}
 
 	@SuppressWarnings("unchecked")
