@@ -50,6 +50,8 @@ public class InOrderTraversalTest {
 	public void recursive() {
 		assertArrayEquals(new Integer[] { 3, 7, 1, 4, 14, 12, 18, 15, 8, 0, 9, 5, 2, 10, 6, 16, 13, 17, 11 },
 				inOrder.traverseRecursive());
+		assertArrayEquals(new Integer[] { 3, 7, 1, 4, 14, 12, 18, 15, 8, 0, 9, 5, 2, 10, 6, 16, 13, 17, 11 },
+				inOrder.traverseIterative());
 	}
 
 }

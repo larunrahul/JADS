@@ -1,15 +1,16 @@
 package com.learning.ads.datastructure.tree.problems;
 
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import com.learning.ads.datastructure.tree.BinaryTree;
 
-public class PostOrderTraversalTest {
+public class MaxMinElementTest {
 
-	PostOrderTraversal<Integer> postOrder;
+	MaxMinElement<Integer> maxMinElement;
 
 	@Before
 	public void setUp() throws Exception {
@@ -43,15 +44,27 @@ public class PostOrderTraversalTest {
 
 		// building root
 		BinaryTree.Node<Integer> root = new BinaryTree.Node<>(leftSubTree, 0, rightSubTree);
-		postOrder = new PostOrderTraversal<>(root);
+		maxMinElement = new MaxMinElement<>(root);
 	}
 
 	@Test
-	public void recursive() {
-		assertArrayEquals(new Integer[] { 7, 3, 14, 18, 15, 12, 8, 4, 1, 9, 5, 10, 16, 17, 13, 11, 6, 2, 0 },
-				postOrder.traverseRecursive());
-		assertArrayEquals(new Integer[] { 7, 3, 14, 18, 15, 12, 8, 4, 1, 9, 5, 10, 16, 17, 13, 11, 6, 2, 0 },
-				postOrder.traverseIterative());
+	public void getMin() {
+		assertEquals(Integer.valueOf(0), maxMinElement.getMin());
+		maxMinElement = new MaxMinElement<>(null);
+		assertNull(maxMinElement.getMin());
+		BinaryTree.Node<Integer> root = new BinaryTree.Node<>(null, 15, null);
+		maxMinElement = new MaxMinElement<>(root);
+		assertEquals(Integer.valueOf(15), maxMinElement.getMin());
+	}
+
+	@Test
+	public void getMax() {
+		assertEquals(Integer.valueOf(18), maxMinElement.getMax());
+		maxMinElement = new MaxMinElement<>(null);
+		assertNull(maxMinElement.getMax());
+		BinaryTree.Node<Integer> root = new BinaryTree.Node<>(null, 15, null);
+		maxMinElement = new MaxMinElement<>(root);
+		assertEquals(Integer.valueOf(15), maxMinElement.getMax());
 	}
 
 }
