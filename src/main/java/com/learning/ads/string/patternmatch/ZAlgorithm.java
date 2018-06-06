@@ -1,7 +1,5 @@
 package com.learning.ads.string.patternmatch;
 
-import java.util.Arrays;
-
 /**
  * http://codeforces.com/blog/entry/3107
  * 
@@ -71,7 +69,6 @@ public class ZAlgorithm {
 				return i - pattern.length() - 1;
 			}
 		}
-		System.out.println(Arrays.toString(zArray));
 		return -1;
 	}
 
