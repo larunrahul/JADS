@@ -1,21 +1,21 @@
 package com.learning.ads.datastructure.heap;
 
-import com.learning.ads.datastructure.heap.element.BinaryHeapNode;
+import com.learning.ads.datastructure.heap.element.BinaryHeapHolder;
 
 public class BinaryMaxHeap<T extends Comparable<T>> {
 
-	private BinaryHeapNode<T> binaryHeapNode;
+	private BinaryHeapHolder<T> binaryHeapHolder;
 
 	/*
-	 * Bottom up construction of binaryHeapNode. Elements from half to end are all leaves of
-	 * binaryHeapNode tree. Hence we need to start from the parent of last leaf(which is the
+	 * Bottom up construction of binaryHeapHolder. Elements from half to end are all leaves of
+	 * binaryHeapHolder tree. Hence we need to start from the parent of last leaf(which is the
 	 * element before mid element) and construct in upward fashion
 	 */
 	public BinaryMaxHeap(T[] array) {
-		BinaryHeapNode<T> heap = new BinaryHeapNode<>(array);
+		BinaryHeapHolder<T> heap = new BinaryHeapHolder<>(array);
 		heap.array = array;
 		heap.heapSize = array.length;
-		this.binaryHeapNode = heap;
+		this.binaryHeapHolder = heap;
 		for (int i = array.length / 2 - 1; i >= 0; i--) {
 			this.heapify(i);
 		}
@@ -52,13 +52,13 @@ public class BinaryMaxHeap<T extends Comparable<T>> {
 	}
 
 	/*
-	 * This runs so long as the height of the binaryHeapNode tree. As height is O(lg n) it is
-	 * O(h) where n is number of elements and h is height of binaryHeapNode tree. This is not
+	 * This runs so long as the height of the binaryHeapHolder tree. As height is O(lg n) it is
+	 * O(h) where n is number of elements and h is height of binaryHeapHolder tree. This is not
 	 * tight bound. Tight bound is O(n) - For more information, look in CLRS
 	 */
 	public void heapify(int index) {
-		int heapSize = binaryHeapNode.heapSize;
-		T[] array = binaryHeapNode.array;
+		int heapSize = binaryHeapHolder.heapSize;
+		T[] array = binaryHeapHolder.array;
 		int leftChild = leftChild(index);
 		int rightChild = rightChild(index);
 		int largest = index;
@@ -76,8 +76,8 @@ public class BinaryMaxHeap<T extends Comparable<T>> {
 		}
 	}
 
-	public BinaryHeapNode<T> getHeap() {
-		return binaryHeapNode;
+	public BinaryHeapHolder<T> getHeap() {
+		return binaryHeapHolder;
 	}
 
 }

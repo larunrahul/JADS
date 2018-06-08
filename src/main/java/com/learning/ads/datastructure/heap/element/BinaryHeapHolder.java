@@ -1,10 +1,10 @@
 package com.learning.ads.datastructure.heap.element;
 
-public class BinaryHeapNode<T extends Comparable<T>> {
+public class BinaryHeapHolder<T extends Comparable<T>> {
 	public T[] array;
 	public int heapSize;
 
-	public BinaryHeapNode(T[] array) {
+	public BinaryHeapHolder(T[] array) {
 		this.array = array;
 		this.heapSize = array.length;
 	}

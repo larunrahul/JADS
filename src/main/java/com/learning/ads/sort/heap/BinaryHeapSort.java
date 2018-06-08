@@ -2,13 +2,13 @@ package com.learning.ads.sort.heap;
 
 import com.learning.ads.datastructure.heap.BinaryMaxHeap;
 import com.learning.ads.datastructure.heap.BinaryMinHeap;
-import com.learning.ads.datastructure.heap.element.BinaryHeapNode;
+import com.learning.ads.datastructure.heap.element.BinaryHeapHolder;
 
 public class BinaryHeapSort<T extends Comparable<T>> {
 
 	public void sort(T[] array) {
 		BinaryMaxHeap<T> maxHeap = new BinaryMaxHeap<>(array);
-		BinaryHeapNode<T> heap = maxHeap.getHeap();
+		BinaryHeapHolder<T> heap = maxHeap.getHeap();
 		array = heap.array;
 		for (int i = array.length - 1; i >= 1; i--) {
 			T temp = array[i];
@@ -21,7 +21,7 @@ public class BinaryHeapSort<T extends Comparable<T>> {
 
 	public void sortDescending(T[] array) {
 		BinaryMinHeap<T> minHeap = new BinaryMinHeap<>(array);
-		BinaryHeapNode<T> heap = minHeap.getHeap();
+		BinaryHeapHolder<T> heap = minHeap.getHeap();
 		array = heap.array;
 		for (int i = array.length - 1; i >= 1; i--) {
 			T temp = array[i];

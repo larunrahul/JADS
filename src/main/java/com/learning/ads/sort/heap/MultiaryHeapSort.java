@@ -2,7 +2,7 @@ package com.learning.ads.sort.heap;
 
 import com.learning.ads.datastructure.heap.MultiaryMaxHeap;
 import com.learning.ads.datastructure.heap.MultiaryMinHeap;
-import com.learning.ads.datastructure.heap.element.MultiaryHeapNode;
+import com.learning.ads.datastructure.heap.element.MultiaryHeapHolder;
 
 public class MultiaryHeapSort<T extends Comparable<T>> {
 	
@@ -14,7 +14,7 @@ public class MultiaryHeapSort<T extends Comparable<T>> {
 
 	public void sort(T[] array) {
 		MultiaryMaxHeap<T> maxHeap = new MultiaryMaxHeap<>(array, cardinality);
-		MultiaryHeapNode<T> heap = maxHeap.getHeap();
+		MultiaryHeapHolder<T> heap = maxHeap.getHeap();
 		array = heap.array;
 		for (int i = array.length - 1; i >= 1; i--) {
 			T temp = array[i];
@@ -27,7 +27,7 @@ public class MultiaryHeapSort<T extends Comparable<T>> {
 
 	public void sortDescending(T[] array) {
 		MultiaryMinHeap<T> minHeap = new MultiaryMinHeap<>(array, cardinality);
-		MultiaryHeapNode<T> heap = minHeap.getHeap();
+		MultiaryHeapHolder<T> heap = minHeap.getHeap();
 		array = heap.array;
 		for (int i = array.length - 1; i >= 1; i--) {
 			T temp = array[i];

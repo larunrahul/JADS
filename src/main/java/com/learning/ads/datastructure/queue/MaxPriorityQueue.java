@@ -1,7 +1,7 @@
 package com.learning.ads.datastructure.queue;
 
 import com.learning.ads.datastructure.heap.BinaryMaxHeap;
-import com.learning.ads.datastructure.heap.element.BinaryHeapNode;
+import com.learning.ads.datastructure.heap.element.BinaryHeapHolder;
 
 public class MaxPriorityQueue<T extends Comparable<T>> {
 
@@ -19,7 +19,7 @@ public class MaxPriorityQueue<T extends Comparable<T>> {
 	}
 
 	public T extratMaximum() {
-		BinaryHeapNode<T> heap = binaryMaxHeap.getHeap();
+		BinaryHeapHolder<T> heap = binaryMaxHeap.getHeap();
 		if (heap.heapSize <= 0) {
 			throw new RuntimeException("Underflow");
 		}
@@ -32,7 +32,7 @@ public class MaxPriorityQueue<T extends Comparable<T>> {
 	}
 
 	public void increaseKey(int node, T key) {
-		BinaryHeapNode<T> heap = binaryMaxHeap.getHeap();
+		BinaryHeapHolder<T> heap = binaryMaxHeap.getHeap();
 		T[] array = heap.array;
 		if (key.compareTo(array[node]) < 0) {
 			throw new RuntimeException("New key is less than existing key");
@@ -47,14 +47,14 @@ public class MaxPriorityQueue<T extends Comparable<T>> {
 	}
 
 	public void heapInsert(T key) {
-		BinaryHeapNode<T> heap = binaryMaxHeap.getHeap();
+		BinaryHeapHolder<T> heap = binaryMaxHeap.getHeap();
 		heap.heapSize += 1;
 		heap.array[heap.heapSize - 1] = minValue;
 		increaseKey(heap.heapSize - 1, key);
 	}
 
 	public void heapDelete(int position) {
-		BinaryHeapNode<T> heap = binaryMaxHeap.getHeap();
+		BinaryHeapHolder<T> heap = binaryMaxHeap.getHeap();
 		T[] array = heap.array;
 		T temp = array[position];
 		array[position] = array[heap.heapSize - 1];
