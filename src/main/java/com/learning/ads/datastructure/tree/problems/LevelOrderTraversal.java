@@ -30,9 +30,26 @@ public class LevelOrderTraversal<T> extends BinaryTree<T> {
 		if (node.right != null) {
 			queue.enQueue(node.right);
 		}
-		while (!queue.isEmpty()) {
+		if (!queue.isEmpty()) {
 			traverseRecursive(queue.deQueue(), list, queue);
 		}
+	}
+
+	public T[] traverseIterative() {
+		List<T> list = new ArrayList<>();
+		Queue<Node<T>> queue = new Queue<>();
+		queue.enQueue(root);
+		while (!queue.isEmpty()) {
+			Node<T> node = queue.deQueue();
+			list.add(node.value);
+			if (node.left != null) {
+				queue.enQueue(node.left);
+			}
+			if (node.right != null) {
+				queue.enQueue(node.right);
+			}
+		}
+		return listToArray(list);
 	}
 
 }
