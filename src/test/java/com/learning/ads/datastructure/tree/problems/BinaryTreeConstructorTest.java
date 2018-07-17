@@ -13,6 +13,7 @@ public class BinaryTreeConstructorTest {
 	BinaryTreeConstructor<Integer> constructor;
 	InOrderTraversal<Integer> inOrder;
 	PreOrderTraversal<Integer> preOrder;
+	PostOrderTraversal<Integer> postOrder;
 
 	@Before
 	public void setUp() {
@@ -49,13 +50,27 @@ public class BinaryTreeConstructorTest {
 	}
 
 	@Test
-	public void test() {
-		Node<Integer> result = constructor.constructWithPreOrderAndInOrder(new Integer[] { 2, 1, 4, 3, 6, 7, 5 },
-				new Integer[] { 1, 2, 3, 4, 5, 6, 7 });
+	public void constructWithPreOrderAndInOrder() {
+		Node<Integer> result = constructor.constructWithPreOrderAndInOrder(new Integer[] { 1, 2, 3, 4, 5, 6, 7 },
+				new Integer[] { 2, 1, 4, 3, 6, 7, 5 });
 		preOrder = new PreOrderTraversal<>(result);
 		inOrder = new InOrderTraversal<>(result);
+		postOrder = new PostOrderTraversal<>(result);
 		assertArrayEquals(new Integer[] { 1, 2, 3, 4, 5, 6, 7 }, preOrder.traverseIterative());
 		assertArrayEquals(new Integer[] { 2, 1, 4, 3, 6, 7, 5 }, inOrder.traverseIterative());
+		assertArrayEquals(new Integer[] { 2, 4, 7, 6, 5, 3, 1 }, postOrder.traverseIterative());
+	}
+
+	@Test
+	public void constructWithInOrderAndPostOrder() {
+		Node<Integer> result = constructor.constructWithInOrderAndPostOrder(new Integer[] { 2, 1, 4, 3, 6, 7, 5 },
+				new Integer[] { 2, 4, 7, 6, 5, 3, 1 });
+		preOrder = new PreOrderTraversal<>(result);
+		inOrder = new InOrderTraversal<>(result);
+		postOrder = new PostOrderTraversal<>(result);
+		assertArrayEquals(new Integer[] { 1, 2, 3, 4, 5, 6, 7 }, preOrder.traverseIterative());
+		assertArrayEquals(new Integer[] { 2, 1, 4, 3, 6, 7, 5 }, inOrder.traverseIterative());
+		assertArrayEquals(new Integer[] { 2, 4, 7, 6, 5, 3, 1 }, postOrder.traverseIterative());
 	}
 
 }
