@@ -1,11 +1,14 @@
 package com.learning.ads.dynamicprogramming;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class RodCutting {
 
 	/**
 	 * Complexity :O(2^n)
+	 * 
 	 * @param prices
 	 * @param size
 	 * @return
@@ -23,6 +26,7 @@ public class RodCutting {
 
 	/**
 	 * Complexity: O(n^2)
+	 * 
 	 * @param prices
 	 * @param size
 	 * @return
@@ -51,6 +55,7 @@ public class RodCutting {
 
 	/**
 	 * Complexity: O(n^2)
+	 * 
 	 * @param prices
 	 * @param size
 	 * @return
@@ -67,5 +72,28 @@ public class RodCutting {
 		}
 		return dp[size];
 	}
-	
+
+	public List<Integer> cutBottomUpWithPath(int[] prices, int size) {
+		int[] dp = new int[size + 1];
+		int[] paths = new int[size + 1];
+		List<Integer> result = new ArrayList<>();
+		dp[0] = 0;
+		for (int i = 1; i <= size; i++) {
+			int q = Integer.MIN_VALUE;
+			for (int j = 1; j <= i; j++) {
+				int val = prices[j] + dp[i - j];
+				if (q < val) {
+					q = val;
+					paths[i] = j;
+				}
+			}
+			dp[i] = q;
+		}
+		while (size != 0) {
+			result.add(paths[size]);
+			size = size - paths[size];
+		}
+		return result;
+	}
+
 }
