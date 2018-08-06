@@ -27,7 +27,7 @@ public class MatrixChainOrder {
 	}
 
 	/**
-	 * Complexity: O(n^3)
+	 * Complexity: Ω(n^3)
 	 * 
 	 * @param sizes
 	 * @return
