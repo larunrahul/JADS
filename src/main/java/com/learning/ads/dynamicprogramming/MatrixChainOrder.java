@@ -1,5 +1,7 @@
 package com.learning.ads.dynamicprogramming;
 
+import java.util.Arrays;
+
 public class MatrixChainOrder {
 
 	public class Result {
@@ -27,7 +29,7 @@ public class MatrixChainOrder {
 	}
 
 	/**
-	 * Complexity: Ω(n^3)
+	 * Complexity: O(n^3)
 	 * 
 	 * @param sizes
 	 * @return
@@ -36,6 +38,9 @@ public class MatrixChainOrder {
 		int n = sizes.length - 1;
 		int[][] dp = new int[n + 1][n + 1];
 		int[][] paths = new int[n + 1][n + 1];
+		for (int i = 0; i < sizes.length; i++) {
+			Arrays.fill(dp[i], Integer.MAX_VALUE);
+		}
 		Result result = new Result();
 		calculateMultiplicationsRec(sizes, dp, paths, 1, n);
 		StringBuilder s = new StringBuilder();
@@ -46,16 +51,19 @@ public class MatrixChainOrder {
 	}
 
 	private int calculateMultiplicationsRec(int[] sizes, int[][] dp, int[][] paths, int i, int j) {
-		if (i == j) {
-			return 0;
+		if (dp[i][j] < Integer.MAX_VALUE) {
+			return dp[i][j];
 		}
-		dp[i][j] = Integer.MAX_VALUE;
-		for (int k = i; k <= j - 1; k++) {
-			int q = calculateMultiplicationsRec(sizes, dp, paths, i, k)
-					+ calculateMultiplicationsRec(sizes, dp, paths, k + 1, j) + sizes[i - 1] * sizes[k] * sizes[j];
-			if (q < dp[i][j]) {
-				dp[i][j] = q;
-				paths[i][j] = k;
+		if (i == j) {
+			dp[i][j] = 0;
+		} else {
+			for (int k = i; k <= j - 1; k++) {
+				int q = calculateMultiplicationsRec(sizes, dp, paths, i, k)
+						+ calculateMultiplicationsRec(sizes, dp, paths, k + 1, j) + sizes[i - 1] * sizes[k] * sizes[j];
+				if (q < dp[i][j]) {
+					dp[i][j] = q;
+					paths[i][j] = k;
+				}
 			}
 		}
 		return dp[i][j];
