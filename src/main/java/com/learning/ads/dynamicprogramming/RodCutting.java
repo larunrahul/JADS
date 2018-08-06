@@ -6,6 +6,11 @@ import java.util.List;
 
 public class RodCutting {
 
+	public class Result {
+		int finalPrice;
+		List<Integer> cuts;
+	}
+
 	/**
 	 * Complexity :O(2^n)
 	 * 
@@ -45,9 +50,45 @@ public class RodCutting {
 		if (size != 0) {
 			int max = Integer.MIN_VALUE;
 			for (int i = 1; i <= size; i++) {
-				max = Math.max(max, prices[i] + cut(prices, size - i));
+				max = Math.max(max, prices[i] + cutTopDown(prices, size - i, dp));
 			}
 			result = max;
+		}
+		dp[size] = result;
+		return dp[size];
+	}
+
+	public Result cutTopDownWithPath(int[] prices, int size) {
+		int[] dp = new int[size + 1];
+		int[] paths = new int[size + 1];
+		Arrays.fill(dp, Integer.MIN_VALUE);
+		int finalPrice = cutTopDownWithPath(prices, size, dp, paths);
+		List<Integer> cuts = new ArrayList<>();
+		while (size != 0) {
+			cuts.add(paths[size]);
+			size = size - paths[size];
+		}
+		Result result = new Result();
+		result.cuts = cuts;
+		result.finalPrice = finalPrice;
+		return result;
+	}
+
+	private int cutTopDownWithPath(int[] prices, int size, int[] dp, int[] paths) {
+		if (dp[size] >= 0) {
+			return dp[size];
+		}
+		int result = 0;
+		if (size != 0) {
+			int q = Integer.MIN_VALUE;
+			for (int i = 1; i <= size; i++) {
+				int val = prices[i] + cutTopDownWithPath(prices, size - i, dp, paths);
+				if (q < val) {
+					q = val;
+					paths[size] = i;
+				}
+			}
+			result = q;
 		}
 		dp[size] = result;
 		return dp[size];
@@ -73,10 +114,9 @@ public class RodCutting {
 		return dp[size];
 	}
 
-	public List<Integer> cutBottomUpWithPath(int[] prices, int size) {
+	public Result cutBottomUpWithPath(int[] prices, int size) {
 		int[] dp = new int[size + 1];
 		int[] paths = new int[size + 1];
-		List<Integer> result = new ArrayList<>();
 		dp[0] = 0;
 		for (int i = 1; i <= size; i++) {
 			int q = Integer.MIN_VALUE;
@@ -89,10 +129,16 @@ public class RodCutting {
 			}
 			dp[i] = q;
 		}
+
+		int finalPrice = dp[size];
+		List<Integer> cuts = new ArrayList<>();
 		while (size != 0) {
-			result.add(paths[size]);
+			cuts.add(paths[size]);
 			size = size - paths[size];
 		}
+		Result result = new Result();
+		result.cuts = cuts;
+		result.finalPrice = finalPrice;
 		return result;
 	}
 
