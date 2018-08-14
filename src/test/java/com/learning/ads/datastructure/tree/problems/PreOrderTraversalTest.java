@@ -49,7 +49,7 @@ public class PreOrderTraversalTest {
 	@Test
 	public void recursive() {
 		assertArrayEquals(new Integer[] { 0, 1, 3, 7, 4, 8, 12, 14, 15, 18, 2, 5, 9, 6, 10, 11, 13, 16, 17 },
-				preOrder.traverseRecursive());
+				preOrder.traversePreOrder());
 		assertArrayEquals(new Integer[] { 0, 1, 3, 7, 4, 8, 12, 14, 15, 18, 2, 5, 9, 6, 10, 11, 13, 16, 17 },
 				preOrder.traverseIterative());
 	}

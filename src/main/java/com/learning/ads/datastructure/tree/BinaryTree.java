@@ -1,6 +1,9 @@
 package com.learning.ads.datastructure.tree;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import com.learning.ads.datastructure.queue.Queue;
 
 public class BinaryTree<T> {
 
@@ -8,6 +11,10 @@ public class BinaryTree<T> {
 
 	public BinaryTree(Node<T> root) {
 		this.root = root;
+	}
+
+	public BinaryTree(T value) {
+		this.root = new Node<T>(value);
 	}
 
 	public static class Node<T> {
@@ -52,8 +59,18 @@ public class BinaryTree<T> {
 		return height();
 	}
 
-	public boolean contains(Object o) {
-		return false;
+	public boolean contains(T o) {
+		return contains(root, o);
+	}
+
+	private boolean contains(Node<T> node, T o) {
+		if (node == null) {
+			return false;
+		}
+		if (node.value.equals(o)) {
+			return true;
+		}
+		return contains(node.left, o) || contains(node.right, o);
 	}
 
 	public int levels() {
@@ -61,6 +78,218 @@ public class BinaryTree<T> {
 			return 0;
 		}
 		return height() + 1;
+	}
+
+	/**
+	 * Complexity: O(n)
+	 * 
+	 * We are always trying to insert at the right most possible empty child
+	 * 
+	 * @param value
+	 */
+	public void insert(T value) {
+		if (root == null) {
+			root = new Node<>(value);
+			return;
+		}
+		Queue<Node<T>> queue = new Queue<>();
+		queue.enQueue(root);
+		while (!queue.isEmpty()) {
+			Node<T> node = queue.deQueue();
+			if (node.left != null) {
+				queue.enQueue(node.left);
+			} else {
+				node.left = new Node<>(value);
+				break;
+			}
+			if (node.right != null) {
+				queue.enQueue(node.right);
+			} else {
+				node.right = new Node<>(value);
+				break;
+			}
+		}
+	}
+
+	/**
+	 * Complexity: O(n)
+	 * 
+	 * This delete operation can quickly make tree into Skew tree
+	 * 
+	 * @param key
+	 */
+	public void delete(T key) {
+		if (root == null) {
+			return;
+		}
+		Node<T> keyNode = null;// node to be deleted
+		Node<T> parent = null;// parent of node to be deleted
+		Node<T> node = null;// replacement node
+		Queue<Node<T>> queue = new Queue<>();
+		queue.enQueue(root);
+		while (!queue.isEmpty()) {
+			node = queue.deQueue();
+			if (node.value.equals(key)) {
+				keyNode = node;
+			}
+			if (node.left != null) {
+				queue.enQueue(node.left);
+				if (node.left.value.equals(key)) {
+					parent = node;
+					keyNode = node.left;
+				}
+			}
+			if (node.right != null) {
+				queue.enQueue(node.right);
+				if (node.right.value.equals(key)) {
+					parent = node;
+					keyNode = node.right;
+				}
+			}
+		}
+		// node not found
+		if (keyNode == null || node == null) {
+			return;
+		}
+		deleteDeepest(keyNode, parent, node);
+	}
+
+	private void deleteDeepest(Node<T> keyNode, Node<T> parent, Node<T> deepNode) {
+		// to be deleted node is the replacement node
+		if (deepNode.equals(keyNode)) {
+			// if root
+			if (parent != null) {
+				if (parent.left != null && parent.left.equals(keyNode)) {
+					parent.left = null;
+				} else {
+					parent.right = null;
+				}
+			} else {
+				root = null;
+			}
+			return;
+		}
+		Queue<Node<T>> queue = new Queue<>();
+		queue.enQueue(root);
+		while (!queue.isEmpty()) {
+			Node<T> node = queue.deQueue();
+			if (node.left != null) {
+				if (node.left.value.equals(deepNode.value)) {
+					node.left = null;
+					break;
+				}
+				queue.enQueue(node.left);
+
+			}
+			if (node.right != null) {
+				if (node.right.value.equals(deepNode.value)) {
+					node.right = null;
+					break;
+				}
+				queue.enQueue(node.right);
+			}
+		}
+		deepNode.left = keyNode.left;
+		deepNode.right = keyNode.right;
+		if (parent != null) {
+			if (parent.left != null && parent.left.equals(keyNode)) {
+				parent.left = deepNode;
+			} else {
+				parent.right = deepNode;
+			}
+		} else {
+			deepNode.left = root.left;
+			deepNode.right = root.right;
+			root = deepNode;
+		}
+	}
+
+	/**
+	 * Complexity: O(n)
+	 * 
+	 * @return
+	 */
+	public T[] traverseLevelOrder() {
+		List<T> list = new ArrayList<>();
+		Queue<Node<T>> queue = new Queue<>();
+		traverseLevelOrderRecursive(root, list, queue);
+		return listToArray(list);
+	}
+
+	private void traverseLevelOrderRecursive(Node<T> node, List<T> list, Queue<Node<T>> queue) {
+		if (node == null) {
+			return;
+		}
+		list.add(node.value);
+		if (node.left != null) {
+			queue.enQueue(node.left);
+		}
+		if (node.right != null) {
+			queue.enQueue(node.right);
+		}
+		if (!queue.isEmpty()) {
+			traverseLevelOrderRecursive(queue.deQueue(), list, queue);
+		}
+	}
+
+	/**
+	 * Complexity: O(n)
+	 * 
+	 * @return
+	 */
+	public T[] traverseInOrder() {
+		List<T> list = new ArrayList<>();
+		traverseInOrderRecursive(root, list);
+		return listToArray(list);
+	}
+
+	private void traverseInOrderRecursive(Node<T> node, List<T> list) {
+		if (node == null) {
+			return;
+		}
+		traverseInOrderRecursive(node.left, list);
+		list.add(node.value);
+		traverseInOrderRecursive(node.right, list);
+	}
+
+	/**
+	 * Complexity: O(n)
+	 * 
+	 * @return
+	 */
+	public T[] traversePostOrder() {
+		List<T> list = new ArrayList<>();
+		traversePostOrderRecursive(root, list);
+		return listToArray(list);
+	}
+
+	private void traversePostOrderRecursive(Node<T> node, List<T> list) {
+		if (node == null) {
+			return;
+		}
+		traversePostOrderRecursive(node.left, list);
+		traversePostOrderRecursive(node.right, list);
+		list.add(node.value);
+	}
+
+	/**
+	 * Complexity: O(n)
+	 * 
+	 * @return
+	 */
+	public T[] traversePreOrder() {
+		List<T> list = new ArrayList<>();
+		traversePreOrderRecursive(root, list);
+		return listToArray(list);
+	}
+
+	private void traversePreOrderRecursive(Node<T> node, List<T> list) {
+		if (node == null) {
+			return;
+		}
+		list.add(node.value);
+		traversePreOrderRecursive(node.left, list);
+		traversePreOrderRecursive(node.right, list);
 	}
 
 	@SuppressWarnings("unchecked")

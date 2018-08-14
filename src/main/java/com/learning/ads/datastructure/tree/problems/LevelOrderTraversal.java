@@ -15,25 +15,6 @@ public class LevelOrderTraversal<T> extends BinaryTree<T> {
 		this.root = root;
 	}
 
-	public T[] traverseRecursive() {
-		List<T> list = new ArrayList<>();
-		Queue<Node<T>> queue = new Queue<>();
-		traverseRecursive(root, list, queue);
-		return listToArray(list);
-	}
-
-	private void traverseRecursive(Node<T> node, List<T> list, Queue<Node<T>> queue) {
-		list.add(node.value);
-		if (node.left != null) {
-			queue.enQueue(node.left);
-		}
-		if (node.right != null) {
-			queue.enQueue(node.right);
-		}
-		if (!queue.isEmpty()) {
-			traverseRecursive(queue.deQueue(), list, queue);
-		}
-	}
 
 	public T[] traverseIterative() {
 		List<T> list = new ArrayList<>();

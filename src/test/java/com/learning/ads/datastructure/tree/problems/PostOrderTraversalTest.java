@@ -49,7 +49,7 @@ public class PostOrderTraversalTest {
 	@Test
 	public void recursive() {
 		assertArrayEquals(new Integer[] { 7, 3, 14, 18, 15, 12, 8, 4, 1, 9, 5, 10, 16, 17, 13, 11, 6, 2, 0 },
-				postOrder.traverseRecursive());
+				postOrder.traversePostOrder());
 		assertArrayEquals(new Integer[] { 7, 3, 14, 18, 15, 12, 8, 4, 1, 9, 5, 10, 16, 17, 13, 11, 6, 2, 0 },
 				postOrder.traverseIterative());
 	}

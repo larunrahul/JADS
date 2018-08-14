@@ -15,21 +15,6 @@ public class PreOrderTraversal<T> extends BinaryTree<T> {
 		this.root = root;
 	}
 
-	public T[] traverseRecursive() {
-		List<T> list = new ArrayList<>();
-		traverseRecursive(root, list);
-		return listToArray(list);
-	}
-
-	private void traverseRecursive(Node<T> node, List<T> list) {
-		if (node == null) {
-			return;
-		}
-		list.add(node.value);
-		traverseRecursive(node.left, list);
-		traverseRecursive(node.right, list);
-	}
-
 	public T[] traverseIterative() {
 		List<T> list = new ArrayList<>();
 		if (root == null) {

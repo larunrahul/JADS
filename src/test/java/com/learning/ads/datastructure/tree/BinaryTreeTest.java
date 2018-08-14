@@ -1,6 +1,9 @@
 package com.learning.ads.datastructure.tree;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -57,6 +60,67 @@ public class BinaryTreeTest {
 		assertEquals(0, new BinaryTree<>(null).levels());
 		assertEquals(1, new BinaryTree<>(new BinaryTree.Node<>(1)).levels());
 		assertEquals(2, new BinaryTree<>(new BinaryTree.Node<>(null, 1, new BinaryTree.Node<>(2))).levels());
+	}
+
+	@Test
+	public void insert() {
+		BinaryTree<Integer> tree = new BinaryTree<>(1);
+		assertArrayEquals(new Integer[] { 1 }, tree.traverseLevelOrder());
+		tree.insert(2);
+		assertArrayEquals(new Integer[] { 1, 2 }, tree.traverseLevelOrder());
+		tree.insert(3);
+		assertArrayEquals(new Integer[] { 1, 2, 3 }, tree.traverseLevelOrder());
+		tree.insert(4);
+		tree.insert(5);
+		assertArrayEquals(new Integer[] { 1, 2, 3, 4, 5 }, tree.traverseLevelOrder());
+		assertArrayEquals(new Integer[] { 4, 2, 5, 1, 3 }, tree.traverseInOrder());
+		assertArrayEquals(new Integer[] { 1, 2, 4, 5, 3 }, tree.traversePreOrder());
+		assertArrayEquals(new Integer[] { 4, 5, 2, 3, 1 }, tree.traversePostOrder());
+		assertTrue(tree.contains(5));
+		assertFalse(tree.contains(7));
+	}
+
+	@Test
+	public void delete() {
+		BinaryTree<Integer> tree = new BinaryTree<>(1);
+		tree.delete(0);
+		assertArrayEquals(new Integer[] { 1 }, tree.traverseLevelOrder());
+		tree.delete(1);
+		assertArrayEquals(new Integer[] {}, tree.traverseLevelOrder());
+		tree.insert(1);
+		assertArrayEquals(new Integer[] { 1 }, tree.traverseLevelOrder());
+		tree.delete(1);
+		assertArrayEquals(new Integer[] {}, tree.traverseLevelOrder());
+		tree.insert(1);
+		tree.insert(2);
+		tree.delete(4);
+		assertArrayEquals(new Integer[] { 1, 2 }, tree.traverseLevelOrder());
+		tree.delete(2);
+		assertArrayEquals(new Integer[] { 1 }, tree.traverseLevelOrder());
+		tree.delete(1);
+		assertArrayEquals(new Integer[] {}, tree.traverseLevelOrder());
+		tree.insert(1);
+		tree.insert(2);
+		tree.delete(4);
+		assertArrayEquals(new Integer[] { 1, 2 }, tree.traverseLevelOrder());
+		tree.delete(1);
+		assertArrayEquals(new Integer[] { 2 }, tree.traverseLevelOrder());
+		tree.delete(2);
+		assertArrayEquals(new Integer[] {}, tree.traverseLevelOrder());
+		tree.insert(1);
+		tree.insert(2);
+		tree.insert(3);
+		tree.insert(4);
+		tree.insert(5);
+		tree.insert(6);
+		tree.insert(7);
+		tree.delete(7);
+		assertArrayEquals(new Integer[] { 1, 2, 3, 4, 5, 6 }, tree.traverseLevelOrder());
+		assertArrayEquals(new Integer[] { 4, 2, 5, 1, 6, 3 }, tree.traverseInOrder());
+		assertArrayEquals(new Integer[] { 1, 2, 4, 5, 3, 6 }, tree.traversePreOrder());
+		assertArrayEquals(new Integer[] { 4, 5, 2, 6, 3, 1 }, tree.traversePostOrder());
+		tree.delete(1);
+		assertArrayEquals(new Integer[] { 6, 2, 3, 4, 5 }, tree.traverseLevelOrder());
 	}
 
 }
