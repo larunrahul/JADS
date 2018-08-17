@@ -2,8 +2,7 @@ package com.learning.ads.datastructure.tree;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -76,8 +75,8 @@ public class BinaryTreeTest {
 		assertArrayEquals(new Integer[] { 4, 2, 5, 1, 3 }, tree.traverseInOrder());
 		assertArrayEquals(new Integer[] { 1, 2, 4, 5, 3 }, tree.traversePreOrder());
 		assertArrayEquals(new Integer[] { 4, 5, 2, 3, 1 }, tree.traversePostOrder());
-		assertTrue(tree.contains(5));
-		assertFalse(tree.contains(7));
+		assertEquals(Integer.valueOf(5), tree.get(5).value);
+		assertNull(tree.get(7).value);
 	}
 
 	@Test

@@ -5,6 +5,16 @@ import java.util.List;
 
 import com.learning.ads.datastructure.queue.Queue;
 
+/**
+ * A Binary Tree implementation.
+ * 
+ * Most of the basic operations like insert, delete, search can be done in O(n)
+ * time
+ * 
+ * @author Arun Rahul
+ *
+ * @param <T>
+ */
 public class BinaryTree<T> {
 
 	private Node<T> root;
@@ -59,18 +69,26 @@ public class BinaryTree<T> {
 		return height();
 	}
 
-	public boolean contains(T o) {
-		return contains(root, o);
+	public Node<T> get(T o) {
+		Node<T> result = get(root, o);
+		if (result == null) {
+			return new Node<T>(null);
+		}
+		return result;
 	}
 
-	private boolean contains(Node<T> node, T o) {
+	private Node<T> get(Node<T> node, T o) {
 		if (node == null) {
-			return false;
+			return null;
 		}
 		if (node.value.equals(o)) {
-			return true;
+			return node;
 		}
-		return contains(node.left, o) || contains(node.right, o);
+		Node<T> left = get(node.left, o);
+		if (left != null) {
+			return left;
+		}
+		return get(node.right, o);
 	}
 
 	public int levels() {
