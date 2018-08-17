@@ -169,7 +169,6 @@ public class BinarySearchTree<T extends Comparable<T>> {
 	 */
 	public void delete(T key) {
 		root = delete(root, key);
-
 	}
 
 	private Node<T> delete(Node<T> node, T key) {
@@ -181,19 +180,15 @@ public class BinarySearchTree<T extends Comparable<T>> {
 			node.left = delete(node.left, key);
 		} else if (comp < 0) {
 			node.right = delete(node.right, key);
-		} else {
-			/*
-			 * this is the node to be deleted
-			 */
+		} else {// if this is the node to be deleted
 			if (node.left == null) {
 				return node.right;
-			}
-			if (node.right == null) {
+			} else if (node.right == null) {
 				return node.left;
 			}
 			Node<T> successorParent = getSuccessorParent(node.right);
 			/*
-			 * if immediate right is replacement, which means, immediate right has not left
+			 * if immediate right is successor, which means, immediate right has not left
 			 * child
 			 */
 			if (node.right.equals(successorParent) && successorParent.left == null) {
