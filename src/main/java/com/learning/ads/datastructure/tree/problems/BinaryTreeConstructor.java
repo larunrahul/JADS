@@ -13,7 +13,7 @@ public class BinaryTreeConstructor<T extends Comparable<T>> extends BinaryTree<T
 				preOrder.length - 1);
 	}
 
-	private Node<T> constructRecursiveWithPreOrderAndInOrder(T[] preOrder, T[] inOrder, int iStart, int iEnd,
+	private Node<T> constructRecursiveWithPreOrderAndInOrder(T[] inOrder, T[] preOrder, int iStart, int iEnd,
 			int pStart, int pEnd) {
 		if (iEnd - iStart < 0 || pEnd - pStart < 0) {
 			return null;

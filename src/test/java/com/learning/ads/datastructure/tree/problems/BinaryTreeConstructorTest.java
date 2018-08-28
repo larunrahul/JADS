@@ -51,8 +51,8 @@ public class BinaryTreeConstructorTest {
 
 	@Test
 	public void constructWithPreOrderAndInOrder() {
-		Node<Integer> result = constructor.constructWithPreOrderAndInOrder(new Integer[] { 1, 2, 3, 4, 5, 6, 7 },
-				new Integer[] { 2, 1, 4, 3, 6, 7, 5 });
+		Node<Integer> result = constructor.constructWithPreOrderAndInOrder(new Integer[] { 2, 1, 4, 3, 6, 7, 5 },
+				new Integer[] { 1, 2, 3, 4, 5, 6, 7 });
 		preOrder = new PreOrderTraversal<>(result);
 		inOrder = new InOrderTraversal<>(result);
 		postOrder = new PostOrderTraversal<>(result);
