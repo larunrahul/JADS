@@ -13,23 +13,24 @@ public class StandardBinarySearchTreeTest {
 
 	@Before
 	public void setUp() throws Exception {
-		tree = new StandardBinarySearchTree<>(40);
+		tree = new StandardBinarySearchTree<>();
 	}
 
 	@Test
 	public void insert() {
-		assertEquals(Integer.valueOf(40), tree.min().value);
-		assertEquals(Integer.valueOf(40), tree.max().value);
+		tree.insert(40);
+		assertEquals(Integer.valueOf(40), tree.min());
+		assertEquals(Integer.valueOf(40), tree.max());
 		assertArrayEquals(new Integer[] { 40 }, tree.traverseInOrder().toArray());
 		tree.insert(60);
-		assertEquals(Integer.valueOf(40), tree.min().value);
-		assertEquals(Integer.valueOf(60), tree.max().value);
+		assertEquals(Integer.valueOf(40), tree.min());
+		assertEquals(Integer.valueOf(60), tree.max());
 		assertArrayEquals(new Integer[] { 40, 60 }, tree.traverseInOrder().toArray());
 		tree.insert(20);
-		assertEquals(Integer.valueOf(20), tree.min().value);
+		assertEquals(Integer.valueOf(20), tree.min());
 		assertArrayEquals(new Integer[] { 20, 40, 60 }, tree.traverseInOrder().toArray());
-		assertEquals(Integer.valueOf(60), tree.max().value);
-		assertEquals(Integer.valueOf(20), tree.min().value);
+		assertEquals(Integer.valueOf(60), tree.max());
+		assertEquals(Integer.valueOf(20), tree.min());
 		tree.insert(10);
 		tree.insert(70);
 		tree.insert(30);
@@ -42,21 +43,19 @@ public class StandardBinarySearchTreeTest {
 		tree.insert(15);
 		tree.insert(5);
 		tree.insert(75);
-		assertEquals(Integer.valueOf(75), tree.max().value);
+		assertEquals(Integer.valueOf(75), tree.max());
 		assertArrayEquals(new Integer[] { 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75 },
 				tree.traverseInOrder().toArray());
 	}
-	
+
 	@Test
 	public void delete() {
 		// delete non-existent node
 		tree.delete(0);
-		assertArrayEquals(new Integer[] { 40 }, tree.traverseInOrder().toArray());
 		tree.delete(40);
 		assertNull(tree.min());
 		assertNull(tree.max());
 		assertArrayEquals(new Integer[] {}, tree.traverseInOrder().toArray());
-		tree.insert(40);
 		insert();
 		// both childs are empty
 		tree.delete(75);
@@ -106,6 +105,19 @@ public class StandardBinarySearchTreeTest {
 		assertArrayEquals(new Integer[] { 25, 45, 55, 67 }, tree.traverseInOrder().toArray());
 		tree.delete(67);
 		assertArrayEquals(new Integer[] { 25, 45, 55 }, tree.traverseInOrder().toArray());
+	}
+
+	@Test
+	public void height() {
+		tree.insert(40);
+		tree.insert(50);
+		tree.insert(60);
+		tree.insert(70);
+		tree.insert(80);
+		tree.insert(90);
+		tree.insert(100);
+		assertEquals(6, tree.height());// tree is unbalanced, which makes it no different from linked list in worst
+										// case (as in this test)
 	}
 
 }

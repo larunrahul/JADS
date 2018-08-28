@@ -45,12 +45,6 @@ public class BinarySearchTree<T extends Comparable<T>> {
 			this.value = value;
 		}
 
-		public Node(Node<T> left, T value, Node<T> right) {
-			this.left = left;
-			this.value = value;
-			this.right = right;
-		}
-
 		public String toString() {
 			return value + " ";
 		}

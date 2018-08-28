@@ -29,15 +29,7 @@ public class StandardBinarySearchTree<T extends Comparable<T>> {
 
 	private Node<T> root;
 
-	public StandardBinarySearchTree(Node<T> root) {
-		this.root = root;
-	}
-
-	public StandardBinarySearchTree(T value) {
-		this.root = new Node<T>(value);
-	}
-
-	public static class Node<T> {
+	private static class Node<T> {
 
 		public T value;
 		public Node<T> left;
@@ -46,12 +38,6 @@ public class StandardBinarySearchTree<T extends Comparable<T>> {
 
 		public Node(T value) {
 			this.value = value;
-		}
-
-		public Node(Node<T> left, T value, Node<T> right) {
-			this.left = left;
-			this.value = value;
-			this.right = right;
 		}
 
 		public String toString() {
@@ -104,8 +90,9 @@ public class StandardBinarySearchTree<T extends Comparable<T>> {
 	 * 
 	 * @return
 	 */
-	public Node<T> min() {
-		return min(root);
+	public T min() {
+		Node<T> min = min(root);
+		return min == null ? null : min.value;
 	}
 
 	/**
@@ -113,7 +100,7 @@ public class StandardBinarySearchTree<T extends Comparable<T>> {
 	 * 
 	 * @return
 	 */
-	public Node<T> min(Node<T> node) {
+	private Node<T> min(Node<T> node) {
 		Node<T> parent = null;
 		while (node != null) {
 			parent = node;
@@ -127,8 +114,9 @@ public class StandardBinarySearchTree<T extends Comparable<T>> {
 	 * 
 	 * @return
 	 */
-	public Node<T> max() {
-		return max(root);
+	public T max() {
+		Node<T> max = max(root);
+		return max == null ? null : max.value;
 	}
 
 	/**
@@ -136,7 +124,7 @@ public class StandardBinarySearchTree<T extends Comparable<T>> {
 	 * 
 	 * @return
 	 */
-	public Node<T> max(Node<T> node) {
+	private Node<T> max(Node<T> node) {
 		Node<T> parent = null;
 		while (node != null) {
 			parent = node;
