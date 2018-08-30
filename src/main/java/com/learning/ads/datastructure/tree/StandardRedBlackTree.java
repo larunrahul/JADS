@@ -161,7 +161,7 @@ public class StandardRedBlackTree<T extends Comparable<T>> {
 			successor = min(node.right);
 		} else {
 			successor = node.parent;
-			while (successor != nil && node.equals(successor.right)) {
+			while (successor != nil && node == successor.right) {
 				node = successor;
 				successor = successor.parent;
 			}
@@ -180,7 +180,7 @@ public class StandardRedBlackTree<T extends Comparable<T>> {
 			successor = max(node.right);
 		} else {
 			successor = node.parent;
-			while (successor != nil && node.equals(successor.left)) {
+			while (successor != nil && node == successor.left) {
 				node = successor;
 				successor = successor.parent;
 			}
@@ -219,7 +219,7 @@ public class StandardRedBlackTree<T extends Comparable<T>> {
 
 	private void insertFixUp(Node<T> z) {
 		while (z.parent.color == RED) {
-			if (z.parent.equals(z.parent.parent.left)) {
+			if (z.parent == z.parent.parent.left) {
 				Node<T> y = z.parent.parent.right;// z's uncle
 				if (y.color == RED) {// z's parent and z's uncle both are red
 					z.parent.color = BLACK;
@@ -227,7 +227,7 @@ public class StandardRedBlackTree<T extends Comparable<T>> {
 					z.parent.parent.color = RED;
 					z = z.parent.parent;
 				} else {
-					if (z.equals(z.parent.right)) {
+					if (z == z.parent.right) {
 						z = z.parent;
 						leftRotate(z);
 					}
@@ -243,7 +243,7 @@ public class StandardRedBlackTree<T extends Comparable<T>> {
 					z.parent.parent.color = RED;
 					z = z.parent.parent;
 				} else {
-					if (z.equals(z.parent.left)) {
+					if (z == z.parent.left) {
 						z = z.parent;
 						rightRotate(z);
 					}
