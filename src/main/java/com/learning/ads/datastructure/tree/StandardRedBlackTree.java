@@ -367,7 +367,7 @@ public class StandardRedBlackTree<T extends Comparable<T>> {
 						rightRotate(w);
 						w = x.parent.right;
 					}
-					// siblings right child is RED
+					// right child of  siblings is RED
 					w.color = x.parent.color;
 					x.parent.color = BLACK;
 					w.right.color = BLACK;
@@ -395,7 +395,7 @@ public class StandardRedBlackTree<T extends Comparable<T>> {
 						leftRotate(w);
 						w = x.parent.left;
 					}
-					// siblings left child is RED
+					// left child of siblings is RED
 					w.color = x.parent.color;
 					x.parent.color = BLACK;
 					w.left.color = BLACK;
