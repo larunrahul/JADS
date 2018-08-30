@@ -11,6 +11,19 @@ import com.learning.ads.datastructure.queue.Queue;
  * 
  * Implementation follows as explained in CLRS
  * 
+ * Properties of RB tree
+ * 
+ * 1. Every node is either red or black.
+ * 
+ * 2. The root is black
+ * 
+ * 3. Every leaf (NIL) is black.
+ * 
+ * 4. If a node is red, then both its children are black.
+ * 
+ * 5. For each node, all simple paths from the node to descendant leaves contain
+ * the same number of black nodes.
+ * 
  * Most of the operations can be done in O(log n) time due to the fact that tree
  * is always approximately balanced.
  * 
@@ -25,13 +38,12 @@ import com.learning.ads.datastructure.queue.Queue;
  */
 public class StandardRedBlackTree<T extends Comparable<T>> {
 
-	private final Node<T> nil = new Node<>(null, COLOR.BLACK, null);
+	private static final char BLACK = 'B';
+	private static final char RED = 'R';
+
+	private final Node<T> nil = new Node<>(null, BLACK, null);
 
 	private Node<T> root = nil;
-
-	public static enum COLOR {
-		RED, BLACK
-	}
 
 	private static class Node<T> {
 
@@ -39,16 +51,16 @@ public class StandardRedBlackTree<T extends Comparable<T>> {
 		public Node<T> left;
 		public Node<T> right;
 		public Node<T> parent;
-		public COLOR color;
+		public char color;
 
 		public Node(T value, Node<T> nil) {
 			this.value = value;
-			this.color = COLOR.RED;
+			this.color = RED;
 			this.left = nil;
 			this.right = nil;
 		}
 
-		public Node(T value, COLOR c, Node<T> nil) {
+		public Node(T value, char c, Node<T> nil) {
 			this.value = value;
 			this.color = c;
 			this.left = nil;
@@ -71,11 +83,10 @@ public class StandardRedBlackTree<T extends Comparable<T>> {
 	 * @return
 	 */
 	public int height(Node<T> node) {
-		if (nil.equals(node)) {
+		if (node == nil) {
 			return 0;
 		}
-		return Math.max(height(node.left), height(node.right))
-				+ (!nil.equals(node.left) || !nil.equals(node.right) ? 1 : 0);
+		return Math.max(height(node.left), height(node.right)) + (node.left != nil || node.right != nil ? 1 : 0);
 	}
 
 	public int depth() {
@@ -91,7 +102,7 @@ public class StandardRedBlackTree<T extends Comparable<T>> {
 	public Node<T> search(T key) {
 		Node<T> node = root;
 		int comp;
-		while (node != null && (comp = key.compareTo(node.value)) != 0) {
+		while (node != nil && (comp = key.compareTo(node.value)) != 0) {
 			if (comp < 0) {
 				node = node.left;
 			} else {
@@ -108,7 +119,7 @@ public class StandardRedBlackTree<T extends Comparable<T>> {
 	 */
 	public T min() {
 		Node<T> min = min(root);
-		return min == null ? null : min.value;
+		return min == nil ? null : min.value;
 	}
 
 	/**
@@ -117,8 +128,8 @@ public class StandardRedBlackTree<T extends Comparable<T>> {
 	 * @return
 	 */
 	private Node<T> min(Node<T> node) {
-		Node<T> parent = null;
-		while (node != null) {
+		Node<T> parent = nil;
+		while (node != nil) {
 			parent = node;
 			node = node.left;
 		}
@@ -132,7 +143,7 @@ public class StandardRedBlackTree<T extends Comparable<T>> {
 	 */
 	public T max() {
 		Node<T> max = max(root);
-		return max == null ? null : max.value;
+		return max == nil ? null : max.value;
 	}
 
 	/**
@@ -141,8 +152,8 @@ public class StandardRedBlackTree<T extends Comparable<T>> {
 	 * @return
 	 */
 	private Node<T> max(Node<T> node) {
-		Node<T> parent = null;
-		while (node != null) {
+		Node<T> parent = nil;
+		while (node != nil) {
 			parent = node;
 			node = node.right;
 		}
@@ -156,11 +167,11 @@ public class StandardRedBlackTree<T extends Comparable<T>> {
 	 */
 	public Node<T> successor(Node<T> node) {
 		Node<T> successor = node;
-		if (node.right != null) {
+		if (node.right != nil) {
 			successor = min(node.right);
 		} else {
 			successor = node.parent;
-			while (successor != null && node.equals(successor.right)) {
+			while (successor != nil && node.equals(successor.right)) {
 				node = successor;
 				successor = successor.parent;
 			}
@@ -175,11 +186,11 @@ public class StandardRedBlackTree<T extends Comparable<T>> {
 	 */
 	public Node<T> predecessor(Node<T> node) {
 		Node<T> successor = node;
-		if (node.left != null) {
+		if (node.left != nil) {
 			successor = max(node.right);
 		} else {
 			successor = node.parent;
-			while (successor != null && node.equals(successor.left)) {
+			while (successor != nil && node.equals(successor.left)) {
 				node = successor;
 				successor = successor.parent;
 			}
@@ -196,7 +207,7 @@ public class StandardRedBlackTree<T extends Comparable<T>> {
 		Node<T> z = new Node<>(key, nil);
 		Node<T> y = nil;
 		Node<T> x = this.root;
-		while (!x.equals(nil)) {
+		while (x != nil) {
 			y = x;
 			if (key.compareTo(x.value) < 0) {
 				x = x.left;
@@ -205,54 +216,54 @@ public class StandardRedBlackTree<T extends Comparable<T>> {
 			}
 		}
 		z.parent = y;
-		if (y.equals(nil)) {
+		if (y == nil) {
 			this.root = z;
 		} else if (key.compareTo(y.value) < 0) {
 			y.left = z;
 		} else {
 			y.right = z;
 		}
-		z.color = COLOR.RED;
+		z.color = RED;
 		insertFixUp(z);
 	}
 
 	private void insertFixUp(Node<T> z) {
-		while (COLOR.RED.equals(z.parent.color)) {
+		while (z.parent.color == RED) {
 			if (z.parent.equals(z.parent.parent.left)) {
 				Node<T> y = z.parent.parent.right;// z's uncle
-				if (COLOR.RED.equals(y.color)) {// z's parent and z's uncle both are red
-					z.parent.color = COLOR.BLACK;
-					y.color = COLOR.BLACK;
-					z.parent.parent.color = COLOR.RED;
+				if (y.color == RED) {// z's parent and z's uncle both are red
+					z.parent.color = BLACK;
+					y.color = BLACK;
+					z.parent.parent.color = RED;
 					z = z.parent.parent;
 				} else {
 					if (z.equals(z.parent.right)) {
 						z = z.parent;
 						leftRotate(z);
 					}
-					z.parent.color = COLOR.BLACK;
-					z.parent.parent.color = COLOR.RED;
+					z.parent.color = BLACK;
+					z.parent.parent.color = RED;
 					rightRotate(z.parent.parent);
 				}
 			} else {
 				Node<T> y = z.parent.parent.left;// z's uncle
-				if (COLOR.RED.equals(y.color)) {// z's parent and z's uncle both are red
-					z.parent.color = COLOR.BLACK;
-					y.color = COLOR.BLACK;
-					z.parent.parent.color = COLOR.RED;
+				if (y.color == RED) {// z's parent and z's uncle both are red
+					z.parent.color = BLACK;
+					y.color = BLACK;
+					z.parent.parent.color = RED;
 					z = z.parent.parent;
 				} else {
 					if (z.equals(z.parent.left)) {
 						z = z.parent;
 						rightRotate(z);
 					}
-					z.parent.color = COLOR.BLACK;
-					z.parent.parent.color = COLOR.RED;
+					z.parent.color = BLACK;
+					z.parent.parent.color = RED;
 					leftRotate(z.parent.parent);
 				}
 			}
 		}
-		this.root.color = COLOR.BLACK;
+		this.root.color = BLACK;
 	}
 
 	/**
@@ -263,13 +274,13 @@ public class StandardRedBlackTree<T extends Comparable<T>> {
 	private void leftRotate(Node<T> x) {
 		Node<T> y = x.right;
 		x.right = y.left;
-		if (!y.left.equals(nil)) {
+		if (y.left != nil) {
 			y.left.parent = x;
 		}
 		y.parent = x.parent;
-		if (x.parent.equals(nil)) {
+		if (x.parent == nil) {
 			this.root = y;
-		} else if (x.equals(x.parent.left)) {
+		} else if (x == x.parent.left) {
 			x.parent.left = y;
 		} else {
 			x.parent.right = y;
@@ -286,13 +297,13 @@ public class StandardRedBlackTree<T extends Comparable<T>> {
 	private void rightRotate(Node<T> x) {
 		Node<T> y = x.left;
 		x.left = y.right;
-		if (!y.right.equals(nil)) {
+		if (y.right != nil) {
 			y.right.parent = x;
 		}
 		y.parent = x.parent;
-		if (x.parent.equals(nil)) {
+		if (x.parent == nil) {
 			this.root = y;
-		} else if (x.equals(x.parent.left)) {
+		} else if (x == x.parent.left) {
 			x.parent.left = y;
 		} else {
 			x.parent.right = y;
@@ -306,8 +317,115 @@ public class StandardRedBlackTree<T extends Comparable<T>> {
 	 * 
 	 * @return
 	 */
-	public void delete(T key) {
+	public void delete(T z) {
+		Node<T> y = search(z);
+		if (y == nil) {
+			return;
+		}
+		Node<T> x;
+		char y_original_color = y.color;
+		if (y.left == nil) {
+			x = y.right;
+			transplant(y, y.right);
+		} else if (y.right == nil) {
+			x = y.left;
+			transplant(y, y.left);
+		} else {
+			Node<T> r = min(y.right);
+			y_original_color = r.color;
+			x = r.right;
+			if (r.parent == y) {
+				x.parent = r;
+			} else {
+				transplant(r, r.right);
+				r.right = y.right;
+				r.right.parent = r;
+			}
+			transplant(y, r);
+			r.left = y.left;
+			r.left.parent = r;
+			r.color = y.color;
+		}
+		// we do fix-up only if deleted node is BLACK, cause that violates the property
+		// 5 i.e., "For each node, all simple paths from the node to descendant leaves
+		// contain the same number of black nodes"
+		if (y_original_color == BLACK) {
+			deleteFixUp(x);
+		}
+	}
 
+	private void deleteFixUp(Node<T> x) {
+		while (x != root && x.color == BLACK) {
+			if (x == x.parent.left) {
+				Node<T> w = x.parent.right;// right sibling of node x
+				// sibling is red
+				if (w.color == RED) {
+					w.color = BLACK; // change it to BLACK
+					x.parent.color = RED;
+					leftRotate(x.parent);
+					w = x.parent.right;
+				}
+				// both children of sibling are BLACK
+				if (w.left.color == BLACK && w.right.color == BLACK) {
+					w.color = RED;
+					x = x.parent;
+				} else {
+					// right child of sibling is BLACK and left child of sibling is RED
+					if (w.right.color == BLACK) {
+						w.left.color = BLACK;// change left child to BLACK
+						w.color = RED;
+						rightRotate(w);
+						w = x.parent.right;
+					}
+					// siblings right child is RED
+					w.color = x.parent.color;
+					x.parent.color = BLACK;
+					w.right.color = BLACK;
+					leftRotate(x.parent);
+					x = root;
+				}
+			} else {
+				Node<T> w = x.parent.left;// left sibling of node x
+				// sibling is red
+				if (w.color == RED) {
+					w.color = BLACK;// change it to BLACK
+					x.parent.color = RED;
+					rightRotate(x.parent);
+					w = x.parent.left;
+				}
+				// both children of sibling are BLACK
+				if (w.left.color == BLACK && w.right.color == BLACK) {
+					w.color = RED;
+					x = x.parent;
+				} else {
+					// left child of sibling is BLACK and right child of sibling is RED
+					if (w.left.color == BLACK) {
+						w.right.color = BLACK;// change right child to BLACK
+						w.color = RED;
+						leftRotate(w);
+						w = x.parent.left;
+					}
+					// siblings left child is RED
+					w.color = x.parent.color;
+					x.parent.color = BLACK;
+					w.left.color = BLACK;
+					rightRotate(x.parent);
+					x = root;
+				}
+			}
+		}
+		x.color = BLACK;
+	}
+
+	private void transplant(Node<T> oTree, Node<T> rTree) {
+		if (oTree.parent == nil) {
+			this.root = rTree;
+		} else if (oTree == oTree.parent.left) {
+			oTree.parent.left = rTree;
+		} else {
+			oTree.parent.right = rTree;
+		}
+		rTree.parent = oTree.parent;
 	}
 
 	/**
@@ -323,14 +441,14 @@ public class StandardRedBlackTree<T extends Comparable<T>> {
 	}
 
 	private void traverseLevelOrderRecursive(Node<T> node, List<T> list, Queue<Node<T>> queue) {
-		if (node == null) {
+		if (node == nil) {
 			return;
 		}
 		list.add(node.value);
-		if (node.left != null) {
+		if (node.left != nil) {
 			queue.enQueue(node.left);
 		}
-		if (node.right != null) {
+		if (node.right != nil) {
 			queue.enQueue(node.right);
 		}
 		if (!queue.isEmpty()) {
@@ -350,7 +468,7 @@ public class StandardRedBlackTree<T extends Comparable<T>> {
 	}
 
 	private void traverseInOrderRecursive(Node<T> node, List<T> list) {
-		if (nil.equals(node)) {
+		if (node == nil) {
 			return;
 		}
 		traverseInOrderRecursive(node.left, list);
@@ -370,7 +488,7 @@ public class StandardRedBlackTree<T extends Comparable<T>> {
 	}
 
 	private void traversePostOrderRecursive(Node<T> node, List<T> list) {
-		if (node == null) {
+		if (node == nil) {
 			return;
 		}
 		traversePostOrderRecursive(node.left, list);
@@ -390,7 +508,7 @@ public class StandardRedBlackTree<T extends Comparable<T>> {
 	}
 
 	private void traversePreOrderRecursive(Node<T> node, List<T> list) {
-		if (node == null) {
+		if (node == nil) {
 			return;
 		}
 		list.add(node.value);
