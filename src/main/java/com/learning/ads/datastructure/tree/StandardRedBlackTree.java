@@ -113,7 +113,7 @@ public class StandardRedBlackTree<T extends Comparable<T>> {
 	}
 
 	/**
-	 * Complexity: O(log n) but quickly grows to O(n) if tree becomes Skew tree
+	 * Complexity: O(log n)
 	 * 
 	 * @return
 	 */
@@ -122,11 +122,6 @@ public class StandardRedBlackTree<T extends Comparable<T>> {
 		return min == nil ? null : min.value;
 	}
 
-	/**
-	 * Complexity: O(log n) but quickly grows to O(n) if tree becomes Skew tree
-	 * 
-	 * @return
-	 */
 	private Node<T> min(Node<T> node) {
 		Node<T> parent = nil;
 		while (node != nil) {
@@ -137,7 +132,7 @@ public class StandardRedBlackTree<T extends Comparable<T>> {
 	}
 
 	/**
-	 * Complexity: O(log n) but quickly grows to O(n) if tree becomes Skew tree
+	 * Complexity: O(log n)
 	 * 
 	 * @return
 	 */
@@ -146,11 +141,6 @@ public class StandardRedBlackTree<T extends Comparable<T>> {
 		return max == nil ? null : max.value;
 	}
 
-	/**
-	 * Complexity: O(log n) but quickly grows to O(n) if tree becomes Skew tree
-	 * 
-	 * @return
-	 */
 	private Node<T> max(Node<T> node) {
 		Node<T> parent = nil;
 		while (node != nil) {
