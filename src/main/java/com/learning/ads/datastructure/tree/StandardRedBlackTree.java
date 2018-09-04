@@ -7,7 +7,7 @@ import com.learning.ads.datastructure.queue.Queue;
 
 /**
  * 
- * One of the balanced(approximately) balanced implementation of BST.
+ * One of the balanced(approximately) implementation of BST.
  * 
  * Implementation follows as explained in CLRS
  * 
