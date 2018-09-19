@@ -2,6 +2,17 @@ package com.learning.ads.dynamicprogramming;
 
 import java.util.Arrays;
 
+/**
+ * Classic coin change problem serves as introduction to Dynamic programming.
+ * 
+ * https://www.geeksforgeeks.org/coin-change-dp-7/
+ * 
+ * Solutions implemented here are little different from that of the above source.
+ * 
+ * 
+ * @author Arun Rahul
+ *
+ */
 public class CoinChange {
 
 	/**
