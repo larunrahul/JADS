@@ -51,7 +51,7 @@ public class StandardAVLTree<T extends Comparable<T>> {
 
 	private int height(Node<T> node) {
 		if (node == null) {
-			return 0;
+			return -1;
 		}
 		return node.height;
 	}
@@ -171,23 +171,36 @@ public class StandardAVLTree<T extends Comparable<T>> {
 	 * @return
 	 */
 	public void insert(T key) {
-		root = insert(root, key);
+		Node<T> node = new Node<>(key);
+		Node<T> parent = null;
+		Node<T> child = this.root;
+		while (child != null) {
+			parent = child;
+			if (key.compareTo(child.value) < 0) {
+				child = child.left;
+			} else {
+				child = child.right;
+			}
+		}
+		node.parent = parent;
+		if (parent == null) {
+			this.root = node;
+		} else if (key.compareTo(parent.value) < 0) {
+			parent.left = node;
+		} else {
+			parent.right = node;
+		}
+		insertBalance(node);
 	}
 
-	private Node<T> insert(Node<T> node, T value) {
-		if (node == null) {
-			return new Node<T>(value);
+	private void insertBalance(Node<T> node) {
+		while (node != null) {
+			node.height = Math.max(height(node.left), height(node.right)) + 1;
+			Node<T> currentParent = node.parent;
+			Node<T> newNode = balance(node);
+			newNode.parent = currentParent;
+			node = currentParent;
 		}
-		int compValue = node.value.compareTo(value);
-		if (compValue > 0) {
-			node.left = insert(node.left, value);
-			node.left.parent = node;
-		} else {
-			node.right = insert(node.right, value);
-			node.right.parent = node;
-		}
-		node.height = Math.max(height(node.left), height(node.right)) + 1;
-		return balance(node);
 	}
 
 	private Node<T> balance(Node<T> x) {
@@ -262,7 +275,7 @@ public class StandardAVLTree<T extends Comparable<T>> {
 	}
 
 	/**
-	 * Complexity: O(log n) but quickly grows to O(n) if tree becomes Skew tree
+	 * Complexity: O(log n)
 	 * 
 	 * @return
 	 */
@@ -271,12 +284,20 @@ public class StandardAVLTree<T extends Comparable<T>> {
 		if (node == null) {
 			return;
 		}
+		Node<T> parent = node.parent;
 		if (node.left == null) {
 			transplant(node, node.right);
+			if (node.right != null) {
+				parent = node.right;
+			}
 		} else if (node.right == null) {
 			transplant(node, node.left);
+			if (node.left != null) {
+				parent = node.left;
+			}
 		} else {
 			Node<T> replacement = min(node.right);
+			parent = replacement.parent;
 			if (!replacement.parent.equals(node)) {
 				transplant(replacement, replacement.right);
 				replacement.right = node.right;
