@@ -21,18 +21,50 @@ public class Knapsack {
 	 * @return
 	 */
 	public int binaryRec(int[] values, int[] weights, int capacity) {
-		return binaryRecr(values, weights, capacity, 0);
+		return binaryRec(values, weights, capacity, 0);
 	}
 
-	private int binaryRecr(int[] values, int[] weights, int capacity, int index) {
+	private int binaryRec(int[] values, int[] weights, int capacity, int index) {
 		if (index == weights.length || capacity == 0) {
 			return 0;
 		}
 		if (weights[index] > capacity) {
-			return binaryRecr(values, weights, capacity, index + 1);
+			return binaryRec(values, weights, capacity, index + 1);
 		}
-		return Math.max(values[index] + binaryRecr(values, weights, capacity - weights[index], index + 1),
-				binaryRecr(values, weights, capacity, index + 1));
+		return Math.max(values[index] + binaryRec(values, weights, capacity - weights[index], index + 1),
+				binaryRec(values, weights, capacity, index + 1));
+	}
+
+	/**
+	 * Complexity: O(2^N) where N is the number of weights
+	 * 
+	 * @param values
+	 * @param weights
+	 * @param capacity
+	 * @return
+	 */
+	public int binaryRecAnother(int[] values, int[] weights, int capacity) {
+		return binaryRecAnother(values, weights, capacity, 0);
+	}
+
+	private int binaryRecAnother(int[] values, int[] weights, int capacity, int index) {
+		if (capacity < 0) {
+			return -1;
+		}
+
+		int result;
+		if (index == weights.length || capacity == 0) {
+			result = 0;
+		} else {
+			int left = binaryRecAnother(values, weights, capacity - weights[index], index + 1);
+			if (left != -1) {
+				left += values[index];
+			}
+			int right = binaryRecAnother(values, weights, capacity, index + 1);
+			result = Math.max(left, right);
+		}
+		return result;
+
 	}
 
 	/**
