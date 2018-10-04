@@ -3,7 +3,7 @@
 
 
 # Sample Problems to study
-####(better to study/solve in the following order)
+###(better to study/solve in the following order)
 1. [Coin Change aka Change Making](https://en.wikipedia.org/wiki/Change-making_problem) - [Tutorial](https://www.geeksforgeeks.org/coin-change-dp-7) - [Practice](https://leetcode.com/problems/coin-change-2/description)
 2. [Knapsack](https://en.wikipedia.org/wiki/Knapsack_problem) - [Tutorial](https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10) - [Practice](https://www.spoj.com/problems/KNAPSACK)
 
