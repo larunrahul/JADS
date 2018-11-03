@@ -7,13 +7,13 @@ import com.learning.ads.datastructure.queue.Queue;
 
 /**
  * 
- * One of the balanced implementation of BST.
+ * One of the height-balanced implementation of BST.
  * 
  * Height property of ALV tree: Heights of left and right sub trees of every
  * tree should differ by at most 1
  * 
  * Most of the operations can be done in O(log n) time due to the fact that tree
- * is always balanced.
+ * is always height-balanced.
  * 
  * The height of the tree is at most log n where n is the number of nodes in
  * tree.
@@ -196,10 +196,8 @@ public class StandardAVLTree<T extends Comparable<T>> {
 	private void insertBalance(Node<T> node) {
 		while (node != null) {
 			node.height = Math.max(height(node.left), height(node.right)) + 1;
-			Node<T> currentParent = node.parent;
 			Node<T> newNode = balance(node);
-			newNode.parent = currentParent;
-			node = currentParent;
+			node = newNode.parent;
 		}
 	}
 
@@ -207,18 +205,56 @@ public class StandardAVLTree<T extends Comparable<T>> {
 		if (Math.abs(height(x.left) - height(x.right)) <= 1) {
 			return x;
 		}
+		// left subtree is heavier than right subtree
 		if (height(x.left) > height(x.right)) {
-			if (height(x.left.left) > height(x.left.right)) {
-				return rightRotate(x);
-			} else {
-				return leftRotate(x.left);
+			// right subtree of left subtree is heavier than left subtree of left subtree
+			if (height(x.left.left) < height(x.left.right)) {
+				leftRotate(x.left);
+			}
+			return rightRotate(x);
+		}
+		// right subtree is heavier than left sub-tree
+		else {
+			// left subtree of right subtree is heavier than right subtree of right sub-tree
+			if (height(x.right.left) > height(x.right.right)) {
+				rightRotate(x.right);
+			}
+			return leftRotate(x);
+		}
+	}
+
+	/**
+	 * Complexity: O(log n)
+	 * 
+	 * @return
+	 */
+	public void delete(T key) {
+		Node<T> node = search(key);
+		if (node == null) {
+			return;
+		}
+		Node<T> parent = node.parent;
+		if (node.left == null) {
+			transplant(node, node.right);
+			if (node.right != null) {
+				parent = node.right;
+			}
+		} else if (node.right == null) {
+			transplant(node, node.left);
+			if (node.left != null) {
+				parent = node.left;
 			}
 		} else {
-			if (height(x.right.left) > height(x.right.right)) {
-				return rightRotate(x.right);
-			} else {
-				return leftRotate(x);
+			Node<T> replacement = min(node.right);
+			parent = replacement.parent;
+			if (!replacement.parent.equals(node)) {
+				transplant(replacement, replacement.right);
+				replacement.right = node.right;
+				replacement.right.parent = replacement;
 			}
+			transplant(node, replacement);
+			replacement.left = node.left;
+			replacement.left.parent = replacement;
 		}
 	}
 
@@ -272,41 +308,6 @@ public class StandardAVLTree<T extends Comparable<T>> {
 		x.height = Math.max(height(x.left), height(x.right)) + 1;
 		y.height = Math.max(height(y.left), height(y.right)) + 1;
 		return y;
-	}
-
-	/**
-	 * Complexity: O(log n)
-	 * 
-	 * @return
-	 */
-	public void delete(T key) {
-		Node<T> node = search(key);
-		if (node == null) {
-			return;
-		}
-		Node<T> parent = node.parent;
-		if (node.left == null) {
-			transplant(node, node.right);
-			if (node.right != null) {
-				parent = node.right;
-			}
-		} else if (node.right == null) {
-			transplant(node, node.left);
-			if (node.left != null) {
-				parent = node.left;
-			}
-		} else {
-			Node<T> replacement = min(node.right);
-			parent = replacement.parent;
-			if (!replacement.parent.equals(node)) {
-				transplant(replacement, replacement.right);
-				replacement.right = node.right;
-				replacement.right.parent = replacement;
-			}
-			transplant(node, replacement);
-			replacement.left = node.left;
-			replacement.left.parent = replacement;
-		}
 	}
 
 	private void transplant(Node<T> oTree, Node<T> rTree) {

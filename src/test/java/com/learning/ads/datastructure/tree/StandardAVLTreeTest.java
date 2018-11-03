@@ -34,9 +34,9 @@ public class StandardAVLTreeTest {
 		tree.insert(190);
 		tree.insert(200);
 		assertEquals(4, tree.height());
-		System.out.println(tree.height());
 		assertArrayEquals(new Integer[] { 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200 },
 				tree.traverseInOrder().toArray());
+		assertEquals(16, tree.traverseInOrder().size());
 	}
 
 }
