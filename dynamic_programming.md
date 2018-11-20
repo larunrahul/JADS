@@ -11,3 +11,4 @@ Better to study/solve in the following order
 
 ##Beginner
 1. [Philosopher's Stone](https://www.spoj.com/problems/BYTESM2)
+4. [Unique Binary Search Trees](https://leetcode.com/problems/unique-binary-search-trees/)
