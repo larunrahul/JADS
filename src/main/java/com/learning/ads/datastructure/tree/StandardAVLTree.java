@@ -30,11 +30,11 @@ public class StandardAVLTree<T extends Comparable<T>> {
 
 	private static class Node<T> {
 
-		public T value;
-		public Node<T> left;
-		public Node<T> right;
-		public Node<T> parent;
-		public int height;
+		private T value;
+		private Node<T> left;
+		private Node<T> right;
+		private Node<T> parent;
+		private int height;
 
 		public Node(T value) {
 			this.value = value;
@@ -138,7 +138,7 @@ public class StandardAVLTree<T extends Comparable<T>> {
 			successor = min(node.right);
 		} else {
 			successor = node.parent;
-			while (successor != null && node.equals(successor.right)) {
+			while (successor != null && node == successor.right) {
 				node = successor;
 				successor = successor.parent;
 			}
@@ -157,7 +157,7 @@ public class StandardAVLTree<T extends Comparable<T>> {
 			successor = max(node.right);
 		} else {
 			successor = node.parent;
-			while (successor != null && node.equals(successor.left)) {
+			while (successor != null && node == successor.left) {
 				node = successor;
 				successor = successor.parent;
 			}
@@ -190,10 +190,10 @@ public class StandardAVLTree<T extends Comparable<T>> {
 		} else {
 			parent.right = node;
 		}
-		insertBalance(node);
+		balanceUpward(node);
 	}
 
-	private void insertBalance(Node<T> node) {
+	private void balanceUpward(Node<T> node) {
 		while (node != null) {
 			node.height = Math.max(height(node.left), height(node.right)) + 1;
 			Node<T> newNode = balance(node);
@@ -233,21 +233,17 @@ public class StandardAVLTree<T extends Comparable<T>> {
 		if (node == null) {
 			return;
 		}
-		Node<T> parent = node.parent;
+		Node<T> parent;
 		if (node.left == null) {
 			transplant(node, node.right);
-			if (node.right != null) {
-				parent = node.right;
-			}
+			parent = node.parent;
 		} else if (node.right == null) {
 			transplant(node, node.left);
-			if (node.left != null) {
-				parent = node.left;
-			}
+			parent = node.parent;
 		} else {
 			Node<T> replacement = min(node.right);
 			parent = replacement.parent;
-			if (!replacement.parent.equals(node)) {
+			if (replacement.parent != node) {
 				transplant(replacement, replacement.right);
 				replacement.right = node.right;
 				replacement.right.parent = replacement;
@@ -256,6 +252,7 @@ public class StandardAVLTree<T extends Comparable<T>> {
 			replacement.left = node.left;
 			replacement.left.parent = replacement;
 		}
+		balanceUpward(parent);
 	}
 
 	/**
@@ -313,7 +310,7 @@ public class StandardAVLTree<T extends Comparable<T>> {
 	private void transplant(Node<T> oTree, Node<T> rTree) {
 		if (oTree.parent == null) {
 			this.root = rTree;
-		} else if (oTree.equals(oTree.parent.left)) {
+		} else if (oTree == oTree.parent.left) {
 			oTree.parent.left = rTree;
 		} else {
 			oTree.parent.right = rTree;
