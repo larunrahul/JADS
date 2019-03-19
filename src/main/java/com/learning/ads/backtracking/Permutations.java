@@ -39,6 +39,66 @@ public class Permutations {
 		return permutations;
 	}
 
+	/**
+	 * This is bottom-up approach
+	 * 
+	 * Insert the nth element at all possible locations of the (n-1)! remaining
+	 * permutations.
+	 * 
+	 * For input string "abc", take 'a'. Now add 'b' at every position in 'a' i.e.,
+	 * "ba", "ab". Now add 'c' at every position in "ba" and "ab". This gives rise
+	 * to "cba", "bca", "bac" and "cab", "acb", "abc". Do this process in bottom up
+	 * fashion recursively.
+	 * 
+	 * @param input
+	 * @return
+	 */
+	public List<String> getAllPermutationBottomup(String input) {
+		return getAllPermutationBottomup(input, input.length() - 1);
+	}
+
+	private List<String> getAllPermutationBottomup(String input, int end) {
+		String endChar = input.substring(end, end + 1);
+		List<String> thisPerms = new ArrayList<>();
+		if (end == 0) {
+			thisPerms.add(endChar);
+			return thisPerms;
+		}
+		List<String> perms = getAllPermutationBottomup(input, end - 1);
+		for (String str : perms) {
+			char[] chars = str.toCharArray();
+			char[] newChars = new char[chars.length + 1];
+			for(int pos = 0 ; pos < newChars.length; pos++) {
+				for (int i = 0; i < newChars.length; i++) {
+					if(i == pos) {
+						newChars[i] = input.charAt(end);
+					}else if (i > pos) {
+						newChars[i] = chars[i-1];
+					}else {
+						newChars[i] = chars[i];
+					}
+				}
+				thisPerms.add(String.valueOf(newChars));
+			}
+		}
+		return thisPerms;
+	}
+
+	/**
+	 * https://www.hackerrank.com/challenges/bigger-is-greater/problem
+	 * 
+	 * Steinhaus–Johnson–Trotter algorithm
+	 * 
+	 * This method generates the next permutation for given permutation in
+	 * lexicographic order
+	 * 
+	 * @param permutation
+	 * @return
+	 */
+	public String nextPermutationSJT(String permutation) {
+		return null;
+	}
+
 	private void permuteNaive(char[] input, int start, int end) {
 		if (start == end) {
 			permutations.add(String.valueOf(input));
@@ -57,8 +117,4 @@ public class Permutations {
 		input[to] = temp;
 	}
 
-	public static void main(String[] args) {
-		Permutations p = new Permutations();
-		p.getAllPermutationsNaive("abcd");
-	}
 }

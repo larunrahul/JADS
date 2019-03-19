@@ -13,4 +13,13 @@ public class PermutationsTest {
 		Assert.assertArrayEquals(result, new Permutations().getAllPermutationsNaive("abcd").toArray());
 	}
 
+	@Test
+	public void getAllPermutationsBottomup() {
+		String[] result = { "dcba", "cdba", "cbda", "cbad", "dbca", "bdca", "bcda", "bcad", "dbac", "bdac", "badc",
+				"bacd", "dcab", "cdab", "cadb", "cabd", "dacb", "adcb", "acdb", "acbd", "dabc", "adbc", "abdc",
+				"abcd" };
+		Assert.assertArrayEquals(result, new Permutations().getAllPermutationBottomup("abcd").toArray());
+
+	}
+
 }
