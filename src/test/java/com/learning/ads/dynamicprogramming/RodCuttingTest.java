@@ -50,4 +50,18 @@ public class RodCuttingTest {
 		assertEquals(18, result.finalPrice);
 		assertArrayEquals(new Integer[] { 1, 6 }, result.cuts.toArray(new Integer[2]));
 	}
+	
+	@Test
+	public void cutBottomUpWithCostForCut() {
+		int[] prices = { 0, 1, 5, 8, 9, 10, 17, 17, 20, 24, 30 };
+		Result result = rodCutting.cutBottomUpWithCostForCut(prices, 6, 4);
+		assertEquals(rodCutting.cutWitCutCost(prices, 6, 4), result.finalPrice);
+		assertArrayEquals(new Integer[] {6}, result.cuts.toArray(new Integer[1]));
+		result = rodCutting.cutBottomUpWithCostForCut(prices, 8, 2);
+		assertEquals(rodCutting.cutWitCutCost(prices, 8, 2), result.finalPrice);
+		assertArrayEquals(new Integer[] {8}, result.cuts.toArray(new Integer[1]));
+		result = rodCutting.cutBottomUpWithCostForCut(prices, 7, 2);
+		assertEquals(rodCutting.cutWitCutCost(prices, 7, 2), result.finalPrice);
+		assertArrayEquals(new Integer[] {7}, result.cuts.toArray(new Integer[1]));
+	}
 }
