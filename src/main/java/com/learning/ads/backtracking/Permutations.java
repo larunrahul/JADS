@@ -27,7 +27,7 @@ public class Permutations {
 	 * 
 	 * 2) Recurse the remaining part (2..n)
 	 * 
-	 * 3) Undo the swap to conitnue for next permutation
+	 * 3) Undo the swap to continue for next permutation
 	 * 
 	 * Time complexity: O(n!)
 	 * 
