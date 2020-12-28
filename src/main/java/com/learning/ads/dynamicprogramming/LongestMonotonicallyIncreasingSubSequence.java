@@ -1,7 +1,5 @@
 package com.learning.ads.dynamicprogramming;
 
-import java.util.Arrays;
-
 /**
  * https://leetcode.com/problems/longest-increasing-subsequence/solution/
  * 
@@ -40,8 +38,9 @@ public class LongestMonotonicallyIncreasingSubSequence {
 
 	/**
 	 * 
-	 * Time Complexity: O(2^n) where n is size of array Space Complexity: O(n^2)
-	 * where n is size of array
+	 * Time Complexity: O(n^2) where n is size of array 
+	 * 
+	 * Space Complexity: O(n^2) where n is size of array
 	 * 
 	 * Find all paths which have increasing sequence
 	 * 
