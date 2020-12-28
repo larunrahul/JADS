@@ -60,6 +60,9 @@ public class QuickSortTest {
 		Integer[] array = { 2, 8, 7, 1, 3, 5, 6, 4 };
 		sort.sort(array);
 		assertArrayEquals(new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8 }, array);
+		array = new Integer[]{6,5,6,2,4,1,1,2};
+		sort.sort(array);
+		assertArrayEquals(new Integer[] { 1,1,2,2,4,5,6,6 }, array);
 	}
 
 	@Test
