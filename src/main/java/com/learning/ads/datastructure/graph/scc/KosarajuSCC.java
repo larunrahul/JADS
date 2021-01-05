@@ -22,7 +22,22 @@ import java.util.LinkedList;
  */
 public class KosarajuSCC {
 
-    private LinkedList<Integer> list;
+    private LinkedList<Integer> list = new LinkedList<>();
+
+    List<List<Integer>> graph = new ArrayList<>();
+
+    int N;
+
+    public KosarajuSCC(int[][] edges, int vertices){
+        graph = new ArrayList<>();
+        this.N = vertices;
+        for(int i = 0; i < vertices; i++){
+            graph.add(new ArrayList<>());
+        }
+        for(int[] edge: edges){
+            graph.get(edge[0]).add(edge[1]);
+        }
+    }
 
     /**
      * 
@@ -40,25 +55,24 @@ public class KosarajuSCC {
      * @param N
      * @return
      */
-    public int stronglyConnectedComponents(List<List<Integer>> adj, int N) {
-        list = new LinkedList<>();
+    public int stronglyConnectedComponents() {
         boolean[] visited = new boolean[N];
 
         // run dfs and prepare list of node in decreasing order of complete time
         for (int i = 0; i < N; i++) {
             if (!visited[i])
-                dfs(adj, i, visited, true);
+                dfs(graph, i, visited, true);
         }
 
         // prepare transpose of given graph
-        List<List<Integer>> adjT = new ArrayList<>();
+        List<List<Integer>> graphT = new ArrayList<>();
         for (int i = 0; i < N; i++) {
-            adjT.add(new ArrayList<>());
+            graphT.add(new ArrayList<>());
         }
 
         for (int i = 0; i < N; i++) {
-            for (int j : adj.get(i)) {
-                adjT.get(j).add(i);
+            for (int j : graph.get(i)) {
+                graphT.get(j).add(i);
             }
         }
 
@@ -69,18 +83,18 @@ public class KosarajuSCC {
         while (!list.isEmpty()) {
             int i = list.pollFirst();
             if (!visited[i]) {
-                dfs(adjT, i, visited, false);
+                dfs(graphT, i, visited, false);
                 count++;
             }
         }
         return count;
     }
 
-    private void dfs(List<List<Integer>> adj, int node, boolean[] visited, boolean add) {
+    private void dfs(List<List<Integer>> graph, int node, boolean[] visited, boolean add) {
         visited[node] = true;
-        for (int neighbour : adj.get(node)) {
+        for (int neighbour : graph.get(node)) {
             if (!visited[neighbour])
-                dfs(adj, neighbour, visited, add);
+                dfs(graph, neighbour, visited, add);
         }
         if (add)
             list.offerFirst(node); // add to front of list
