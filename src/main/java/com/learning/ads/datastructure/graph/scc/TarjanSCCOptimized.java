@@ -106,7 +106,7 @@ public class TarjanSCCOptimized {
                 n = stack.removeFirst();
                 /**
                  * This is must. If we don't set this, when we are processing some other SCC,
-                 * the second if condition in line 91 above runs and gives wrong values since
+                 * the second "if" condition in line 91 above runs and gives wrong values since
                  * lowlink value of this node is less than that of future node which we process
                  * in other scc.
                  * 

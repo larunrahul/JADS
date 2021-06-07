@@ -89,9 +89,9 @@ public class TarjanSCC {
                  * (in otherwords ancestor of this node), update current nodes lowlink value
                  * with it.
                  * 
-                 * In otherwords if lowlink of neighbour is less than current node, then current node can
-                 * reach to the lowlink ancestor through this neighbour. Hence update lowlink
-                 * value of current node with that of neighbour node.
+                 * In otherwords if lowlink of neighbour is less than current node, then current
+                 * node can reach to the lowlink ancestor through this neighbour. Hence update
+                 * lowlink value of current node with that of neighbour node.
                  */
                 lowlink[node] = Math.min(lowlink[node], lowlink[neighbour]);
             } else if (stackPresence[neighbour]) { // is present on current stack
@@ -101,7 +101,7 @@ public class TarjanSCC {
                  * neighbour which is already present in current dfs tree. That means this is an
                  * ancestor to current node. In other words this is back edge.
                  * 
-                 * Technically speaking for finding SCC, the following linke can also be used
+                 * Technically speaking for finding SCC, the following line can also be used
                  * instead of what we actually used
                  * 
                  * lowlink[node] = Math.min(lowlink[node], lowlink[neighbour]);
@@ -129,6 +129,12 @@ public class TarjanSCC {
             List<Integer> list = new ArrayList<>();
             while (n != node) {
                 n = stack.removeFirst();
+                /**
+                 * This line is must. If we do not mark this node's stack presence to false, when we
+                 * are processing other SCC where one node has edge to this SCC, then that node
+                 * is updated to lowlink value of this node. If we keep it false, then line 97
+                 * skips it which is correct.
+                 */
                 stackPresence[n] = false;
                 list.add(n);
             }

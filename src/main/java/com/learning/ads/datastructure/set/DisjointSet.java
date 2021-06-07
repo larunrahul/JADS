@@ -93,8 +93,7 @@ public class DisjointSet {
 	 */
 	public int find(int element) {
 		if (element != parent[element])
-			parent[element] = find(parent[element]);
-		// path compression
+			parent[element] = find(parent[element]); // path compression
 		return parent[element];
 	}
 
