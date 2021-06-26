@@ -4,9 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.learning.ads.datastructure.list.problems.linkedlist.AddTwoNumbers;
-import com.learning.ads.datastructure.list.problems.linkedlist.ListNode;
-
 public class AddTwoNumbersTest {
 
 	AddTwoNumbers rll = new AddTwoNumbers();
