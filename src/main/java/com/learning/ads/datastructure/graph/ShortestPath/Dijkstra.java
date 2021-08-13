@@ -10,6 +10,8 @@ import java.util.Set;
 /**
  * Given an undirected non-negative weighted graph, find shortest distance from a given source vertex to all other vertices
  * 
+ * Time Complexity: O(ELogV) 
+ * 
  * @author Arun Rahul
  */
 public class Dijkstra {
@@ -23,7 +25,7 @@ public class Dijkstra {
     }
     Map<Integer, Set<Node>> graph;
     int maxVertex;
-    //build unweighted graph
+    //build weighted graph
     public Dijkstra(int[][] edges, boolean isDirected){
         graph = new HashMap<>();
         for(int[] edge : edges){
