@@ -48,18 +48,26 @@ public class KMPPatternMatching {
 	 * Finding length of longest proper suffix which is also a proper prefix for
 	 * every index in pattern.
 	 * 
+	 * For every substring 0...i, we find longest proper prefix which is also suffix
+	 * 
 	 * Complexity: O(m) where m is length of pattern
 	 */
 	private int[] computeLPS(String pattern) {
 		int[] lps = new int[pattern.length()];
-		lps[0] = 0;
-		for (int i = 1; i < lps.length; i++) {
-			if (pattern.charAt(lps[i - 1]) == pattern.charAt(i)) {
-				lps[i] = lps[i - 1] + 1;
-			} else if (pattern.charAt(i - 1) == pattern.charAt(i)) {
-				lps[i] = lps[i - 1];
-			} else {
-				lps[i] = 0;
+		int i = 1, len = 0;
+		lps[0] = 0; //first 
+		while(i < pattern.length()){
+			if(pattern.charAt(i) == pattern.charAt(len)){ //example: abcd...abcd, for last index of d
+				len++;
+				lps[i] = len;
+				i++;
+			}else {
+				if(len == 0){
+					//here lps[i] is 0, so just increment it since array element at this index is already 0
+					i++;
+				}else {
+					len = lps[len - 1];
+				}
 			}
 		}
 		return lps;
